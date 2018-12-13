@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="-LeetCode -MarkDown,">
+  <meta name="keywords" content="-LeetCode,">
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="1. Two Sum c solution12345678910111213141516171819202122232425/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target) &amp;#123;">
-<meta name="keywords" content="-LeetCode -MarkDown">
+<meta name="description" content="LeetCode">
+<meta name="keywords" content="-LeetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode">
+<meta property="og:title" content="LeetCode Problem 1: Two Sum">
 <meta property="og:url" content="http://yoursite.com/2018/12/13/LeetCode/index.html">
 <meta property="og:site_name" content="李博宸">
-<meta property="og:description" content="1. Two Sum c solution12345678910111213141516171819202122232425/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target) &amp;#123;">
+<meta property="og:description" content="LeetCode">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/vampire1996/LeetCode/blob/master/Problems/1-100/1.TwoSum/problem.png" problem""="">
-<meta property="og:updated_time" content="2018-12-13T05:59:29.283Z">
+<meta property="og:image" content="http://yoursite.com/LeetCode/problem.png">
+<meta property="og:updated_time" content="2018-12-13T06:14:16.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode">
-<meta name="twitter:description" content="1. Two Sum c solution12345678910111213141516171819202122232425/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target) &amp;#123;">
-<meta name="twitter:image" content="https://github.com/vampire1996/LeetCode/blob/master/Problems/1-100/1.TwoSum/problem.png" problem""="">
+<meta name="twitter:title" content="LeetCode Problem 1: Two Sum">
+<meta name="twitter:description" content="LeetCode">
+<meta name="twitter:image" content="http://yoursite.com/LeetCode/problem.png">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>LeetCode | 李博宸</title>
+  <title>LeetCode Problem 1: Two Sum | 李博宸</title>
   
 
 
@@ -322,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode Problem 1: Two Sum</h1>
         
 
         <div class="post-meta">
@@ -385,6 +385,10 @@
           
 
           
+              <div class="post-description">
+                  LeetCode
+              </div>
+          
 
         </div>
       </header>
@@ -399,7 +403,7 @@
       
 
       
-        <h1 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1. Two Sum"></a>1. Two Sum</h1><p><img src="https://github.com/vampire1996/LeetCode/blob/master/Problems/1-100/1.TwoSum/problem.png&quot;problem&quot;" alt="problem description"></p>
+        <h1 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1. Two Sum"></a>1. Two Sum</h1><p><img src="/LeetCode/problem.png"></p>
 <h2 id="c-solution"><a href="#c-solution" class="headerlink" title="c solution"></a>c solution</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note: The returned array must be malloced, assume caller calls free().</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> targetNum[numsSize];</span><br><span class="line">        <span class="keyword">int</span>* newArray=<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numsSize;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            targetNum[i]=target-nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numsSize;i++)</span><br><span class="line">            <span class="keyword">for</span>(j=i+<span class="number">1</span>;j&lt;numsSize;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(targetNum[i]==nums[j])</span><br><span class="line">                &#123;</span><br><span class="line">                    newArray=(<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*<span class="number">2</span>);</span><br><span class="line">                    newArray[<span class="number">0</span>]=i;</span><br><span class="line">                    newArray[<span class="number">1</span>]=j;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">       <span class="keyword">return</span> newArray;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -418,7 +422,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/LeetCode-MarkDown/" rel="tag"># -LeetCode -MarkDown</a>
+            <a href="/blog/tags/LeetCode/" rel="tag"># -LeetCode</a>
           
         </div>
       
@@ -524,7 +528,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blog/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

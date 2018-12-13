@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[LeetCode]]></title>
+    <title><![CDATA[LeetCode Problem 1: Two Sum]]></title>
     <url>%2Fblog%2F2018%2F12%2F13%2FLeetCode%2F</url>
     <content type="text"><![CDATA[1. Two Sum c solution12345678910111213141516171819202122232425/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target) &#123; int targetNum[numsSize]; int* newArray=NULL; int j=0; for(int i=0;i&lt;numsSize;i++) &#123; targetNum[i]=target-nums[i]; &#125; for(int i=0;i&lt;numsSize;i++) for(j=i+1;j&lt;numsSize;j++) &#123; if(targetNum[i]==nums[j]) &#123; newArray=(int*)malloc(sizeof(int)*2); newArray[0]=i; newArray[1]=j; break; &#125; &#125; return newArray; &#125;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>-LeetCode -MarkDown</tag>
+        <tag>-LeetCode</tag>
       </tags>
   </entry>
 </search>
