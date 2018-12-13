@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="-LeetCode -MarkDown,">
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="old,sophisticated,never naive">
-<meta property="og:type" content="website">
-<meta property="og:title" content="李博宸">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="1. Two Sum c solution12345678910111213141516171819202122232425/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target) &amp;#123;">
+<meta name="keywords" content="-LeetCode -MarkDown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode">
+<meta property="og:url" content="http://yoursite.com/2018/12/13/LeetCode/index.html">
 <meta property="og:site_name" content="李博宸">
-<meta property="og:description" content="old,sophisticated,never naive">
+<meta property="og:description" content="1. Two Sum c solution12345678910111213141516171819202122232425/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target) &amp;#123;">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/vampire1996/-leetcode/blob/master/Problems/1-100/1.TwoSum/problem.png ">
+<meta property="og:updated_time" content="2018-12-13T03:20:23.934Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李博宸">
-<meta name="twitter:description" content="old,sophisticated,never naive">
+<meta name="twitter:title" content="LeetCode">
+<meta name="twitter:description" content="1. Two Sum c solution12345678910111213141516171819202122232425/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target) &amp;#123;">
+<meta name="twitter:image" content="https://github.com/vampire1996/-leetcode/blob/master/Problems/1-100/1.TwoSum/problem.png ">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/13/LeetCode/">
 
 
 
 
 
-  <title>李博宸</title>
+  <title>LeetCode | 李博宸</title>
   
 
 
@@ -153,8 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -201,9 +204,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -233,9 +236,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/12/13/LeetCode/" itemprop="url">LeetCode</a></h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode</h1>
         
 
         <div class="post-meta">
@@ -289,6 +290,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
 
@@ -307,13 +313,9 @@
       
 
       
-        
-          
-            <h1 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1. Two Sum"></a>1. Two Sum</h1><p><img src="https://github.com/vampire1996/-leetcode/blob/master/Problems/1-100/1.TwoSum/problem.png "></p>
+        <h1 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1. Two Sum"></a>1. Two Sum</h1><p><img src="https://github.com/vampire1996/-leetcode/blob/master/Problems/1-100/1.TwoSum/problem.png "></p>
 <h2 id="c-solution"><a href="#c-solution" class="headerlink" title="c solution"></a>c solution</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note: The returned array must be malloced, assume caller calls free().</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> targetNum[numsSize];</span><br><span class="line">        <span class="keyword">int</span>* newArray=<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numsSize;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            targetNum[i]=target-nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numsSize;i++)</span><br><span class="line">            <span class="keyword">for</span>(j=i+<span class="number">1</span>;j&lt;numsSize;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(targetNum[i]==nums[j])</span><br><span class="line">                &#123;</span><br><span class="line">                    newArray=(<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*<span class="number">2</span>);</span><br><span class="line">                    newArray[<span class="number">0</span>]=i;</span><br><span class="line">                    newArray[<span class="number">1</span>]=j;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">       <span class="keyword">return</span> newArray;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -328,14 +330,20 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/blog/tags/LeetCode-MarkDown/" rel="tag"># -LeetCode -MarkDown</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -345,10 +353,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -356,6 +365,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -376,8 +389,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -439,6 +461,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Two-Sum"><span class="nav-number">1.</span> <span class="nav-text">1. Two Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-solution"><span class="nav-number">1.1.</span> <span class="nav-text">c solution</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -599,6 +637,10 @@
 
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
