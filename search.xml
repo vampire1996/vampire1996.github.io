@@ -3,12 +3,12 @@
   <entry>
     <title><![CDATA[利用hexo搭建个人博客]]></title>
     <url>%2Fblog%2F2018%2F12%2F14%2F%E5%88%A9%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</url>
-    <content type="text"><![CDATA[由于所有的博客都是使用 markdown 进行编辑的，而 markdown 的插图一般需要外链，下面提供三种插图方法：在 source 文件夹中建立 images 文件夹，把需要插入的图片放到该文件夹中，然后通过相对路径 /images/image_name 进行访问。这种方法是最简单的，但由于 github page 一般空间限制为 1G，所以当图片比较多时这种方法不太合适。把图片上传到第三方图床，网上很多人推荐七牛网，但似乎目前免费空间只有1G了，如果图片较多就需要花钱了。另外，这些第三方图床说不定什么时候倒闭了或者被墙了就麻烦了。直接使用 github 当图床，其实就是创建一个新的 repository，可以命名为 blog_images，然后直接通过网页把需要插入的图片上传到该 repository 中。下面说一下如何获取访问地址，首先进入新建的 repository，点开需要插入的那张图片，复制浏览器中地址栏中的地址，把地址中的 blob 改成 raw 就好了，这一步很重要。虽然每个 repository 也有 1G 容量的限制，但是 reposiroty 的数量是没有限制的，你懂的。个人比较推荐这种方法。正常情况下，markdown 插入图片的语法是，但这种方法不能改变插入图片的大小和位置。因此我们可以通过下面的 html 语句来设置插入图片的格式： 1&lt;img src="address" width=50% height=50% align=center/&gt; 这条语句可以实现图片大小的设置]]></content>
+    <content type="text"><![CDATA[由于所有的博客都是使用 markdown 进行编辑的，而 markdown 的插图一般需要外链，下面提供三种插图方法：在 source 文件夹中建立 images 文件夹，把需要插入的图片放到该文件夹中，然后通过相对路径 /images/image_name 进行访问。这种方法是最简单的，但由于 github page 一般空间限制为 1G，所以当图片比较多时这种方法不太合适。把图片上传到第三方图床，网上很多人推荐七牛网，但似乎目前免费空间只有1G了，如果图片较多就需要花钱了。另外，这些第三方图床说不定什么时候倒闭了或者被墙了就麻烦了。直接使用 github 当图床，其实就是创建一个新的 repository，可以命名为 blog_images，然后直接通过网页把需要插入的图片上传到该 repository 中。下面说一下如何获取访问地址，首先进入新建的 repository，点开需要插入的那张图片，复制浏览器中地址栏中的地址，把地址中的 blob 改成 raw 就好了，这一步很重要。虽然每个 repository 也有 1G 容量的限制，但是 reposiroty 的数量是没有限制的，你懂的。个人比较推荐这种方法。正常情况下，markdown 插入图片的语法是1![title](address)， 但这种方法不能改变插入图片的大小和位置。因此我们可以通过下面的 html 语句来设置插入图片的格式： 1&lt;img src="address" width=50% height=50% align=center/&gt; 这条语句可以实现图片大小的设置]]></content>
       <categories>
-        <category>git hexo</category>
+        <category>建立博客</category>
       </categories>
       <tags>
-        <tag>-git -hexo</tag>
+        <tag>-blog</tag>
       </tags>
   </entry>
   <entry>
