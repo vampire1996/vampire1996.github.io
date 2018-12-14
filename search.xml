@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode Problem 106. Construct Binary Tree from Inorder and Postorder Traversal]]></title>
+    <url>%2Fblog%2F2018%2F12%2F14%2Fleetcode106%2F</url>
+    <content type="text"><![CDATA[106. Construct Binary Tree from Inorder and Postorder Traversal python solution123456789101112131415161718192021222324# Definition for a binary tree node.# class TreeNode(object):# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution(object): def buildTree(self, inorder, postorder): """ :type inorder: List[int] :type postorder: List[int] :rtype: TreeNode """ """ 利用pop()操作 依次从postorder中取出元素因此不需要计算左右子树的范围 注意要先计算右子树再计算左子树 """ if not inorder or not postorder:return None node=TreeNode(postorder.pop()) i=inorder.index(node.val) node.right=self.buildTree(inorder[i+1:], postorder) node.left=self.buildTree(inorder[:i], postorder) return node python3 solution12345678910111213141516171819202122232425262728293031323334353637383940414243444546# Definition for a binary tree node.# class TreeNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution: def buildTree(self, inorder, postorder): &quot;&quot;&quot; :type inorder: List[int] :type postorder: List[int] :rtype: TreeNode &quot;&quot;&quot; &quot;&quot;&quot; 思路整理: 1)[lo,hi]代表postorder当前要处理的元素范围 postorder[hi] 为当前函数的根节点 [start,end]代表inorder当前要处理的元素范围 在inorder中找到postorder[hi]对应的秩index 则end-index 为右子树的长度 [hi-(end-index),hi-1]即为postorder中右子树的范围 同理[lo,hi-(end-index)-1]即为postorder中左子树的范围 而[index+1,end]为inorder中右子树的范围 [start,index-1]为inorder中左子树的范围 e.g. lo=0 hi=4 start=0 end=4 inorder = [9,3,15,20,7] index(postorder[hi])=1 end-index=3 postorder = [9,15,7,20,3] node.val=postorder[hi]=3 则postorder中右子树的范围 [hi-(end-index),hi-1]=[1,3]=[3,15,20] postorder中左子树的范围 [lo,hi-(end-index)-1]=[0,0]=[9] 则inorder中右子树的范围 [index+1,end]=[2,4]=[3,15,20] inorder中左子树的范围 [start,index-1]=[0,0]=[9] Explanation 1)[lo,hi]represents the range of elements in postorder postorder[hi] is current root [start,end]represents the range of elements in inorder thus end-index is the length of right child [hi-(end-index),hi-1] is the range of right child in postorder [lo,hi-(end-index)-1] is the range of left child in postorder &quot;&quot;&quot; if not inorder:return None def helper(lo,hi,start,end): if lo&gt;hi or start&gt;end:return None node=TreeNode(postorder[hi]) index=inorder.index(postorder[hi]) node.right=helper(hi-(end-index),hi-1,index+1,end) node.left=helper(lo,hi-(end-index)-1,start,index-1) return node return helper(0,len(inorder)-1,0,len(inorder)-1) java solution1234567891011121314151617181920212223242526272829/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public TreeNode buildTree(int[] inorder, int[] postorder) &#123; if(inorder==null||postorder==null)return null; HashMap&lt;Integer,Integer&gt; map=new HashMap&lt;Integer,Integer&gt;(); for(int i=0;i&lt;inorder.length;i++) &#123; map.put(inorder[i],i); &#125; return helper(0,inorder.length-1,0,inorder.length-1,map,inorder,postorder); &#125; private static TreeNode helper(int lo,int hi,int start,int end,HashMap&lt;Integer,Integer&gt; map,int[] inorder, int[] postorder) &#123; if(lo&gt;hi||start&gt;end) return null; TreeNode node=new TreeNode(postorder[hi]); int index=map.get(postorder[hi]); node.right=helper(hi-(end-index),hi-1,index+1,end,map,inorder,postorder); node.left=helper(lo,hi-(end-index)-1,start,index-1,map,inorder,postorder); return node; &#125;&#125;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>-LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode Problem 91. Decode Ways]]></title>
+    <url>%2Fblog%2F2018%2F12%2F14%2Fleetcode91%2F</url>
+    <content type="text"><![CDATA[91. Decode Ways python solution12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152class Solution: def numDecodings(self, s): """ :type s: str :rtype: int """ """ 思路整理: 1)用cnt[len(s)]存储截止到s[i](包括s[i])所有可能的编码数 2)对于任意s[i] i.若 '1'&lt;=s[i]&lt;='9' 则s[i]都可以直接单独加到之前的编码队列--cnt[i-1] 同时,若s[i-1]=='1' 或者 s[i-1]=='2' and '1'&lt;=s[i]&lt;='6' 则s[i],s[i-1]二者可以结为1个编码 但前提是s[i-1]未与s[i-2]结合 此时我们用twoDigits记录之前的编码队列的s[i-1]与s[i-2]结合成的两位数 cnt[i-1]-twoDigits即为s[i-1]未与s[i-2]结合的数目--temp 则cnt[i]=cnt[i-1]+temp 同时temp可作为下一次迭代时的twoDigits ii.若 's[i]=='0' s[i]只能和s[i-1]结为1个编码 因此,cnt[i]=temp Explanation 1)we use cnt[len(s)] to store all possible decode ways up to s[i](include s[i]) 2)for every s[i] i.if '1'&lt;=s[i]&lt;='9' s[i] can add the formal decoding list seprately--cnt[i-1] meanwhile,if s[i-1]=='1' or(s[i-1]=='2' and '1'&lt;=s[i]&lt;='6') we can combine s[i] with s[i-1] to one number but we should ensure that s[i-1] and s[i-2] are not combined we use twoDigits to represent the number of combinations between s[i-1] and s[i-2],so cnt[i-1]-twoDigits is the number of which s[i-1] and s[i-2] are not combined so cnt[i]=cnt[i-1]+temp to be noticedw,temp can the next twoDigits ii.if 's[i]=='0' s[i] can one combines with s[i-1] thus cnt[i]=temp """ if not s or s[0]=='0':return 0 l=len(s) last=s[0] twoDigits=0 cnt=[0 for i in range(l)] cnt[0]=1 for i in range(1,l): #连续两个0 或者0之前为一大于2的数 if s[i]=='0' and (last=='0' or ord(last)&gt;ord('2')): return 0 if last=='1':temp=cnt[i-1]-twoDigits elif last=='2' and ord(s[i])&lt;ord('7'):temp=cnt[i-1]-twoDigits else:temp=0 cnt[i]=cnt[i-1]+temp if s[i]!='0' else temp twoDigits=temp last=s[i] return cnt[l-1] java solution123456789101112131415161718192021222324252627282930class Solution &#123; public int numDecodings(String s) &#123; if(s==null)return 0; int l=s.length(); int dp[]=new int[l]; //dp[l]每个元素均初始化为0 dp[0]=s.charAt(0)=='0'?0:1; //对于000123这种情况 由于dp[0:2]均为0 因此dp[3:5]也均为0--dp[i]+=dp[i-1/2]; for(int i=1;i&lt;l;i++) &#123; /* public String substring(int beginIndex, int endIndex) 左闭右开 第一个int为开始的索引，对应String数字中的开始位置，--能取到 第二个是截止的索引位置，对应String中的结束位置--取不到 */ /* Integer.valueOf(s)把字符串s解析成Integer对象类型， 返回的integer 可以调用对象中的方法。 */ int first=Integer.valueOf(s.substring(i,i+1)); //取出当前元素并转换为整型--一位数 int second=Integer.valueOf(s.substring(i-1,i+1)); //取出当前元素及其之前元素并转换为整型--两位数 if(first&gt;=1&amp;&amp;first&lt;=9) dp[i]+=dp[i-1]; //符合要求区间，可直接加到之前编码队列 if(second&gt;=10&amp;&amp;second&lt;=26) dp[i]+=i&gt;1?dp[i-2]:1; &#125; return dp[l-1]; &#125;&#125;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>-LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[利用hexo搭建个人博客]]></title>
     <url>%2Fblog%2F2018%2F12%2F14%2F%E5%88%A9%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</url>
     <content type="text"><![CDATA[博客插图 由于所有的博客都是使用 markdown 进行编辑的，而 markdown 的插图一般需要外链，下面提供三种插图方法：在 source 文件夹中建立 images 文件夹，把需要插入的图片放到该文件夹中，然后通过相对路径 /images/image_name 进行访问。这种方法是最简单的，但由于 github page 一般空间限制为 1G，所以当图片比较多时这种方法不太合适。把图片上传到第三方图床，网上很多人推荐七牛网，但似乎目前免费空间只有1G了，如果图片较多就需要花钱了。另外，这些第三方图床说不定什么时候倒闭了或者被墙了就麻烦了。直接使用 github 当图床，其实就是创建一个新的 repository，可以命名为 blog_images，然后直接通过网页把需要插入的图片上传到该 repository 中。下面说一下如何获取访问地址，首先进入新建的 repository，点开需要插入的那张图片，复制浏览器中地址栏中的地址，把地址中的 blob 改成 raw 就好了，这一步很重要。虽然每个 repository 也有 1G 容量的限制，但是 reposiroty 的数量是没有限制的，你懂的。个人比较推荐这种方法。正常情况下，markdown 插入图片的语法是1![title](address) 但这种方法不能改变插入图片的大小和位置。因此我们可以通过下面的 html 语句来设置插入图片的格式： 1&lt;img src="address" width=50% height=50% align=center/&gt; 这条语句可以实现图片大小的设置]]></content>
@@ -9,17 +31,6 @@
       </categories>
       <tags>
         <tag>-blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[LeetCode Problem 1: Two Sum]]></title>
-    <url>%2Fblog%2F2018%2F12%2F13%2FLeetCode%2F</url>
-    <content type="text"><![CDATA[1. Two Sum c solution12345678910111213141516171819202122232425/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target) &#123; int targetNum[numsSize]; int* newArray=NULL; int j=0; for(int i=0;i&lt;numsSize;i++) &#123; targetNum[i]=target-nums[i]; &#125; for(int i=0;i&lt;numsSize;i++) for(j=i+1;j&lt;numsSize;j++) &#123; if(targetNum[i]==nums[j]) &#123; newArray=(int*)malloc(sizeof(int)*2); newArray[0]=i; newArray[1]=j; break; &#125; &#125; return newArray; &#125;]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>-LeetCode</tag>
       </tags>
   </entry>
 </search>
