@@ -14,8 +14,8 @@
 
 <script>
     (function(){
-        if('zhangdan'){
-            if (prompt('请输入文章密码') !== 'zhangdan'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -79,7 +79,7 @@
 
 
 
-  <meta name="keywords" content="-Letter,">
+  <meta name="keywords" content="-LeetCode,">
 
 
 
@@ -90,20 +90,21 @@
 
 
 
-<meta name="description" content="Letter1">
-<meta name="keywords" content="-Letter">
+<meta name="description" content="LeetCode Problem 110. Balanced Binary Tree">
+<meta name="keywords" content="-LeetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Letter1">
-<meta property="og:url" content="http://yoursite.com/2018/12/18/letter1/index.html">
+<meta property="og:title" content="LeetCode Problem 110. Balanced Binary Tree">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/leetcode110/index.html">
 <meta property="og:site_name" content="Li Bochen">
-<meta property="og:description" content="Letter1">
+<meta property="og:description" content="LeetCode Problem 110. Balanced Binary Tree">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/1-100/64.%20Minimum%20Path%20Sum/problem.png">
-<meta property="og:updated_time" content="2018-12-18T04:03:38.064Z">
+<meta property="og:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/problem.png">
+<meta property="og:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/example.png">
+<meta property="og:updated_time" content="2018-12-18T07:14:00.043Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Letter1">
-<meta name="twitter:description" content="Letter1">
-<meta name="twitter:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/1-100/64.%20Minimum%20Path%20Sum/problem.png">
+<meta name="twitter:title" content="LeetCode Problem 110. Balanced Binary Tree">
+<meta name="twitter:description" content="LeetCode Problem 110. Balanced Binary Tree">
+<meta name="twitter:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/problem.png">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/18/letter1/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/leetcode110/">
 
 
 
 
 
-  <title>Letter1 | Li Bochen</title>
+  <title>LeetCode Problem 110. Balanced Binary Tree | Li Bochen</title>
   
 
 
@@ -286,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/12/18/letter1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/12/18/leetcode110/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bochen Li">
@@ -303,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Letter1</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode Problem 110. Balanced Binary Tree</h1>
         
 
         <div class="post-meta">
@@ -315,7 +316,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T11:41:42+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T15:13:01+08:00">
                 2018-12-18
               </time>
             
@@ -338,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Letter/" itemprop="url" rel="index">
-                    <span itemprop="name">Letter</span>
+                  <a href="/blog/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
                   </a>
                 </span>
 
@@ -367,7 +368,7 @@
 
           
               <div class="post-description">
-                  Letter1
+                  LeetCode Problem 110. Balanced Binary Tree
               </div>
           
 
@@ -384,9 +385,10 @@
       
 
       
-        <h1 id="64-Minimum-Path-Sum"><a href="#64-Minimum-Path-Sum" class="headerlink" title="64. Minimum Path Sum"></a>64. Minimum Path Sum</h1><p><img src="https://github.com/vampire1996/LeetCode/raw/master/Problems/1-100/64.%20Minimum%20Path%20Sum/problem.png"></p>
-<h2 id="python-solution"><a href="#python-solution" class="headerlink" title="python solution"></a>python solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minPathSum</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type grid: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        思路整理</span></span><br><span class="line"><span class="string">        res用于存储grid中每一行每个位置到达该位置的最小sum值</span></span><br><span class="line"><span class="string">        Input:            res</span></span><br><span class="line"><span class="string">        [</span></span><br><span class="line"><span class="string">        [1,3,1],          [1,4,5]</span></span><br><span class="line"><span class="string">        [1,5,1],          [2,7,6]</span></span><br><span class="line"><span class="string">        [4,2,1]           [6,8,7]</span></span><br><span class="line"><span class="string">        ]</span></span><br><span class="line"><span class="string">        1)对于第一行或第一列 res的值可由grid[0][i]+res[i-1](右侧值+当前grid值)</span></span><br><span class="line"><span class="string">        或 grid[j][0]+res[0](上方值+当前grid值)求得</span></span><br><span class="line"><span class="string">        2)对于其它情况 res值 为res[i]+grid[j][i](上方值+当前grid值)</span></span><br><span class="line"><span class="string">        和res[i-1]+grid[j][i](右侧值+当前grid值) 二者之间的最小值</span></span><br><span class="line"><span class="string">        Explanation</span></span><br><span class="line"><span class="string">        we use res to store the minimum sum of each position in grid </span></span><br><span class="line"><span class="string">        1)for grid[0][i] or grid[j][0],we can simply use grid[0][i]+res[i-1] </span></span><br><span class="line"><span class="string">        and grid[j][0]+res[0] to calculate them</span></span><br><span class="line"><span class="string">        2) for other situation,res[i]=min(res[i]+grid[j][i],res[i-1]+grid[j][i])</span></span><br><span class="line"><span class="string">        the sum of one particular position,there are only tow potential previous position</span></span><br><span class="line"><span class="string">        (either from its top or its left side),so we just take the small one</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> grid:<span class="keyword">return</span> <span class="number">0</span>   </span><br><span class="line">        row=len(grid)  </span><br><span class="line">        col=len(grid[<span class="number">0</span>])</span><br><span class="line">        res=[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(col)]</span><br><span class="line">        res[<span class="number">0</span>]=grid[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,col):res[i]=grid[<span class="number">0</span>][i]+res[i<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,row):</span><br><span class="line">              </span><br><span class="line">            res[<span class="number">0</span>]=grid[j][<span class="number">0</span>]+res[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,col):</span><br><span class="line">                res[i]=res[i]+grid[j][i] <span class="keyword">if</span> res[i]&lt;res[i<span class="number">-1</span>] <span class="keyword">else</span> res[i<span class="number">-1</span>]+grid[j][i] </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res[col<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="java-solution"><a href="#java-solution" class="headerlink" title="java solution"></a>java solution</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row=grid.length;</span><br><span class="line">        <span class="keyword">int</span> col=grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;row;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;col;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i==<span class="number">0</span>&amp;&amp;j==<span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">0</span>&amp;&amp;j&gt;<span class="number">0</span>) grid[<span class="number">0</span>][j]+=grid[<span class="number">0</span>][j-<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;j==<span class="number">0</span>) grid[i][<span class="number">0</span>]+=grid[i-<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">                <span class="keyword">else</span> grid[i][j]=Math.min(grid[i-<span class="number">1</span>][j]+grid[i][j],grid[i][j]+grid[i][j-<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> grid[row-<span class="number">1</span>][col-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="110-Balanced-Binary-Tree"><a href="#110-Balanced-Binary-Tree" class="headerlink" title="110. Balanced Binary Tree"></a>110. Balanced Binary Tree</h1><p><img src="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/problem.png"><br><img src="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/example.png"></p>
+<h2 id="python-solution"><a href="#python-solution" class="headerlink" title="python solution"></a>python solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isBalanced</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span> </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        思路整理:</span></span><br><span class="line"><span class="string">        DFS 计算每个节点的深度 如果左右子树深度之差大于1 则该树不是BBT</span></span><br><span class="line"><span class="string">        返回-1 只要出现一次-1 则最终返回-1 </span></span><br><span class="line"><span class="string">        否则返回树的深度</span></span><br><span class="line"><span class="string">        Explanation</span></span><br><span class="line"><span class="string">        calculate each node's depth if the absolate difference is bigger </span></span><br><span class="line"><span class="string">        than 1,we just return -1,when there are one -1 returned,</span></span><br><span class="line"><span class="string">        we can draw the conclusion that this tree is not a BBT</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(node,depth)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:<span class="keyword">return</span> depth</span><br><span class="line">            leftdepth=helper(node.left,depth+<span class="number">1</span>)</span><br><span class="line">            rightdepth=helper(node.right,depth+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> leftdepth==<span class="number">-1</span> <span class="keyword">or</span> rightdepth==<span class="number">-1</span>:<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">            <span class="keyword">if</span> abs(leftdepth-rightdepth)&gt;<span class="number">1</span>:<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">            <span class="keyword">return</span> max(leftdepth,rightdepth)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span> <span class="keyword">if</span> helper(root,<span class="number">0</span>)!=<span class="number">-1</span> <span class="keyword">else</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="java-solution"><a href="#java-solution" class="headerlink" title="java solution"></a>java solution</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//用ans作为出现不平衡情况的标志位 只要ans=false则不是BBT</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        helper(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//private--访问权限仅限于类的内部</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> ans=<span class="keyword">true</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(TreeNode root)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left=helper(root.left);</span><br><span class="line">        <span class="keyword">int</span> right=helper(root.right);</span><br><span class="line">        <span class="keyword">if</span>(Math.abs(left-right)&gt;<span class="number">1</span>) ans=<span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.max(left,right)+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -403,7 +405,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/Letter/" rel="tag"># -Letter</a>
+            <a href="/blog/tags/LeetCode/" rel="tag"># -LeetCode</a>
           
         </div>
       
@@ -416,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/12/17/leetcode539/" rel="next" title="LeetCode Problem 539. Minimum Time Difference">
-                <i class="fa fa-chevron-left"></i> LeetCode Problem 539. Minimum Time Difference
+              <a href="/blog/2018/12/18/leetcode74/" rel="next" title="LeetCode Problem 74. Search a 2D Matrix">
+                <i class="fa fa-chevron-left"></i> LeetCode Problem 74. Search a 2D Matrix
               </a>
             
           </div>
@@ -425,10 +427,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/12/18/leetcode74/" rel="prev" title="LeetCode Problem 74. Search a 2D Matrix">
-                LeetCode Problem 74. Search a 2D Matrix <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -562,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#64-Minimum-Path-Sum"><span class="nav-number">1.</span> <span class="nav-text">64. Minimum Path Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-solution"><span class="nav-number">1.1.</span> <span class="nav-text">python solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-solution"><span class="nav-number">1.2.</span> <span class="nav-text">java solution</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#110-Balanced-Binary-Tree"><span class="nav-number">1.</span> <span class="nav-text">110. Balanced Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-solution"><span class="nav-number">1.1.</span> <span class="nav-text">python solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-solution"><span class="nav-number">1.2.</span> <span class="nav-text">java solution</span></a></li></ol></li></ol></div>
             
 
           </div>
