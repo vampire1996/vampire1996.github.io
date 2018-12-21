@@ -90,21 +90,21 @@
 
 
 
-<meta name="description" content="LeetCode Problem 110. Balanced Binary Tree">
+<meta name="description" content="LeetCode Problem 139. Word Break">
 <meta name="keywords" content="-LeetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode Problem 110. Balanced Binary Tree">
-<meta property="og:url" content="http://yoursite.com/2018/12/18/leetcode110/index.html">
+<meta property="og:title" content="LeetCode Problem 139. Word Break">
+<meta property="og:url" content="http://yoursite.com/2018/12/21/leetcode139/index.html">
 <meta property="og:site_name" content="Li Bochen">
-<meta property="og:description" content="LeetCode Problem 110. Balanced Binary Tree">
+<meta property="og:description" content="LeetCode Problem 139. Word Break">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/problem.png">
-<meta property="og:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/example.png">
-<meta property="og:updated_time" content="2018-12-18T07:14:00.043Z">
+<meta property="og:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/139.%20Word%20Break/problem.png">
+<meta property="og:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/139.%20Word%20Break/example.png">
+<meta property="og:updated_time" content="2018-12-21T08:16:46.097Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode Problem 110. Balanced Binary Tree">
-<meta name="twitter:description" content="LeetCode Problem 110. Balanced Binary Tree">
-<meta name="twitter:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/problem.png">
+<meta name="twitter:title" content="LeetCode Problem 139. Word Break">
+<meta name="twitter:description" content="LeetCode Problem 139. Word Break">
+<meta name="twitter:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/139.%20Word%20Break/problem.png">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/18/leetcode110/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/21/leetcode139/">
 
 
 
 
 
-  <title>LeetCode Problem 110. Balanced Binary Tree | Li Bochen</title>
+  <title>LeetCode Problem 139. Word Break | Li Bochen</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/12/18/leetcode110/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/12/21/leetcode139/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bochen Li">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode Problem 110. Balanced Binary Tree</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode Problem 139. Word Break</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T15:13:01+08:00">
-                2018-12-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T16:16:13+08:00">
+                2018-12-21
               </time>
             
 
@@ -368,7 +368,7 @@
 
           
               <div class="post-description">
-                  LeetCode Problem 110. Balanced Binary Tree
+                  LeetCode Problem 139. Word Break
               </div>
           
 
@@ -385,10 +385,10 @@
       
 
       
-        <h1 id="110-Balanced-Binary-Tree"><a href="#110-Balanced-Binary-Tree" class="headerlink" title="110. Balanced Binary Tree"></a>110. Balanced Binary Tree</h1><p><img src="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/problem.png"><br><img src="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/110.%20Balanced%20Binary%20Tree/example.png"></p>
-<h2 id="python-solution"><a href="#python-solution" class="headerlink" title="python solution"></a>python solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isBalanced</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span> </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        思路整理:</span></span><br><span class="line"><span class="string">        DFS 计算每个节点的深度 如果左右子树深度之差大于1 则该树不是BBT</span></span><br><span class="line"><span class="string">        返回-1 只要出现一次-1 则最终返回-1 </span></span><br><span class="line"><span class="string">        否则返回树的深度</span></span><br><span class="line"><span class="string">        Explanation</span></span><br><span class="line"><span class="string">        calculate each node's depth if the absolate difference is bigger </span></span><br><span class="line"><span class="string">        than 1,we just return -1,when there are one -1 returned,</span></span><br><span class="line"><span class="string">        we can draw the conclusion that this tree is not a BBT</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(node,depth)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:<span class="keyword">return</span> depth</span><br><span class="line">            leftdepth=helper(node.left,depth+<span class="number">1</span>)</span><br><span class="line">            rightdepth=helper(node.right,depth+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> leftdepth==<span class="number">-1</span> <span class="keyword">or</span> rightdepth==<span class="number">-1</span>:<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">            <span class="keyword">if</span> abs(leftdepth-rightdepth)&gt;<span class="number">1</span>:<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">            <span class="keyword">return</span> max(leftdepth,rightdepth)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span> <span class="keyword">if</span> helper(root,<span class="number">0</span>)!=<span class="number">-1</span> <span class="keyword">else</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-<h2 id="java-solution"><a href="#java-solution" class="headerlink" title="java solution"></a>java solution</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//用ans作为出现不平衡情况的标志位 只要ans=false则不是BBT</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        helper(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//private--访问权限仅限于类的内部</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> ans=<span class="keyword">true</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(TreeNode root)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left=helper(root.left);</span><br><span class="line">        <span class="keyword">int</span> right=helper(root.right);</span><br><span class="line">        <span class="keyword">if</span>(Math.abs(left-right)&gt;<span class="number">1</span>) ans=<span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.max(left,right)+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="139-Word-Break"><a href="#139-Word-Break" class="headerlink" title="139. Word Break"></a>139. Word Break</h1><p><img src="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/139.%20Word%20Break/problem.png"><br><img src="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/139.%20Word%20Break/example.png"></p>
+<h2 id="python-solution"><a href="#python-solution" class="headerlink" title="python solution"></a>python solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">DP O(n^2)---1+2+3+...+n</span></span><br><span class="line"><span class="string">思路整理:</span></span><br><span class="line"><span class="string">1)res 存储s中每个位置 到该位置能否分裂成wordDict中单词</span></span><br><span class="line"><span class="string">举个例子：字符串为applepen 和 wordDict为apple，pen。当我们遍历到字母n的时候我们从n开始向前找看看有没有apple：即字符串被分为app和lepen（因为apple</span></span><br><span class="line"><span class="string">的长度为5，我们期待lepen可能为apple，若lepen确实为apple，app也能够被break（即dp[2] = true)，那么我们将dp[7] = true,但lepen不为apple而且dp[2]为</span></span><br><span class="line"><span class="string">false，因此我们循环到下一个wordDict即pen，将字符串划分为前面的apple和后面的pen，而后面的pen确实存在，dp[4] = true，所以确实可以划分，因此dp[7]= </span></span><br><span class="line"><span class="string">true。</span></span><br><span class="line"><span class="string">Input: s = "leetcode", wordDict = ["leet", "code"]</span></span><br><span class="line"><span class="string">        dp  FFFFTFFFT  dp[-1]=True     </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s, wordDict)</span>:</span></span><br><span class="line">        res=[<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)+<span class="number">1</span>)]</span><br><span class="line">        res[<span class="number">0</span>]=<span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(s)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> res[j] <span class="keyword">and</span> s[j:i] <span class="keyword">in</span> wordDict:res[i]=<span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> res[len(s)]</span><br></pre></td></tr></table></figure>
+<h2 id="python3-solution"><a href="#python3-solution" class="headerlink" title="python3 solution"></a>python3 solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def wordBreak(self, s, wordDict):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type s: str</span><br><span class="line">        :type wordDict: List[str]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        dp=[True]</span><br><span class="line">        max_len=max(map(len,wordDict+[&apos;&apos;]))#找到wordDict中长度最长的单词的长度</span><br><span class="line">        #加[&apos;&apos;]的目的是避免出现map为空的情况</span><br><span class="line">        words=set(wordDict)#将列表变成集合 这样访问速度变成O(1)</span><br><span class="line">        for i in range(1,len(s)+1):</span><br><span class="line">            #加逗号的原因是使其变成一个元祖(可迭代)</span><br><span class="line">            #这样速度快于dp.append(x)--第二 和dp+=[x]--第三</span><br><span class="line">            dp+=any([dp[j] and s[j:i] in words for j in range(max(0,i-max_len),i)]),</span><br><span class="line">            #不需要遍历i之前的每一个子串 只有[i-max_len,i]范围内的元素才能有可能和words中单词相同</span><br><span class="line">        return dp[-1]</span><br></pre></td></tr></table></figure>
+<h2 id="java-solution"><a href="#java-solution" class="headerlink" title="java solution"></a>java solution</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//BFS solution </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, List&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max_len=-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(String word :wordDict)</span><br><span class="line">        &#123;</span><br><span class="line">            max_len=Math.max(max_len,word.length());</span><br><span class="line">        &#125;</span><br><span class="line">        Set&lt;String&gt; words=<span class="keyword">new</span> HashSet&lt;&gt;(wordDict);</span><br><span class="line">        Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">boolean</span>[] visited=<span class="keyword">new</span> <span class="keyword">boolean</span>[s.length()+<span class="number">1</span>]; </span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        Input: s = "leetcode", wordDict = ["leet", "code"]</span></span><br><span class="line"><span class="comment">        visited     FFFTFFFT</span></span><br><span class="line"><span class="comment">        max_len=4</span></span><br><span class="line"><span class="comment">        leet</span></span><br><span class="line"><span class="comment">         eetc</span></span><br><span class="line"><span class="comment">          etco</span></span><br><span class="line"><span class="comment">           tcod</span></span><br><span class="line"><span class="comment">            code</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> start=queue.remove();<span class="comment">//弹出列表的第一个元素 FIFO</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> end=start+<span class="number">1</span>;end-start&lt;=max_len&amp;&amp;end&lt;=s.length();end++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//visited[end]==ture 说明能到达s[end]位置 不需要判断words中是否包含子串</span></span><br><span class="line">                <span class="comment">//当能到达end=s.length()说明成功</span></span><br><span class="line">                <span class="keyword">if</span>(end&lt;s.length()&amp;&amp;visited[end]) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(words.contains(s.substring(start,end)))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span>(end==s.length()) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                    queue.add(end);</span><br><span class="line">                    visited[end]=<span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -418,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/12/18/leetcode74/" rel="next" title="LeetCode Problem 74. Search a 2D Matrix">
-                <i class="fa fa-chevron-left"></i> LeetCode Problem 74. Search a 2D Matrix
+              <a href="/blog/2018/12/21/leetcode264/" rel="next" title="LeetCode Problem 264. Ugly Number II">
+                <i class="fa fa-chevron-left"></i> LeetCode Problem 264. Ugly Number II
               </a>
             
           </div>
@@ -427,10 +427,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/12/18/leetcode155/" rel="prev" title="LeetCode Problem 155. Min Stack">
-                LeetCode Problem 155. Min Stack <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#110-Balanced-Binary-Tree"><span class="nav-number">1.</span> <span class="nav-text">110. Balanced Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-solution"><span class="nav-number">1.1.</span> <span class="nav-text">python solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-solution"><span class="nav-number">1.2.</span> <span class="nav-text">java solution</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#139-Word-Break"><span class="nav-number">1.</span> <span class="nav-text">139. Word Break</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-solution"><span class="nav-number">1.1.</span> <span class="nav-text">python solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python3-solution"><span class="nav-number">1.2.</span> <span class="nav-text">python3 solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-solution"><span class="nav-number">1.3.</span> <span class="nav-text">java solution</span></a></li></ol></li></ol></div>
             
 
           </div>
