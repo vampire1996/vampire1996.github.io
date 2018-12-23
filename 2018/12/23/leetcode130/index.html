@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-LeetCode,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="LeetCode Problem 130. Surrounded Regions">
+<meta name="keywords" content="-LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Problem 130. Surrounded Regions">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/leetcode130/index.html">
+<meta property="og:site_name" content="Li Bochen">
+<meta property="og:description" content="LeetCode Problem 130. Surrounded Regions">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/130.%20Surrounded%20Regions/problem.png">
+<meta property="og:updated_time" content="2018-12-23T13:50:54.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode Problem 130. Surrounded Regions">
+<meta name="twitter:description" content="LeetCode Problem 130. Surrounded Regions">
+<meta name="twitter:image" content="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/130.%20Surrounded%20Regions/problem.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/23/leetcode130/">
+
+
+
+
+
+  <title>LeetCode Problem 130. Surrounded Regions | Li Bochen</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?484720284dc37b029655f25426a79069";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Li Bochen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            homepage
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/12/23/leetcode130/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bochen Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/image/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Li Bochen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode Problem 130. Surrounded Regions</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T21:49:44+08:00">
+                2018-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  LeetCode Problem 130. Surrounded Regions
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="130-Surrounded-Regions"><a href="#130-Surrounded-Regions" class="headerlink" title="130. Surrounded Regions"></a>130. Surrounded Regions</h1><p><img src="https://github.com/vampire1996/LeetCode/raw/master/Problems/101-200/130.%20Surrounded%20Regions/problem.png"></p>
+<h2 id="python-solution"><a href="#python-solution" class="headerlink" title="python solution"></a>python solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(self, board)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type board: List[List[str]]</span></span><br><span class="line"><span class="string">        :rtype: void Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        DFS</span></span><br><span class="line"><span class="string">        思路整理:</span></span><br><span class="line"><span class="string">        1)找到所有未被包围的'O' 而这种'O'只能是从board的第一行，第一列，最后一行，最后一列</span></span><br><span class="line"><span class="string">        出发的一系列'O'</span></span><br><span class="line"><span class="string">        2)从上述位置出发进行DFS 也就是向上 向下 向左 向右移动 </span></span><br><span class="line"><span class="string">        看接下来移动到的位置是否是'O' 若不是，则返回</span></span><br><span class="line"><span class="string">        3)利用isSurrounded 存储未被包围和被包围的'O'的位置</span></span><br><span class="line"><span class="string">        将对应位置board中元素置为'X'即可</span></span><br><span class="line"><span class="string">        Explanation</span></span><br><span class="line"><span class="string">        1)try to find all 'O's,which can only be a part of a series of 'O's started </span></span><br><span class="line"><span class="string">        from the 1st row.1st column,last row,last column</span></span><br><span class="line"><span class="string">        2)start from one position,try to do BFS,which means that we are trying to </span></span><br><span class="line"><span class="string">        move to the left,right,up and down position</span></span><br><span class="line"><span class="string">        then check the current element,if it's 'O',set isSurrounded[i][j]=False  </span></span><br><span class="line"><span class="string">        and continue BFS</span></span><br><span class="line"><span class="string">        else return</span></span><br><span class="line"><span class="string">        3)we use isSurrounded to store all positions of surrended 'O's and not</span></span><br><span class="line"><span class="string">        surrended 'O's</span></span><br><span class="line"><span class="string">        so just set the element to 'X' in corresponding posiotion in board</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(isSurrounded,i,j)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">or</span> j==<span class="number">0</span> <span class="keyword">or</span> i==len(board)<span class="number">-1</span> <span class="keyword">or</span> j==len(board[<span class="number">0</span>])<span class="number">-1</span>:<span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> isSurrounded[i][j]==<span class="keyword">False</span> <span class="keyword">or</span> board[i][j]==<span class="string">'X'</span>:<span class="keyword">return</span></span><br><span class="line">            isSurrounded[i][j]=<span class="keyword">False</span>  </span><br><span class="line">            helper(isSurrounded,i+<span class="number">1</span>,j)</span><br><span class="line">            helper(isSurrounded,i,j+<span class="number">1</span>)</span><br><span class="line">            helper(isSurrounded,i<span class="number">-1</span>,j)</span><br><span class="line">            helper(isSurrounded,i,j<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">if</span> len(board)&lt;=<span class="number">2</span> <span class="keyword">or</span> len(board[<span class="number">0</span>])&lt;=<span class="number">2</span>:<span class="keyword">return</span></span><br><span class="line">        isSurrounded=[[<span class="keyword">True</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(board[<span class="number">0</span>]))]<span class="keyword">for</span> j <span class="keyword">in</span> range(len(board))]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(board)<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> board[j][<span class="number">0</span>]==<span class="string">'O'</span>:helper(isSurrounded,j,<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> board[j][len(board[<span class="number">0</span>])<span class="number">-1</span>]==<span class="string">'O'</span>:helper(isSurrounded,j,len(board[<span class="number">0</span>])<span class="number">-2</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(board[<span class="number">0</span>])<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> board[<span class="number">0</span>][i]==<span class="string">'O'</span>:helper(isSurrounded,<span class="number">1</span>,i)</span><br><span class="line">            <span class="keyword">if</span> board[len(board)<span class="number">-1</span>][i]==<span class="string">'O'</span>:helper(isSurrounded,len(board)<span class="number">-2</span>,i)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(board)<span class="number">-1</span>):</span><br><span class="line">             <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(board[<span class="number">0</span>])<span class="number">-1</span>):</span><br><span class="line">                    <span class="keyword">if</span> board[j][i]==<span class="string">'O'</span>:</span><br><span class="line">                        <span class="keyword">if</span> isSurrounded[j][i]==<span class="keyword">True</span>:board[j][i]=<span class="string">'X'</span></span><br></pre></td></tr></table></figure>
+<h2 id="java-solution"><a href="#java-solution" class="headerlink" title="java solution"></a>java solution</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] dirs=&#123;&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;-<span class="number">1</span>,<span class="number">0</span>&#125;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(board==<span class="keyword">null</span>||board.length==<span class="number">0</span>||board[<span class="number">0</span>]==<span class="keyword">null</span>||board[<span class="number">0</span>].length==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> row=board.length,col=board[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;row;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(board[i][<span class="number">0</span>]==<span class="string">'O'</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                dfs(board,i,<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(board[i][col-<span class="number">1</span>]==<span class="string">'O'</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                dfs(board,i,col-<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;col;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(board[<span class="number">0</span>][j]==<span class="string">'O'</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                dfs(board,<span class="number">0</span>,j);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(board[row-<span class="number">1</span>][j]==<span class="string">'O'</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                dfs(board,row-<span class="number">1</span>,j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;row;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;col;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j]==<span class="string">'O'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    board[i][j]=<span class="string">'X'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[i][j]==<span class="string">'*'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    board[i][j]=<span class="string">'O'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] board,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = board.length, n = board[<span class="number">0</span>].length;</span><br><span class="line">        board[i][j] = <span class="string">'*'</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] dir:dirs)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x=i+dir[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> y=j+dir[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(x&lt;<span class="number">0</span>||x==m||y&lt;<span class="number">0</span>||y==n|| board[x][y] != <span class="string">'O'</span>)<span class="keyword">continue</span>;</span><br><span class="line">            dfs(board,x,y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="python3-solution"><a href="#python3-solution" class="headerlink" title="python3 solution"></a>python3 solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(self, board)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        找到所有未被包围的'O' 将其置为'S'</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment">#board=[[]] return </span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> any(board):<span class="keyword">return</span> </span><br><span class="line">        row,col=len(board),len(board[<span class="number">0</span>])</span><br><span class="line">        save=[ij <span class="keyword">for</span> k <span class="keyword">in</span> range(max(row,col)) <span class="keyword">for</span> ij <span class="keyword">in</span> ((k,<span class="number">0</span>),(<span class="number">0</span>,k),(row<span class="number">-1</span>,k),(k,col<span class="number">-1</span>))]</span><br><span class="line">        <span class="keyword">while</span> save:</span><br><span class="line">            i,j=save.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=i&lt;row <span class="keyword">and</span> <span class="number">0</span>&lt;=j&lt;col <span class="keyword">and</span> board[i][j]==<span class="string">'O'</span>:</span><br><span class="line">                board[i][j]=<span class="string">'S'</span></span><br><span class="line">                save.extend([(i<span class="number">-1</span>,j),(i+<span class="number">1</span>,j),(i,j<span class="number">-1</span>),(i,j+<span class="number">1</span>)])</span><br><span class="line">        <span class="comment">#p=='S'=1   'XO'[1]='O' 之前将未被包围的'O'置为'S'，再将其变回来</span></span><br><span class="line">        <span class="comment">#p=='S'=0   'XO'[0]='X' 被包围的'O'置为'X'</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        board1[:]=[['XO'[p=='S'] for p in r] for r in board1]</span></span><br><span class="line"><span class="string">        board2=[['XO'[p=='S'] for p in r] for r in board2]</span></span><br><span class="line"><span class="string">        board1的操作是更改board1内部的值，board2的操作是重新生成一个对象赋值给board2</span></span><br><span class="line"><span class="string">        board2指向的地址还是原来的</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        board[:]=[[<span class="string">'XO'</span>[p==<span class="string">'S'</span>] <span class="keyword">for</span> p <span class="keyword">in</span> r] <span class="keyword">for</span> r <span class="keyword">in</span> board]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/LeetCode/" rel="tag"># -LeetCode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/12/22/leetcode209/" rel="next" title="LeetCode Problem 209. Minimum Size Subarray Sum">
+                <i class="fa fa-chevron-left"></i> LeetCode Problem 209. Minimum Size Subarray Sum
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/image/head.png" alt="Bochen Li">
+            
+              <p class="site-author-name" itemprop="name">Bochen Li</p>
+              <p class="site-description motion-element" itemprop="description">old,sophisticated,never naive</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#130-Surrounded-Regions"><span class="nav-number">1.</span> <span class="nav-text">130. Surrounded Regions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-solution"><span class="nav-number">1.1.</span> <span class="nav-text">python solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-solution"><span class="nav-number">1.2.</span> <span class="nav-text">java solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python3-solution"><span class="nav-number">1.3.</span> <span class="nav-text">python3 solution</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bochen Li</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      本站访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
