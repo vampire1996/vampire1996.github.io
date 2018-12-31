@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[日记]]></title>
+    <url>%2Fblog%2F2018%2F12%2F31%2Fpoem3%2F</url>
+    <content type="text"><![CDATA[海子 姐姐, 今夜我在德令哈, 夜色笼罩姐姐, 我今夜只有戈壁草原尽头我两手空空悲痛时握不住一颗泪滴姐姐, 今夜我在德令哈这是雨水中一座荒凉的城除了那些路过的和居住的德令哈……今夜这是唯一的, 最后的, 抒情这是唯一的, 最后的, 草原我把石头还给石头让胜利的胜利今夜青稞只属于他自己一切都在生长今夜我只有美丽的戈壁 空空姐姐, 今夜我不关心人类, 我只想你]]></content>
+      <categories>
+        <category>poem</category>
+      </categories>
+      <tags>
+        <tag>-poem</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[我有一个不到一百斤的理想]]></title>
+    <url>%2Fblog%2F2018%2F12%2F31%2Fpoem2%2F</url>
+    <content type="text"><![CDATA[逆水谣 借一碗馄饨面，扑灭我的忧伤撒一把小虾米，助我去远洋回忆起昨夜的甜点，本该充满甜蜜的力量却为何在望向今天的糖果时，忍不住迷茫 我有一个，不到一百斤的理想恶魔却挥舞着香甜，摧毁这志向我只能向橱窗里的美丽，轻轻的挥一挥手等着我战胜了邪恶，再接你回家箱 或许我的余生，将在战斗中激荡或许我的梦想，只会增加重量或许我的期待，已穿在了别人的身上或许下一刻的我，已经沦为恶魔的臂膀 悲哀啊，天命如此难挡绽放吧，味蕾上的欲望悔恨吗？那些擦肩而过的漂亮请安慰我！这人生的，路还长……]]></content>
+      <categories>
+        <category>poem</category>
+      </categories>
+      <tags>
+        <tag>-poem</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[老电影]]></title>
+    <url>%2Fblog%2F2018%2F12%2F31%2Fpoem1%2F</url>
+    <content type="text"><![CDATA[逆水谣 无所事事的咖啡杯蜷缩在沙发上的腿 白天不开窗子的电脑前看着那部电影，回味 舌尖有着葡萄干的甜蜜用来遮掩着苦涩的嘴 手指在把发尾缠绕着纠结着还没播到的伤悲 有时酸涩会化作眼泪有些记忆会酝酿得甜美 那些曾经两个人共同看过的老电影一个人看的时候，只会是微笑着流泪]]></content>
+      <categories>
+        <category>poem</category>
+      </categories>
+      <tags>
+        <tag>-poem</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode Problem 279. Perfect Squares]]></title>
     <url>%2Fblog%2F2018%2F12%2F29%2Fleetcode279%2F</url>
     <content type="text"><![CDATA[279. Perfect Squares python solution123456789101112131415161718192021222324252627282930313233343536373839404142434445464748class Solution(object): def numSquares(self, n): """ :type n: int :rtype: int """ """ O(n^3) 思路整理: 1)用nums存储小于根号n取整的所有整数的平方和 2)迭代执行O(n) 以nums[i]为组成n的平方数中的最大值 j=i 迭代执行O(j) 找到以nums[0:j+1]中平方数组成n-nums[i]的最小平方数个数--O(j) Explanation 1)use nums to store all square numbers of integers which are less than int(sqrt(n)) 2)iteratively conduct take nums[i] as the largest number as a part of n iteratively conduct find the smallest number of n-nums[i]'s square numbers using nums[0:j+1] """ def helper(nums,lo,hi,temp): if temp==0:return 0 i=hi cnt=0 while i&gt;=lo: if temp-nums[i]&gt;0: temp-=nums[i] cnt+=1 continue elif temp-nums[i]==0:break else:i-=1 return cnt+1 num=int(math.sqrt(n)) nums=[i*i for i in range(1,num+1)] cnt=2e31 i=num-1 while i&gt;=0: j=i while j&gt;=0: cur=helper(nums,0,j,n-nums[i]) if cur+1&lt;cnt:cnt=cur+1 j-=1 i-=1 return cnt python3 solution1234567891011121314151617181920class Solution: _dp=[0] def numSquares(self, n): """ :type n: int :rtype: int """ """ static dynamic programming 用dp数组存储每一个数到该位置所需的最小平方数个数 那么dp[j]=min(dp[j-i*i])+1 1&lt;=i*i&lt;=j j=j-i*i+i*i 也就是说每个数都可以由cnt[j-i*i]+1得到一个平方数和的方案 找到其中最小的个数即可 这里利用静态变量_dp，只需初始化一次 当之前有testcase调用之后，之前的_dp继续可以用与下一次 testcase使用,因此可以减少时间 """ mincnt=self._dp while len(mincnt)&lt;=n: mincnt+=[min(mincnt[-i*i] for i in range(1,int(len(mincnt)**0.5)+1))+1] return mincnt[n] java solution1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374class Solution &#123; public int numSquares(int n) &#123; return LagrangeFourSquareTheorem(n); &#125; /* 广度优先搜索 search search Input: n = 13 1 2(1+1) 4 5(1+4) 9 10(1+9) cnt=1 13(9+3) 结果为2 cnt=2 */ private int bfs(int n) &#123; if(n&lt;=0)return 0; List&lt;Integer&gt; squares=new ArrayList&lt;Integer&gt;(); boolean visited[]=new boolean[n]; for(int i=1;i*i&lt;=n;i++) &#123; if(i*i==n)return 1; squares.add(i*i); &#125; Queue&lt;Integer&gt; search = new LinkedList&lt;Integer&gt;(); for(int i=1;i*i&lt;=n;i++)search.add(i*i); int curCnt=1; while(!search.isEmpty()) &#123; curCnt++; int searchSize=search.size(); for(int i=0;i&lt;searchSize;i++) &#123; int tmp=search.peek(); //当前search中某一数加上一个平方数如果等于n则搜索结束 for(int square:squares) &#123; if(tmp+square==n) &#123; return curCnt; &#125; //visited 用于存储是否访问过某一节点，如果访问过则不再访问 else if(tmp+square&lt;n&amp;&amp;visited[tmp+square-1]==false) &#123; search.add(tmp+square); visited[tmp+square-1]=true; &#125; else if(tmp+square&gt;n) break; &#125; search.remove(); &#125; &#125; return 0; &#125; //Lagrange 四平方定理： 任何一个正整数都可以表示成不超过四个整数的平方之和。 //O(n) private int LagrangeFourSquareTheorem(int n) &#123; int ub=(int)Math.sqrt(n);//upper bound for(int a=0;a&lt;=ub;a++) &#123; for(int b=a;b&lt;=ub;b++) &#123; //因为a,b都是从0开始的,所以返回时的数一定是最小的 int c=(int)Math.sqrt(n-a*a-b*b); if(a*a+b*b+c*c==n) &#123; return (a==0?0:1)+(b==0?0:1)+(c==0?0:1); &#125; &#125; &#125; //超过3个只能是4 return 4; &#125;&#125;]]></content>
