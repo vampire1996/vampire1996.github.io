@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode Problem 90. Subsets II]]></title>
+    <url>%2Fblog%2F2019%2F01%2F06%2Fleetcode90%2F</url>
+    <content type="text"><![CDATA[90. Subsets II python solution123456789101112131415161718192021222324252627class Solution(object): def subsetsWithDup(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ """ 思路整理:DFS recursion 1)对nums进行排序以避免nums中重复元素不聚集在一起如[1,2,4,4,3,4] 2)从nums中依次取出元素加到path中进行DFS 3)对于重复元素如[1,2,2]中的2，res中每个以2为开头的数组的只取nums的第一个2 Explanation 1)sort nums to gather all same number together 2)take numbers from nums iteratively and use them to conduct DFS 3)for same numbers like 2 in [1,2,2],each array only take the first 2 as its first 2 """ def helper(start,end,path,res): res.append(path) for i in range(start,end): if i!=start and nums[i]==nums[i-1]:continue helper(i+1,end,path+[nums[i]],res) return res=[] nums.sort() helper(0,len(nums),[],res) return res java solution123456789101112131415161718192021222324252627282930/*对于无重复元素的n维数组 有2^n个子数组 因为每个元素在每个子数组里都只有出现或者不出现两种可能而对于有重复元素的数组如[1,2,2](1)[](2)[] [1] 复制一份[] 并向其中加入1(3)[] [1] [2] [1,2] 复制一份[] [1] 并向其中加入2(3)[] [1] [2] [1,2] [2,2] [1,2,2]对于重复元素 只向前一次添加过与其相同元素的数组中添加该元素复制一份[2] [1,2] 并向其中加入2*/class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; subsetsWithDup(int[] nums) &#123; List&lt;List&lt;Integer&gt;&gt; res=new ArrayList&lt;List&lt;Integer&gt;&gt;(); int start=0; res.add(new ArrayList&lt;Integer&gt;()); Arrays.sort(nums); for(int i=0;i&lt;nums.length;i++) &#123; if(i==0||nums[i]!=nums[i-1]) start=0; int size=res.size(); for(int j=start;j&lt;size;j++) &#123; List&lt;Integer&gt; temp=new ArrayList&lt;Integer&gt;(res.get(j)); temp.add(nums[i]); res.add(temp); &#125; start=size; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>-LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[日记]]></title>
     <url>%2Fblog%2F2018%2F12%2F31%2Fpoem3%2F</url>
     <content type="text"><![CDATA[海子 姐姐, 今夜我在德令哈, 夜色笼罩姐姐, 我今夜只有戈壁草原尽头我两手空空悲痛时握不住一颗泪滴姐姐, 今夜我在德令哈这是雨水中一座荒凉的城除了那些路过的和居住的德令哈……今夜这是唯一的, 最后的, 抒情这是唯一的, 最后的, 草原我把石头还给石头让胜利的胜利今夜青稞只属于他自己一切都在生长今夜我只有美丽的戈壁 空空姐姐, 今夜我不关心人类, 我只想你]]></content>
