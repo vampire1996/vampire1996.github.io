@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode Problem 117. Populating Next Right Pointers in Each Node II]]></title>
+    <url>%2Fblog%2F2019%2F01%2F14%2Fleetcode117%2F</url>
+    <content type="text"><![CDATA[117. Populating Next Right Pointers in Each Node II python solution123456789101112131415161718192021222324252627282930313233# Definition for binary tree with next pointer.# class TreeLinkNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = None# self.next = None"""思路整理 BFS+Queue1)利用队列 存储每一代的节点 2)对于每一代节点 迭代执行： i.node为当前节点 pre为其左侧的节点 ii.令pre指向node即可 最后一个节点指向空Explanation1)use queue to store the node's in one certain generation2)for each,generation,iteratively conduct: i.node is current node and pre is the node in its left side ii.let pre points to node and let the last node points to null"""class Solution: # @param root, a tree link node # @return nothing def connect(self, root): if not root:return queue=[root] while queue: length=len(queue) for i in range(length): node=queue.pop(0) if i!=0:pre.next=node if node.left:queue.append(node.left) if node.right:queue.append(node.right) pre=node java solution123456789101112131415161718192021222324252627282930313233343536/** * Definition for binary tree with next pointer. * public class TreeLinkNode &#123; * int val; * TreeLinkNode left, right, next; * TreeLinkNode(int x) &#123; val = x; &#125; * &#125; *///level traversalpublic class Solution &#123; public void connect(TreeLinkNode root) &#123; TreeLinkNode dummy=new TreeLinkNode(0); while(root!=null) &#123; TreeLinkNode cur=dummy; System.out.println(root.val); while(root!=null) &#123; if(root.left!=null) &#123; cur.next=root.left; cur=cur.next; &#125; if(root.right!=null) &#123; cur.next=root.right; cur=cur.next; &#125; root=root.next; &#125; root=dummy.next; //dummy.next必需置为null因为到最后一个level必须将dummy.next置为null才能推出循环 root=null dummy.next = null; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>-LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IntelliJ IDEA进行android开发]]></title>
     <url>%2Fblog%2F2019%2F01%2F11%2FideaAndroid%2F</url>
     <content type="text"><![CDATA[配置Gradle新建项目无法运行出现Failed to find Build Tools revision 27.0.3的解决方法参考本地下载的builtool版本就是buildToolsVersion “28.0.3” 出现多个gradle报错“Error:Gradle distribution ‘https\://services.gradle.org/distributions/gradle-4.4-all.zip’ contains too many directories. Expected to find exactly 1 directory.”解决方法：将gradle-4.4-all.zip中的__MACOSX 文件夹删除。]]></content>
