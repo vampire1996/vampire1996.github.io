@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[安卓学习]]></title>
     <url>%2Fblog%2F2019%2F02%2F18%2FandroidLearning%2F</url>
-    <content type="text"><![CDATA[使用OkHttp进行Http访问当访问某一地址时失败，需要在AndroidManifest.xml文件中添加1android:usesCleartextTraffic="true" 参考 使用ADB命令行win+r进入cmd界面，cd命令进入Android SDK目录下，接下来再进入platform-tools目录接下来即可使用adb命令。 完全卸载已在设备上安装的App1adb uninstall com.example.coolweather]]></content>
+    <content type="text"><![CDATA[使用OkHttp进行Http访问当访问某一地址时失败，需要在AndroidManifest.xml文件中添加1android:usesCleartextTraffic="true" 参考 使用ADB命令行win+r进入cmd界面，cd命令进入Android SDK目录下，接下来再进入platform-tools目录接下来即可使用adb命令。 完全卸载已在设备上安装的App1adb uninstall com.example.coolweather 无法修改应用图标用adb命令完全卸载app后，重命名包名再重新安装app参考]]></content>
       <categories>
         <category>Android</category>
       </categories>
