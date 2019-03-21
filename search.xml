@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[linux学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F21%2FlinuxLearning%2F</url>
-    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件参考镜像源文件清华大学开源软件镜像站]]></content>
+    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站]]></content>
       <categories>
         <category>linux</category>
       </categories>
