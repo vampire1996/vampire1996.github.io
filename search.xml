@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[linux学习]]></title>
+    <url>%2Fblog%2F2019%2F03%2F21%2FlinuxLearning%2F</url>
+    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件参考镜像源文件清华大学开源软件镜像站]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>-linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[安卓学习]]></title>
     <url>%2Fblog%2F2019%2F02%2F18%2FandroidLearning%2F</url>
     <content type="text"><![CDATA[使用OkHttp进行Http访问当访问某一地址时失败，需要在AndroidManifest.xml文件中添加1android:usesCleartextTraffic="true" 参考 使用ADB命令行win+r进入cmd界面，cd命令进入Android SDK目录下，接下来再进入platform-tools目录接下来即可使用adb命令。 完全卸载已在设备上安装的App1adb uninstall com.example.coolweather 无法修改应用图标用adb命令完全卸载app后，重命名包名再重新安装app参考 下载七牛云空间中的公开资源找到外链默认域名或自定义绑定的域名，域名+文件名即为访问该文件的url，直接进行http访问即可。也可以在七牛云中进入存储空间，内容管理+操作+点击显示更多操作+复制外链查看该文件对应的url。]]></content>
