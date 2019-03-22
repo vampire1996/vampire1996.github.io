@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[linux学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F21%2FlinuxLearning%2F</url>
-    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令复制粘贴(在普通模式下)123yy 复制一行dd 删除一行p 在当前行后粘贴之前复制的内容 i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式 win10创建linux子系统参考注意源要和ubuntu系统适配 ##安装linux双系统UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI参考解决开机黑屏参考]]></content>
+    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令复制粘贴(在普通模式下)123yy 复制一行dd 删除一行p 在当前行后粘贴之前复制的内容 i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式 win10创建linux子系统参考注意源要和ubuntu系统适配 安装linux双系统UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI参考解决开机黑屏参考]]></content>
       <categories>
         <category>linux</category>
       </categories>
