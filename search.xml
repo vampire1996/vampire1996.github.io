@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[linux学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F21%2FlinuxLearning%2F</url>
-    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令复制粘贴(在普通模式下)123yy 复制一行dd 删除一行p 在当前行后粘贴之前复制的内容 i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式 win10创建linux子系统参考注意源要和ubuntu系统适配]]></content>
+    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令复制粘贴(在普通模式下)123yy 复制一行dd 删除一行p 在当前行后粘贴之前复制的内容 i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式 win10创建linux子系统参考注意源要和ubuntu系统适配 ##安装linux双系统UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI参考解决开机黑屏参考]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[安卓学习]]></title>
     <url>%2Fblog%2F2019%2F02%2F18%2FandroidLearning%2F</url>
-    <content type="text"><![CDATA[使用OkHttp进行Http访问当访问某一地址时失败，需要在AndroidManifest.xml文件中添加1android:usesCleartextTraffic="true" 参考 使用ADB命令行win+r进入cmd界面，cd命令进入Android SDK目录下，接下来再进入platform-tools目录接下来即可使用adb命令。 完全卸载已在设备上安装的App1adb uninstall com.example.coolweather 无法修改应用图标用adb命令完全卸载app后，重命名包名再重新安装app参考 下载七牛云空间中的公开资源找到外链默认域名或自定义绑定的域名，域名+文件名即为访问该文件的url，直接进行http访问即可。也可以在七牛云中进入存储空间，内容管理+操作+点击显示更多操作+复制外链查看该文件对应的url。]]></content>
+    <content type="text"><![CDATA[使用OkHttp进行Http访问当访问某一地址时失败，需要在AndroidManifest.xml文件中添加1android:usesCleartextTraffic="true" 参考 使用ADB命令行win+r进入cmd界面，cd命令进入Android SDK目录下，接下来再进入platform-tools目录接下来即可使用adb命令。 完全卸载已在设备上安装的App1adb uninstall com.example.coolweather 无法修改应用图标用adb命令完全卸载app后，重命名包名再重新安装app参考 下载七牛云空间中的公开资源找到外链默认域名或自定义绑定的域名，域名+文件名即为访问该文件的url，直接进行http访问即可。也可以在七牛云中进入存储空间，内容管理+操作+点击显示更多操作+复制外链查看该文件对应的url。 linux访问windows中文件‘’’doscd /mnt/d #访问D盘cd /mnt/c #访问C盘‘’’ 打开图形界面1.打开xfce4桌面1xfce4-session 2.打开compiz`compiz···]]></content>
       <categories>
         <category>Android</category>
       </categories>
