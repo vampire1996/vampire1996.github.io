@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Web Service学习]]></title>
+    <url>%2Fblog%2F2019%2F03%2F25%2Fwebservice%2F</url>
+    <content type="text"><![CDATA[建立工程和使用参考以上访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。]]></content>
+      <categories>
+        <category>web service</category>
+      </categories>
+      <tags>
+        <tag>-web service</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[计算机视觉与深度学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F24%2FCVAndDeeplearning%2F</url>
     <content type="text"><![CDATA[软件安装Ubuntu16.04下安装PyTorch 参考解决pytorch安装问题参考 参考2 注意在网上搜索清华镜像,把上面网站都试一试Ubuntu16.04下安装PyTorch 参考]]></content>
