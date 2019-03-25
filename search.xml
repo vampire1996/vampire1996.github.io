@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Web Service学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F25%2Fwebservice%2F</url>
-    <content type="text"><![CDATA[建立工程和使用参考以上访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。]]></content>
+    <content type="text"><![CDATA[建立工程和使用参考访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。]]></content>
       <categories>
         <category>web service</category>
       </categories>
