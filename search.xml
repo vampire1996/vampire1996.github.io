@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Web Service学习]]></title>
-    <url>%2Fblog%2F2019%2F03%2F25%2Fwebservice%2F</url>
-    <content type="text"><![CDATA[建立工程和使用参考访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。 入门学习参考 将本地项目部署到云服务器上将本地web项目部署到腾讯云服务器上]]></content>
+    <title><![CDATA[linux学习]]></title>
+    <url>%2Fblog%2F2019%2F03%2F27%2FlinuxLearning%2F</url>
+    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令复制粘贴(在普通模式下)123yy 复制一行dd 删除一行p 在当前行后粘贴之前复制的内容 i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式 win10创建linux子系统参考注意源要和ubuntu系统适配 安装linux双系统UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI参考解决开机黑屏参考解决重复登录问题参考ubuntu进入emergency mode解决参考]]></content>
       <categories>
-        <category>web service</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>-web service</tag>
+        <tag>-linux</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[计算机视觉与深度学习]]></title>
-    <url>%2Fblog%2F2019%2F03%2F24%2FCVAndDeeplearning%2F</url>
-    <content type="text"><![CDATA[软件安装Ubuntu16.04下安装PyTorch 参考解决pytorch安装问题参考 参考2 注意在网上搜索清华镜像,把上面网站都试一试Ubuntu16.04下安装PyTorch 参考]]></content>
+    <url>%2Fblog%2F2019%2F03%2F27%2FCVAndDeeplearning%2F</url>
+    <content type="text"><![CDATA[软件安装Ubuntu16.04下安装PyTorch 参考解决pytorch安装问题参考 参考2 注意在网上搜索清华镜像,把上面网站都试一试Ubuntu16.04下安装PyTorch 参考安装完Anaconda python 3.7，想使用python3.6方法 参考 用source activate py36 进入python3.6环境之后，可以通过conda list来查看包的位置，这样就可以在pycharm中找到包的位置 pycharm使用解决Pycharm无法导入包问题 Unresolved reference 参考pycharm同一目录下无法import明明已经存在的.py文件 参考]]></content>
       <categories>
         <category>computer vision and deep learning</category>
       </categories>
@@ -23,14 +23,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[linux学习]]></title>
-    <url>%2Fblog%2F2019%2F03%2F23%2FlinuxLearning%2F</url>
-    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令复制粘贴(在普通模式下)123yy 复制一行dd 删除一行p 在当前行后粘贴之前复制的内容 i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式 win10创建linux子系统参考注意源要和ubuntu系统适配 安装linux双系统UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI参考解决开机黑屏参考解决重复登录问题参考]]></content>
+    <title><![CDATA[Web Service学习]]></title>
+    <url>%2Fblog%2F2019%2F03%2F26%2Fwebservice%2F</url>
+    <content type="text"><![CDATA[建立工程和使用参考访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。 入门学习参考 将本地项目部署到云服务器上将本地web项目部署到腾讯云服务器上腾讯云服务器]]></content>
       <categories>
-        <category>linux</category>
+        <category>web service</category>
       </categories>
       <tags>
-        <tag>-linux</tag>
+        <tag>-web service</tag>
       </tags>
   </entry>
   <entry>
