@@ -25,7 +25,7 @@
   <entry>
     <title><![CDATA[Web Service学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F26%2Fwebservice%2F</url>
-    <content type="text"><![CDATA[建立工程和使用参考访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。 入门学习参考 将本地项目部署到云服务器上将本地web项目部署到腾讯云服务器上腾讯云服务器]]></content>
+    <content type="text"><![CDATA[建立工程和使用参考访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。 入门学习参考 将本地项目部署到云服务器上将本地web项目部署到腾讯云服务器上 tomcat安装记得要和jdk版本匹配(在tomcat官网上有匹配信息)在腾讯云上用9.0版本不好使，下了7.0版本好使腾讯云服务器踩坑实录:想在外网访问云服务器首先要开启tomcat服务器(cmd中输入startup),访问http://localhost:8080，其中8080是在tomcat/conf/server.xml中修改的.当外网访问时，如果设置为80端口可以不加端口号，但是由于我用这个腾讯云服务器本地80端口已经被nginx端口占用了，所以没办法使用，而外网想访问云服务器可以使用公网IP+端口号(如8080)的形式访问tomcat服务器。然而我用这个腾讯云服务器公网IP下的8080端口也被占用了，所以改成了8090，这样就可以在外网使用tomcat服务器下的webserverce啦。]]></content>
       <categories>
         <category>web service</category>
       </categories>
