@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="Li Bochen">
 <meta property="og:description" content="记录学习过程中遇到的点点滴滴">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-29T02:07:38.555Z">
+<meta property="og:updated_time" content="2019-03-29T12:01:09.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux学习">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -387,6 +387,8 @@
 <h2 id="win10创建linux子系统"><a href="#win10创建linux子系统" class="headerlink" title="win10创建linux子系统"></a>win10创建linux子系统</h2><p><a href="https://blog.csdn.net/li528405176/article/details/82263534" target="_blank" rel="noopener">参考</a><br>注意源要和ubuntu系统适配</p>
 <h2 id="安装linux双系统"><a href="#安装linux双系统" class="headerlink" title="安装linux双系统"></a>安装linux双系统</h2><p>UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI<a href="https://blog.csdn.net/baobei0112/article/details/77996570" target="_blank" rel="noopener">参考</a><br>解决开机黑屏<a href="https://www.cnblogs.com/huadongw/p/6505976.html" target="_blank" rel="noopener">参考</a><br>解决重复登录问题<a href="https://blog.csdn.net/Mr__George/article/details/87869086" target="_blank" rel="noopener">参考</a><br>ubuntu进入emergency mode解决<a href="https://blog.csdn.net/weixin_36185028/article/details/81220532" target="_blank" rel="noopener">参考</a><br>双系统Ubuntu无法访问Windows磁盘分区解决方法<a href="https://www.linuxidc.com/Linux/2016-10/136228.html" target="_blank" rel="noopener">参考</a></p>
 <h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><p>查看磁盘信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure></p>
+<p>查找占用GPU资源的PID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fuser -v /dev/nvidia*</span><br></pre></td></tr></table></figure></p>
+<p>杀死进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 pid #pid为对应进程号</span><br></pre></td></tr></table></figure></p>
 <h2 id="linux使用"><a href="#linux使用" class="headerlink" title="linux使用"></a>linux使用</h2><p>在关机时一定要把文件先保存好关闭后在关机</p>
 
       
