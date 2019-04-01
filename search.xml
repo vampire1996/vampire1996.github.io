@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[linux学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F29%2FlinuxLearning%2F</url>
-    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式复制粘贴(在普通模式下)123yy 复制一行 dd 删除一行 p 在当前行后粘贴之前复系统 win10创建linux子系统参考注意源要和ubuntu系统适配 安装linux双系统UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI参考解决开机黑屏参考解决重复登录问题参考ubuntu进入emergency mode解决参考双系统Ubuntu无法访问Windows磁盘分区解决方法参考 linux常用命令查看磁盘信息1fdisk -l 查找占用GPU资源的PID1sudo fuser -v /dev/nvidia* 杀死进程1kill -9 pid #pid为对应进程号 linux使用在关机时一定要把文件先保存好关闭后在关机]]></content>
+    <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式复制粘贴(在普通模式下)123yy 复制一行 dd 删除一行 p 在当前行后粘贴之前复系统 win10创建linux子系统参考注意源要和ubuntu系统适配 安装linux双系统UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI参考解决开机黑屏参考解决重复登录问题参考ubuntu进入emergency mode解决参考双系统Ubuntu无法访问Windows磁盘分区解决方法参考 linux常用命令查看磁盘信息1fdisk -l 查找占用GPU资源的PID1sudo fuser -v /dev/nvidia* 杀死进程1kill -9 pid #pid为对应进程号 在终端下：复制命令：1Ctrl + Shift + C 组合键 粘贴命令1Ctrl + Shift + V 组合键. linux使用在关机时一定要把文件先保存好关闭后在关机]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[计算机视觉与深度学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F29%2FCVAndDeeplearning%2F</url>
-    <content type="text"><![CDATA[软件安装Ubuntu16.04下安装PyTorch 参考解决pytorch安装问题参考 参考2 注意在网上搜索清华镜像,把上面网站都试一试Ubuntu16.04下安装PyTorch 参考安装完Anaconda python3.7，想使用python3.6方法 参考 用source activate py36 进入python3.6环境之后，可以通过conda list来查看包的位置，这样就可以在pycharm中找到包的位置 pycharm使用解决Pycharm无法导入包问题 Unresolved reference 参考pycharm同一目录下无法import明明已经存在的.py文件 参考 cuda在pycharm中的使用问题设置环境变量时不论是修改.bashrc文件还是在终端输入export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH都无法在pycharm中找到该环境变量,只能在pycharm中添加 参考 fast-rcnn学习逐字理解目标检测simple-faster-rcnn-pytorch-master代码 一 二在PyTorch中使用Visdom可视化工具 参考pytorch 从头开始faster-rcnn 零 一 二 三 四]]></content>
+    <content type="text"><![CDATA[软件安装Ubuntu16.04下安装PyTorch 参考解决pytorch安装问题参考 参考2 注意在网上搜索清华镜像,把上面网站都试一试Ubuntu16.04下安装PyTorch 参考安装完Anaconda python3.7，想使用python3.6方法 参考 用source activate py36 进入python3.6环境之后，可以通过conda list来查看包的位置，这样就可以在pycharm中找到包的位置 pycharm使用解决Pycharm无法导入包问题 Unresolved reference 参考pycharm同一目录下无法import明明已经存在的.py文件 参考 cuda在pycharm中的使用问题设置环境变量时不论是修改.bashrc文件还是在终端输入export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH都无法在pycharm中找到该环境变量,只能在pycharm中添加 参考 fast-rcnn学习逐字理解目标检测simple-faster-rcnn-pytorch-master代码 一 二在PyTorch中使用Visdom可视化工具 参考pytorch 从头开始faster-rcnn 零 一 二 三 四 基于云的深度学习环境使用Russell cloud如何在 GPU 深度学习云服务里，使用自己的数据集？参考Russell Lab 知乎专栏Russell Cloud github 基于云的深度学习环境简介如何六个月内学会深度学习 知乎深度学习自学指南：6个月，从基础知识到模型构建 知乎]]></content>
       <categories>
         <category>CV deeplearning</category>
       </categories>
