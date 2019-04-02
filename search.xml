@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数字图像处理]]></title>
+    <url>%2Fblog%2F2019%2F04%2F02%2FimageProcessing%2F</url>
+    <content type="text"><![CDATA[上海交通大学数字图像处理课程opencv使用安装与配置VS2017配置opencv教程（超详细！！！） 参考需要注意的一点是在配置完成之后要用visual studio重新建立一个项目(空项目或者控制台项目均可),才能正常使用opencv]]></content>
+      <categories>
+        <category>digital image processing</category>
+      </categories>
+      <tags>
+        <tag>-digital image processing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[linux学习]]></title>
     <url>%2Fblog%2F2019%2F03%2F29%2FlinuxLearning%2F</url>
     <content type="text"><![CDATA[修改下载源文件sources.list注意要以root用户打开文件 参考镜像源文件(注意要根据ubuntu系统选择源,我现在的版本是18.04) 清华大学开源软件镜像站 vim命令i-insert 进入插入模式(可编辑)，按esc退出，进入普通模式复制粘贴(在普通模式下)123yy 复制一行 dd 删除一行 p 在当前行后粘贴之前复系统 win10创建linux子系统参考注意源要和ubuntu系统适配 安装linux双系统UEFI模式下安装，要根据U盘制作的类型选择是legacy还是UEFI参考解决开机黑屏参考解决重复登录问题参考ubuntu进入emergency mode解决参考双系统Ubuntu无法访问Windows磁盘分区解决方法参考 linux常用命令查看磁盘信息1fdisk -l 查找占用GPU资源的PID1sudo fuser -v /dev/nvidia* 杀死进程1kill -9 pid #pid为对应进程号 在终端下：复制命令：1Ctrl + Shift + C 组合键 粘贴命令1Ctrl + Shift + V 组合键. 解决linux系统无法打开windows硬盘问题1sudo ntfsfix /dev/sdb5(指定硬盘，错误中可以看到） linux使用在关机时一定要把文件先保存好关闭后在关机]]></content>
