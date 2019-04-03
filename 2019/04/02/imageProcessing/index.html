@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="Li Bochen">
 <meta property="og:description" content="记录学习过程中遇到的点点滴滴">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T14:33:30.863Z">
+<meta property="og:updated_time" content="2019-04-03T14:35:34.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -387,6 +387,7 @@
 <h2 id="1-4-图像的处理流程"><a href="#1-4-图像的处理流程" class="headerlink" title="1.4 图像的处理流程"></a>1.4 图像的处理流程</h2><p>图像处理的流程：<br>1.low level预处理(图像的滤波)从图像到图像<br>2.intermediate level图像的分割，从图像到符号集(symbolic represetation)把图想从目标区域标定/分割出来<br>3.high level图像的理解(模式识别)从符号集到功能描述<br>医学图像处理的标准流程<br>1.low level预处理(滤波)增强(sharpen)smooth(平滑)interpolate(插值)reduce noise(去噪)crop(从图片中切出一小块)<br>2.intermediate level(中间的level)分割(segmentation)ROI(region of interest)区域边缘求取，分类，分组<br>3.High level 识别(recognition)区域特点分析(定位，朝向，尺寸)目标匹配<br>4.high level建模(model)数学模型，deformable model(可变形模型)，volume rendering(体积渲染)<br>5输出</p>
 <h2 id="2-1图像的灰度直方图及其二值化"><a href="#2-1图像的灰度直方图及其二值化" class="headerlink" title="2.1图像的灰度直方图及其二值化"></a>2.1图像的灰度直方图及其二值化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">g(x,y) =</span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">    0 \qquad &amp; f(x,y) \lt T_1 \\</span><br><span class="line">    1 \qquad &amp; f(x,y) \le T_2  \ge T_1 </span><br><span class="line">	0 \qquad &amp; f(x,y) \gt T_2  </span><br><span class="line">    \end&#123;cases&#125;</span><br></pre></td></tr></table></figure>
 <p>$$ \begin{cases}<br>    0 \qquad &amp; f(x,y) \lt T_1 \<br>    1 \qquad &amp; f(x,y) \le T_2  \ge T_1<br>    0 \qquad &amp; f(x,y) \gt T_2<br>    \end{cases} $$</p>
+<p>$$<br>f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}} e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 } \tag{1}<br>$$</p>
 <h1 id="OPENCV使用"><a href="#OPENCV使用" class="headerlink" title="OPENCV使用"></a>OPENCV使用</h1><h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>VS2017配置opencv教程（超详细！！！） <a href="https://blog.csdn.net/qq_41175905/article/details/80560429" target="_blank" rel="noopener">参考</a><br>需要注意的一点是在配置完成之后要用visual studio重新建立一个项目(空项目或者控制台项目均可),才能正常使用opencv </p>
 
       
