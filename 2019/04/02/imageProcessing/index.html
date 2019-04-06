@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/8.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/9.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/10.png">
-<meta property="og:updated_time" content="2019-04-06T02:21:56.162Z">
+<meta property="og:updated_time" content="2019-04-06T02:36:22.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -398,10 +398,9 @@
 <p>$$ H_w=-\sum_{i=t+1}^{255} P_i*log(P_i) $$</p>
 <p>b-black(背景)  w-white(前景) t-threshold leve<br>最优二值化的值即为满足下式对应的t值:<br>$$ max:H=H_b+H_w $$<br>实现:把t从0-255都取一遍找到最大的H值<br>注:图像的双峰性可能较弱，有多个目标区,有多个峰值，利用OTSU和Entropy的得到的灰度直方图最小值(也就是threshold level)可能不同<br>(3)自适应的二值化(adaptive/local/reginal thresholding)<br>方法:切成多个小图像，分别求其二值化，再总体计算</p>
 <h2 id="2-2图像卷积及其滤波"><a href="#2-2图像卷积及其滤波" class="headerlink" title="2,2图像卷积及其滤波"></a>2,2图像卷积及其滤波</h2><p>给定图像f(x,y)和核(kernel) w(a,b)<br>convolution:</p>
-<p>$$ f \ast w=\sum_{}^{(a,b)\in w \newline (x-a,y-b)\in f} f(x-a,y-b) w(a,b) $$</p>
+<p>$$ f \otimes w=\sum_{\substack{(a,b)\in w \ (x-a,y-b)\in f}}f(x-a,y-b) w(a,b) $$</p>
 <p>correclation: </p>
-<p>$$ H_w=-\sum_{i=t+1}^{255} P_i*log(P_i) $$</p>
-<p>$ f \otimes w=\sum_{}^{(a,b)\in w \newline (x+a,y+b)\in f} f(x+a,y+b) w(a,b) $</p>
+<p>$$ f \otimes w=\sum_{\substack{(a,b)\in w \ (x+a,y+b)\in f}}f(x+a,y+b) w(a,b) $$</p>
 <p>卷积的应用:<br>(1)边缘强化<br><img src="/blog/2019/04/02/imageProcessing/8.png" title="边缘强化"><br>(2)去除噪声,图像模糊<br><img src="/blog/2019/04/02/imageProcessing/9.png" title="去除噪声,图像模糊"><br>(3)边缘增强<br><img src="/blog/2019/04/02/imageProcessing/10.png" title="边缘增强"></p>
 <h1 id="OPENCV使用"><a href="#OPENCV使用" class="headerlink" title="OPENCV使用"></a>OPENCV使用</h1><h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>VS2017配置opencv教程（超详细！！！） <a href="https://blog.csdn.net/qq_41175905/article/details/80560429" target="_blank" rel="noopener">参考</a><br>需要注意的一点是在配置完成之后要用visual studio重新建立一个项目(空项目或者控制台项目均可),才能正常使用opencv </p>
 
