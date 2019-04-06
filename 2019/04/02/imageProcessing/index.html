@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/2.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/5.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/6.png">
-<meta property="og:updated_time" content="2019-04-06T08:37:35.150Z">
+<meta property="og:updated_time" content="2019-04-06T08:38:37.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -424,7 +424,7 @@
 <h6 id="基于卷积的去噪方法"><a href="#基于卷积的去噪方法" class="headerlink" title="基于卷积的去噪方法"></a>基于卷积的去噪方法</h6><p>1.高斯滤波(高斯平滑)<br>高斯核(意涵数–和为1)<br>\begin{gather}<br>G(x,y) =\frac{1} {2 \pi \sigma^2} e^-\frac{x^2+y^2} {2\sigma^2}<br>\end{gather}<br>像山峰一样的分布<br><img src="/blog/2019/04/02/imageProcessing/5.png" title="高斯核"><br>&emsp;(1)高斯平滑的作用是模糊图像<br>&emsp;(2)平滑的强度被定义为高斯的标准方差$\sigma$($\sigma$越大，对图像的平滑越厉害，图像变得越模糊)<br>&emsp;(3)输出了一个对高斯分布覆盖的点进行平均，但中间的点给更多的权重(加权平均)<br>&emsp;(4)把高斯核的9个数加起来应接近于1(100%),中间的点应该有更高的百分比(相当于山峰)<br>&emsp;(5)把高斯核于图像做卷积实际上就是一种加权平均<br>2.中值滤波<br><img src="/blog/2019/04/02/imageProcessing/6.png" title="卷积核"><br>每个像素的灰度替换为其邻近点平均(卷积核越大，平滑的越厉害)<br>缺点(1)没有保持图像原有的属性(2)卷积计算量很大<br>median filter:对9个值进行排序找到其中的中位数替换原图像像素的灰度值(效果不如卷积，但计算速度快)</p>
 <h1 id="OPENCV使用"><a href="#OPENCV使用" class="headerlink" title="OPENCV使用"></a>OPENCV使用</h1><h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>VS2017配置opencv教程（超详细！！！） <a href="https://blog.csdn.net/qq_41175905/article/details/80560429" target="_blank" rel="noopener">参考</a><br>需要注意的一点是在配置完成之后要用visual studio重新建立一个项目(空项目或者控制台项目均可),才能正常使用opencv </p>
 <p>\begin{equation}<br>\left(<br>  \begin{array}{ccc}<br>    a11 &amp; a12 &amp; a13\\<br>    a21 &amp; a22 &amp; a23\ <br>  \end{array}<br>\right)<br>\end{equation}</p>
-<p>\begin{bmatrix}<br>1 &amp; 2 &amp; 3 \ <br>4 &amp; 5 &amp; 6 \\<br> 7 &amp; 8 &amp; 9 \end{bmatrix} </p>
+<p>\begin{bmatrix}<br>    1 &amp; 2 &amp; 3 \ <br>    4 &amp; 5 &amp; 6 \\<br>    7 &amp; 8 &amp; 9<br>    \end{bmatrix} </p>
 
       
     </div>
