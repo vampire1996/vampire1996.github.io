@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/8.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/9.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/10.png">
-<meta property="og:updated_time" content="2019-04-06T02:56:32.112Z">
+<meta property="og:updated_time" content="2019-04-06T02:59:32.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -401,8 +401,8 @@
 <p>$$ f \otimes w=\sum_{\substack{(a,b)\in w \ (x-a,y-b)\in f}}f(x-a,y-b) w(a,b) $$</p>
 <p>correclation: </p>
 <p>$$ f \otimes w=\sum_{(a,b)\in w \ (x+a,y+b)\in f}f(x+a,y+b) w(a,b) $$</p>
-<p>\begin{gather}<br>f \otimes w=\sum_{\substack{(a,b)\in w \ (x-a,y-b)\in f}}f(x-a,y-b) w(a,b)<br>\end{gather}</p>
-<p>\begin{gather}<br>\sum_{\substack{0 \le i \le m\\<br>  0 &lt; j &lt; n}}P(i, j)<br>\end{gather}</p>
+<p>\begin{gather}<br>f \otimes w=\sum_{\substack{(a,b) \in w \ <br>(x-a,y-b)\in f}}f(x-a,y-b) w(a,b)<br>\end{gather}</p>
+<p>\begin{gather}<br>f \otimes w=\sum_{\substack{0 \le i \le m\\<br>  0 &lt; j &lt; n}}P(i, j)<br>\end{gather}</p>
 <p>\begin{gather}<br>  \sum_{\substack{0 \le i \le m\\<br>  0 &lt; j &lt; n}}P(i, j)\\<br>  \sum_{\begin{subarray}{l}<br>    i \in \Lambda \\<br>    0 \le i \le m \\<br>    0 &lt; j &lt; n<br>  \end{subarray}} P(i, j)<br>\end{gather}</p>
 <p>卷积的应用:<br>(1)边缘强化<br><img src="/blog/2019/04/02/imageProcessing/8.png" title="边缘强化"><br>(2)去除噪声,图像模糊<br><img src="/blog/2019/04/02/imageProcessing/9.png" title="去除噪声,图像模糊"><br>(3)边缘增强<br><img src="/blog/2019/04/02/imageProcessing/10.png" title="边缘增强"></p>
 <h1 id="OPENCV使用"><a href="#OPENCV使用" class="headerlink" title="OPENCV使用"></a>OPENCV使用</h1><h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>VS2017配置opencv教程（超详细！！！） <a href="https://blog.csdn.net/qq_41175905/article/details/80560429" target="_blank" rel="noopener">参考</a><br>需要注意的一点是在配置完成之后要用visual studio重新建立一个项目(空项目或者控制台项目均可),才能正常使用opencv </p>
