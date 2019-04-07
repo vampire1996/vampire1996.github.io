@@ -114,7 +114,7 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/15.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/16.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/14.png">
-<meta property="og:updated_time" content="2019-04-07T14:17:28.835Z">
+<meta property="og:updated_time" content="2019-04-07T14:21:54.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -437,12 +437,12 @@
 <p>注意:(1)平移后放大和放大后平移是不同的(2)旋转后放大和放大后旋转是完全相同的<br>(2)插值算法<br>i.最近邻插值(nearest neighbor)<br>找最近灰度值拷贝过来,容易产生梯田效应<br>ii.双线性插值Bilinear Interpolation(square interpolation)<br>被插值点和其周围点形成正方形，根据距离给不同点权重，计算加权平均即为插值结果<br>iii.多项式插值(B-sqline样条 polynomial多项式)</p>
 <h4 id="图像的领域操作-beighbourhood-operation"><a href="#图像的领域操作-beighbourhood-operation" class="headerlink" title="图像的领域操作(beighbourhood operation)"></a>图像的领域操作(beighbourhood operation)</h4><p>图像内一点与其周围点的相关性<br>对于某一像素点，其连接关系有<br>&emsp;(1)4邻域<br>$$<br>N_4(P)={(x+1,y),(x-1,y),(x,y+1),(x,y-1)}<br>$$<br>&emsp;(2)8邻域<br>$$<br>N_8(P)=N_4(p) \bigcup{(x+1,y),(x-1,y),(x,y+1),(x,y-1)}<br>$$<br>4(8)连接:两点在$N_4(p)$ ($N_8(p)$)范围内<br>经典算法:connected component labeling(联通区域标记)<br>&emsp;(1)根据要素间的连接性来进行标签操作<br>&emsp;(2)把具有共同属性的像素分到一个组里，用相同灰度/颜色进行打标签操作<br>&emsp;(3)分组的依据仅为连接关系(4(8)连接)和灰度条件(相邻的点灰度值要接近)<br>&emsp;(4)具体实施:从上到下，从左到右对图像进行遍历<br>&emsp;(5)Intensity Criterion强度准则(IC):相同Intensity Value的集合(对于二值图像，灰度值必须一致，比如都是1;对于灰度图像，灰度值在一定范围内则分到一组)<br>Two-Pass法 <a href="https://www.cnblogs.com/fireae/p/3723782.html" target="_blank" rel="noopener">参考1</a> <a href="https://blog.csdn.net/hemeinvyiqiluoben/article/details/39854315" target="_blank" rel="noopener">参考2</a><br>对于满足IC的像素点<br>Step1(第一次遍历)<br>&emsp;(1)如果所有的近邻都不满足IC，给P一个新标签<br>&emsp;(2)只有一个近邻满足IC，把它的标签给P(灰度值距离P最近的点)<br>&emsp;(3)如果一个或多个近邻都满足IC(灰度值距离P最近的点有多个)，选这些标签中的一个给P，并做一个标志(equivalence)表示和这些标签都有一定的可能性(如两个区域的边界处)<br>Step2 解决equivalence问题<br>&emsp;equivalence resolve algorthm(如Floyd-Warshall algorithm):处理equivalence标签对，并给它一个特定的标签(宏观地看这些点)–找到属于同一区域的最小标签</p>
 <h4 id="图像的特征"><a href="#图像的特征" class="headerlink" title="图像的特征"></a>图像的特征</h4><p>Region property(区域特征):<br>&emsp;在区域被标签或分割后,区域特征是区域分割的重要属性<br>区域属性:<br>(1)周长(primeter)和面积<br>周长的估计方法<br>&emsp;i.把所有边缘上的像素点数一遍，数目就是周长<br>&emsp;ii.更精确的估算(chain-code)把一个点的8邻域按逆时针从0-7标出来，在目标区域中，相邻像素根据不同的标号关系计算距离<br><img src="/blog/2019/04/02/imageProcessing/15.png"><br><img src="/blog/2019/04/02/imageProcessing/16.png"><br>面积的估计方法:<br>$$<br>Pick’s formula:<br>A(p)=n_I+n_B/2-1<br>$$</p>
-<p>$n_I$代表整个像素点都在区域内的像素数 $n_B$代表像素点在区域边缘上的像素数<br>(2)极值点(extreme points)<br>某一区域的x,y最小,大值<br>bonding box:把区域用矩形圈起来，相切的点称为极值点<br><img src="/blog/2019/04/02/imageProcessing/14.png"><br>(3)中心点,半径(radius)，直径(diameter)<br>离心(eccentricity):点P的离心值为到边缘线上所有点距离最大的值<br>$$<br>ecc(P)=max d(p,q)|q \in F<br>$$<br>q:边缘上的所有点<br>p:当前要计数的点<br>中心点:拥有最小离心值的点P的集合<br>半径:最小离心值$d(p,p’)$<br>直径:最大离心值$d(p’,q’)$<br>(4)中心距(centroid moment)<br>中心:给定图像F，图像上像素集合为$(x_i,y_i)$，则中心为</p>
-<p>$$ x_c=\frac{1}{n} \sum_{n}{i=1}x_i$$</p>
-<p>$$ y_c=\frac{1}{n} \sum_{n}{i=1}y_i$$</p>
+<p>$n_I$代表整个像素点都在区域内的像素数 $n_B$代表像素点在区域边缘上的像素数<br>(2)极值点(extreme points)<br>某一区域的x,y最小,大值<br>bonding box:把区域用矩形圈起来，相切的点称为极值点<br><img src="/blog/2019/04/02/imageProcessing/14.png"><br>(3)中心点,半径(radius)，直径(diameter)<br>离心(eccentricity):点P的离心值为到边缘线上所有点距离最大的值<br>$$<br>ecc(P)=max   d(p,q)|q \in F<br>$$<br>q:边缘上的所有点<br>p:当前要计数的点<br>中心点:拥有最小离心值的点P的集合<br>半径:最小离心值$d(p,p’)$<br>直径:最大离心值$d(p’,q’)$<br>(4)中心距(centroid moment)<br>中心:给定图像F，图像上像素集合为$(x_i,y_i)$，则中心为</p>
+<p>$$ x_c=\frac{1}{n} \sum_{n}^{i=1}x_i$$</p>
+<p>$$ y_c=\frac{1}{n} \sum_{n}^{i=1}y_i$$</p>
 <p>离散(k,l)阶中心距被定义为:</p>
-<p>$$ \mu_k,l= \frac{1}{n}(x_i-x_c)^k(y_i-y_c)^l$$<br>(5)图像的朝向</p>
-<p>$$\theta=\frac{1}{2} arctan(\frac{2\mu_1,1}{\mu_2,0-\mu_0,2}) $$<br>以上公式代表着图像的偏转角度,因此可以用来进行图像矫正</p>
+<p>$$ \mu_(k,l)= \frac{1}{n}(x_i-x_c)^k(y_i-y_c)^l$$<br>(5)图像的朝向</p>
+<p>$$\theta=\frac{1}{2} arctan(\frac{2\mu_(1,1)}{\mu_(2,0)-\mu_(0,2)}) $$<br>以上公式代表着图像的偏转角度,因此可以用来进行图像矫正</p>
 <h1 id="OPENCV使用"><a href="#OPENCV使用" class="headerlink" title="OPENCV使用"></a>OPENCV使用</h1><h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>VS2017配置opencv教程（超详细！！！） <a href="https://blog.csdn.net/qq_41175905/article/details/80560429" target="_blank" rel="noopener">参考</a><br>需要注意的一点是在配置完成之后要用visual studio重新建立一个项目(空项目或者控制台项目均可),才能正常使用opencv </p>
 
       
