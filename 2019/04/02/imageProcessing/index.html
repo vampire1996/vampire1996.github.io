@@ -114,7 +114,24 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/15.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/16.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/14.png">
-<meta property="og:updated_time" content="2019-04-07T14:27:24.620Z">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/18.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/19.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/20.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/21.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/22.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/23.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/24.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/25.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/26.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/27.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/28.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/29.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/30.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/31.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/32.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/33.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/34.png">
+<meta property="og:updated_time" content="2019-04-08T09:56:56.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -443,6 +460,61 @@
 <p>离散(k,l)阶中心距被定义为:</p>
 <p>$$ \mu_{k,l}= \frac{1}{n}(x_i-x_c)^k(y_i-y_c)^l$$<br>(5)图像的朝向</p>
 <p>$$\theta=\frac{1}{2} arctan(\frac{2\mu_{1,1}}{\mu_{2,0}-\mu_{0,2}}) $$<br>以上公式代表着图像的偏转角度,因此可以用来进行图像矫正</p>
+<h2 id="3-1数学形态学-二值的形态学"><a href="#3-1数学形态学-二值的形态学" class="headerlink" title="3.1数学形态学:二值的形态学"></a>3.1数学形态学:二值的形态学</h2><p>数学形态学:针对空间结构的定量分析的一个方法论(a methodology for the quantitative analysis of spatial structure)<br>应用:图像增强，图像分割等<br>结构化要素(structure element(SE)):也叫做核，但保留该概念用于卷积<br>&emsp;中心点(origin):画圆圈的位置<br>&emsp;空格:不做计算的位置<br><img src="/blog/2019/04/02/imageProcessing/18.png" title="structure element"><br>平移(Geometric shift)<br>集合A平移距离x，被定义为:</p>
+<p>$$ A+x={a+x:a\in A}$$</p>
+<img src="/blog/2019/04/02/imageProcessing/19.png">
+<h3 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h3><p>1.膨胀(binary dilation)<br>二值化膨胀:图像F被SE&emsp;k膨胀定义为:</p>
+<p>$$D(F,K)=F \oplus k= \bigcup_{b\in k} ({a+b|a\in F})$$</p>
+<p>这里的加实际上是或操作,膨胀操作实际上是以SE为半径向周围扩展了一圈<br>例</p>
+<p>\begin{gather}<br>\begin{bmatrix}<br>   0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\<br>   0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\<br>   0 &amp; 1 &amp; 1 &amp; 1 &amp; 0<br>\end{bmatrix} \oplus<br>\begin{bmatrix}<br>   1 &amp; 0 \\<br>   1 &amp; \textcircled{1}<br>\end{bmatrix} +<br>\begin{bmatrix}<br>   1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\<br>   1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\<br>   1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\<br>   1 &amp; 1 &amp; 1 &amp; 1 &amp; 0<br>\end{bmatrix}<br>\end{gather}</p>
+<img src="/blog/2019/04/02/imageProcessing/20.png">
+<p>将origin和原图中的各店对其，然后进行相加操作，最后将这些集合并起来<br>归纳:将origin击中图像上所有1的位置，盖章(只考虑前景)<br>运算律<br>(1)交换律: $D(A,B)=A$\oplus B=B \oplus A=D(A,B)<br>(2)结合律: $A \oplus (B \oplus C)=(A \oplus B)\oplus C$<br>(3)转换的不变性: $A \oplus(B+x)=(A \oplus B) +x$<br>(4)递增 $A_1 \subseteq A_2 \Rightarrow (A_1 \oplus B)\subseteq (A_2 \oplus B)$<br>(5)分解率 $A \oplus (B \cup C) = (A \oplus B)\cup (A \oplus C)$<br>(6)多次膨胀 nB=\underbrace{(B \oplus B \oplus … \oplus B)}^{\text{n}}<br>2.收缩/腐蚀(erision)<br>F被SE &ensp; k腐蚀定义为</p>
+<p>$$F(F,k)=F\ominus k= \bigcap_{b\in k} ({a-b|a\in F})$$</p>
+<p>注意:F和k都只考虑1的部分,减法实际上为与运算</p>
+<p>\begin{gather}<br>\begin{bmatrix}<br>   0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\<br>   0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\<br>   0 &amp; 1 &amp; 1 &amp; 1 &amp; 0<br>\end{bmatrix} \ominus<br>\begin{bmatrix}<br>   1 &amp; 0 \\<br>   1 &amp; \textcircled{1}<br>\end{bmatrix} +<br>\begin{bmatrix}<br>   0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\<br>   0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\<br>   0 &amp; 0 &amp; 1 &amp; 1 &amp; 0<br>\end{bmatrix}<br>\end{gather}</p>
+<img src="/blog/2019/04/02/imageProcessing/21.png">
+<p>归纳:SE的origin摁在图像上所有1的位置,若图像上该点周围与SE完美匹配(与运算结果为1),则该点保留<br>运算律<br>(1)不可交换: $    E(A,B)\ne E(B,A)<br>(2)不可逆: $D(E(A,B),B)\ne A \ne E(D(A,B),B)$ 膨胀和腐蚀是不可逆的<br>(3)转换的不变性: $A \ominus(B+x)=(A \ominus B) +x$<br>(4)$A_1 \subseteq A_2 \Rightarrow (A_1 \ominus B)\subseteq (A_2 \ominus B) $<br>(5)$B_1 \subseteq B_2 \Rightarrow (A \ominus B_1)\supseteq (A \ominus B_1) $<br>(6)分解率 $A \ominus (B \cup C) = (A \ominus B)\cap (A \ominus C)$<br>$(A \ominus B)\ominus C=A \ominus(B \oplus C)$拆分成两个更小的SE会大幅提升效率<br>例:$A \ominus 2B=A \ominus B \ominus B$ 2B为半径为2的圆<br>注意:腐蚀和膨胀并不可逆<br>二者相关性为:</p>
+<p>$$<br>A \oplus B= [A^c \ominus (-B)]^c $$</p>
+<p>$$<br>A \ominus B= [A^c \oplus (-B)]^c<br>$$</p>
+<p>其中$A_c$代表对A取反,$-B$代表对B旋转$180^\circ$<br>3.开运算(Binary Opening)</p>
+<p>$$O(F,k)=F \circ k= (F \ominus k) \oplus k $$</p>
+<p>实际上是对图像孤立，狭小的区域进行除噪<br>例</p>
+<p>\begin{gather}<br>\begin{bmatrix}<br>   0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\<br>   0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\<br>   0 &amp; 1 &amp; 1 &amp; 1 &amp; 0<br>\end{bmatrix} \circ<br>\begin{bmatrix}<br>   1 &amp; 0 \\<br>   1 &amp; \textcircled{1}<br>\end{bmatrix} +<br>\begin{bmatrix}<br>   0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\<br>   0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\<br>   0 &amp; 1 &amp; 1 &amp; 1 &amp; 0<br>\end{bmatrix}<br>\end{gather}<br>F中不满足匹配k的区域会被抹掉，因为进行了腐蚀操作后边0的区域不再考虑，它附近必须有1才能恢复<br><img src="/blog/2019/04/02/imageProcessing/22.png" title="举例"><br>归纳:所有比SE小的区域会被抹掉<br>运算律:<br>(1)交换律: $O(A+x,B)=O(A,B)+x<br>(2)$O(A,B) \subseteq A$图像开运算后一定变小<br>(3)单调递增 $A_1 \subseteq A_2 \Rightarrow (A_1 \circ  B)\subseteq (A_2 \circ  B)$<br>(4)不可重复性:$( A \circ  B )\circ  B =A \circ  B<br>4.闭运算(binary closing)</p>
+<p>$$ C(F,k)=F \bullet k= (F \oplus)\ominus k $$</p>
+<p>对图像进行填充，填充比SE小的空洞</p>
+<p>\begin{gather}<br>\begin{bmatrix}<br>   0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\<br>   0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\<br>   0 &amp; 1 &amp; 1 &amp; 1 &amp; 0<br>\end{bmatrix} \bullet<br>\begin{bmatrix}<br>   1 &amp; 0 \\<br>   1 &amp; \textcircled{1}<br>\end{bmatrix} +<br>\begin{bmatrix}<br>   0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\<br>   0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\<br>   0 &amp; 1 &amp; 1 &amp; 1 &amp; 0<br>\end{bmatrix}<br>\end{gather}<br><img src="/blog/2019/04/02/imageProcessing/23.png" title="举例"></p>
+<p>运算律:<br>(1)交换律: $C(A+x,B)=C(A,B)+x<br>(2)$A \subseteq C(A,B) $图像闭运算后一定变小<br>(3)单调递增 $A_1 \subseteq A_2 \Rightarrow (A_1 \bullet  B)\subseteq (A_2 \bullet  B)$<br>(4)不可重复性:$( A \bullet  B )\bullet  B =A \bullet  B</p>
+<p>开闭运算是一对对偶操作(dual operation),不是逆操作</p>
+<p>$$ A \circ B= (A^c \bullet B)^c $$</p>
+<p>$$ A \bullet B= (A^c \circ B)^c $$</p>
+<p>膨胀:整个区域扩张;闭操作:只有填埋,保留原有特征<br>腐蚀:整个区域收缩;开操作:只有去噪,保留原有特征</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ol>
+<li>Hit-and-Miss </li>
+</ol>
+<p>$$F \otime k=(F \ominus k_1) \cap (F^c \ominus k_2)^c $$<br>其中 $k_1 \cap k_2=\oslash，k_1 \in k ,k_2 \in k$<br>对前景用$k_1$腐蚀，对背景用$k_2$腐蚀再取反<br><img src="/blog/2019/04/02/imageProcessing/24.png" title="举例"><br>可用来求取特征，前景上提取，背景上抑制(前景fit,背景miss)<br>Particular Patterns(特征点):(1)孤立点(2)顶点(3)边缘点<br>理解:对前景特征进行抓取，对背景特征进行丢失<br>算法步骤:<br>&emsp;(1)以origin为中心对SE和图像进行叠加<br>&emsp;(2)查看SE和它压在下面的图像<br>&emsp;&emsp; i.如果前景(背景)的SE和前景(背景)的图像完全匹配,那么在origin下面的像素被设置为前景的颜色<br>&emsp;&emsp; ii.如果不匹配，被设置为背景的颜色</p>
+<img src="/blog/2019/04/02/imageProcessing/25.png" title="Corner Detector">
+<p>2.模式谱(Pattern Spectrum)<br>用于测量目标体在不同尺寸物体的分布的描述<br>$F$:处理的图像;$r_ik$:SE的尺寸<br>模式谱被定义为:</p>
+<p>$$ PS_{r_ik}(F)=\begin{cases}<br>    Card((F\cric r_ik)-(F\cric r_{i+1}k)) \qquad &amp; i \ge 0 \\<br>    Card((F\bullet r_{-i}k)-(F\bullet r_{-i-1}k)) \qquad &amp; i \lt 0<br>    \end{cases} $$</p>
+<p>$Card(F)$代表cardinality计数(对于二值图像将差值图像的目标像素数计数;灰度图像,对灰度值求和)<br>开运算:提取出大小在小于$r_ik$ 到$r_{i+1}k$的部分<br>闭运算:填埋(从另一种角度)</p>
+<p>步骤<br>&emsp;(1)用一合适的SE对图像进行开操作<br>&emsp;(2)把它和原图做减法,得到的差值图像为$DST_n$(第n个diatance size transformation 距离尺度转换)<br>&emsp;(3)对于二值图像将差值图像的目标像素数计数;灰度图像,对灰度值求和<br>&emsp;(4)将所得数放在模式谱里(第n个棒，n从0开始)<br>&emsp;(5)重复上述操作直到所有object都消失(将n增大,n代表SE的尺度)<br>举例,用一个圆形SE，不断增加其半径<br><img src="/blog/2019/04/02/imageProcessing/26.png"><br><img src="/blog/2019/04/02/imageProcessing/27.png" title="模式谱"></p>
+<p>应用(1)检测图像成分大小(2)检测目标的形状<br><img src="/blog/2019/04/02/imageProcessing/28.png" title="不同数字的模式谱"></p>
+<p>3.循环膨胀(Recursive Dilation)</p>
+<p>$$ F \oplus\limits_{}^(i) =\begin{cases}<br>    F \qquad &amp; i=0 \\<br>   F \oplus\limits_{}^(i-1) \oplus k \qquad &amp; i \ge 0<br>    \end{cases} $$<br>应用于构成一系列有相同形状，但大小不同的图像<br><img src="/blog/2019/04/02/imageProcessing/29.png" title="应用"></p>
+<p>4.循环腐蚀(erosion)<br>$$ F \ominus\limits_{}^(i) =\begin{cases}<br>    F \qquad &amp; i=0 \\<br>   F \ominus\limits_{}^(i-1) \ominus k \qquad &amp; i \ge 0<br>    \end{cases} $$<br>可逐渐将图像的object缩小,可应用于计算distance transform<br><img src="/blog/2019/04/02/imageProcessing/30.png" title="应用"></p>
+<p>5.距离转换(distance transform)<br>仅用于二值图像<br>转换得到一个灰度图像,灰度值表明像素点到最近边缘的距离(反复腐蚀得到)<br><img src="/blog/2019/04/02/imageProcessing/31.png"><br>距离表达:<br>(1)Euclidean distance</p>
+<p>$$<br>D_Euclidict=[(x_2-x_1)^2+(y_2-y_1)^2]^\frac{1}{q}<br>$$</p>
+<p>(2)City Block Diatance($N_8$八领域)</p>
+<p>$$ D_city=|X_2-X_1|+|y_2-y_1|$$</p>
+<p>(3)Chessboard Distance($N_4$)</p>
+<p>$$ D_shess=max(|X_2-X_1|,|y_2-y_1|)$$</p>
+<p>$(x_1,y_1),(x_2,y_2)$代表腐蚀前后点的坐标<br>6.Sekleton(骨骼)<br>去除二值图像中的前景区域，仅保留原始区域的拓扑(extent and connectivity)<br>例1:长方形4个角上放4个圆，其半径越来越大，圆心的轨迹就是Skeleton,圆的边和长方形的两个边相切，表明Skeleton上的点是由距离边缘最远的点组成的<br><img src="/blog/2019/04/02/imageProcessing/32.png" title="例1"></p>
+<p>Skeleton subset $S_i(F)$,i-SE尺寸</p>
+<p>$$ S_i(F)=(F \ominus r_ik)-[(F \ominus r_ik)\cric k] $$</p>
+<p>i=0,1,2,3…n 当i取n，$S_i(F)$变为空<br>$(F \ominus r_ik)\cric k$去除了长方形的角，再用$F \ominus r_ik$减即可得到长方形四个角<br>Skeleton为:</p>
+<p>$S(F)=\bigcup_n^{i=0} S_i(F) $$</p>
+<p>7.骨骼恢复(skeleton reconstruction)<br>原图可以通过下式恢复:</p>
+<p>$S(F)=\bigcup_n^{i=0} (S_i(F) \oplus r_iF) $$</p>
+<p>其中$r_iF为之前使用过的SE$<br><img src="/blog/2019/04/02/imageProcessing/33.png" title="举例"><br>例经过distance transform得到灰度图像,其中的skeleton点都是局部最大值(8领域中最大值)<br><img src="/blog/2019/04/02/imageProcessing/34.png"><br>恢复:用skeleton点(该点灰度为几就用对应大小的SE)</p>
 <h1 id="OPENCV使用"><a href="#OPENCV使用" class="headerlink" title="OPENCV使用"></a>OPENCV使用</h1><h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>VS2017配置opencv教程（超详细！！！） <a href="https://blog.csdn.net/qq_41175905/article/details/80560429" target="_blank" rel="noopener">参考</a><br>需要注意的一点是在配置完成之后要用visual studio重新建立一个项目(空项目或者控制台项目均可),才能正常使用opencv </p>
 
       
@@ -620,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#上海交通大学数字图像处理课程"><span class="nav-number">1.</span> <span class="nav-text">上海交通大学数字图像处理课程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-图像的由来"><span class="nav-number">1.1.</span> <span class="nav-text">1.2 图像的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-图像的种类"><span class="nav-number">1.2.</span> <span class="nav-text">1.3 图像的种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-图像的处理流程"><span class="nav-number">1.3.</span> <span class="nav-text">1.4 图像的处理流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1图像的灰度直方图及其二值化"><span class="nav-number">1.4.</span> <span class="nav-text">2.1图像的灰度直方图及其二值化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-灰度直方图-histogram"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">一.灰度直方图(histogram)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-二值化-binary-operation"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">二.二值化(binary operation)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2图像卷积及其滤波"><span class="nav-number">1.5.</span> <span class="nav-text">2,2图像卷积及其滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积的应用-边缘增强"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">卷积的应用:边缘增强</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Edge-operations-利用卷积方法计算梯度"><span class="nav-number">1.5.0.1.0.1.</span> <span class="nav-text">Edge operations(利用卷积方法计算梯度)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#除噪-noise-reduce-也叫对图像的平滑-smoothing-清洁-noise-cleaning"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">除噪(noise reduce)也叫对图像的平滑(smoothing),清洁(noise cleaning)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#基于卷积的去噪方法"><span class="nav-number">1.5.0.2.0.1.</span> <span class="nav-text">基于卷积的去噪方法</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3图像的基本操作"><span class="nav-number">1.6.</span> <span class="nav-text">2,3图像的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代数操作-Algebraic-Operation"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">代数操作(Algebraic Operation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何操作-Geomtric-Operation"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">几何操作(Geomtric Operation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像的领域操作-beighbourhood-operation"><span class="nav-number">1.6.0.3.</span> <span class="nav-text">图像的领域操作(beighbourhood operation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像的特征"><span class="nav-number">1.6.0.4.</span> <span class="nav-text">图像的特征</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OPENCV使用"><span class="nav-number">2.</span> <span class="nav-text">OPENCV使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装与配置"><span class="nav-number">2.1.</span> <span class="nav-text">安装与配置</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#上海交通大学数字图像处理课程"><span class="nav-number">1.</span> <span class="nav-text">上海交通大学数字图像处理课程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-图像的由来"><span class="nav-number">1.1.</span> <span class="nav-text">1.2 图像的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-图像的种类"><span class="nav-number">1.2.</span> <span class="nav-text">1.3 图像的种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-图像的处理流程"><span class="nav-number">1.3.</span> <span class="nav-text">1.4 图像的处理流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1图像的灰度直方图及其二值化"><span class="nav-number">1.4.</span> <span class="nav-text">2.1图像的灰度直方图及其二值化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-灰度直方图-histogram"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">一.灰度直方图(histogram)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-二值化-binary-operation"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">二.二值化(binary operation)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2图像卷积及其滤波"><span class="nav-number">1.5.</span> <span class="nav-text">2,2图像卷积及其滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积的应用-边缘增强"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">卷积的应用:边缘增强</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Edge-operations-利用卷积方法计算梯度"><span class="nav-number">1.5.0.1.0.1.</span> <span class="nav-text">Edge operations(利用卷积方法计算梯度)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#除噪-noise-reduce-也叫对图像的平滑-smoothing-清洁-noise-cleaning"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">除噪(noise reduce)也叫对图像的平滑(smoothing),清洁(noise cleaning)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#基于卷积的去噪方法"><span class="nav-number">1.5.0.2.0.1.</span> <span class="nav-text">基于卷积的去噪方法</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3图像的基本操作"><span class="nav-number">1.6.</span> <span class="nav-text">2,3图像的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代数操作-Algebraic-Operation"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">代数操作(Algebraic Operation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何操作-Geomtric-Operation"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">几何操作(Geomtric Operation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像的领域操作-beighbourhood-operation"><span class="nav-number">1.6.0.3.</span> <span class="nav-text">图像的领域操作(beighbourhood operation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像的特征"><span class="nav-number">1.6.0.4.</span> <span class="nav-text">图像的特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1数学形态学-二值的形态学"><span class="nav-number">1.7.</span> <span class="nav-text">3.1数学形态学:二值的形态学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本运算"><span class="nav-number">1.7.1.</span> <span class="nav-text">基本运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">1.7.2.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OPENCV使用"><span class="nav-number">2.</span> <span class="nav-text">OPENCV使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装与配置"><span class="nav-number">2.1.</span> <span class="nav-text">安装与配置</span></a></li></ol></li></div>
             
 
           </div>
