@@ -131,7 +131,7 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/32.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/33.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/34.png">
-<meta property="og:updated_time" content="2019-04-08T13:05:09.360Z">
+<meta property="og:updated_time" content="2019-04-08T13:13:01.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -504,11 +504,11 @@
 <p>$$ F \stackrel{i}{\oplus}k =\begin{cases}<br>    F \qquad &amp; i=0 \\<br>   (F \stackrel{i-1}{\oplus}k)\oplus k \qquad &amp; i \ge 0<br>    \end{cases} $$<br>应用于构成一系列有相同形状，但大小不同的图像<br><img src="/blog/2019/04/02/imageProcessing/29.png" title="应用"></p>
 <p>4.循环腐蚀(erosion)<br>$$ F \stackrel{i}{\ominus}k =\begin{cases}<br>    F \qquad &amp; i=0 \\<br>   (F \stackrel{i-1}{\ominus}k) \ominus k \qquad &amp; i \ge 0<br>    \end{cases} $$<br>可逐渐将图像的object缩小,可应用于计算distance transform<br><img src="/blog/2019/04/02/imageProcessing/30.png" title="应用"></p>
 <p>5.距离转换(distance transform)<br>仅用于二值图像<br>转换得到一个灰度图像,灰度值表明像素点到最近边缘的距离(反复腐蚀得到)<br><img src="/blog/2019/04/02/imageProcessing/31.png"><br>距离表达:<br>(1)Euclidean distance</p>
-<p>$$<br>D_Euclidict=[(x_2-x_1)^2+(y_2-y_1)^2]^\frac{1}{2}<br>$$</p>
+<p>$$<br>D_{Euclidict}=[(x_2-x_1)^2+(y_2-y_1)^2]^\frac{1}{2}<br>$$</p>
 <p>(2)City Block Diatance($N_8$八领域)</p>
-<p>$$ D_city=|x_2-x_1|+|y_2-y_1|$$</p>
+<p>$$ D_{city}=|x_2-x_1|+|y_2-y_1|$$</p>
 <p>(3)Chessboard Distance($N_4$)</p>
-<p>$$ D_shess=max(|x_2-x_1|,|y_2-y_1|)$$</p>
+<p>$$ D_{chess}=max(|x_2-x_1|,|y_2-y_1|)$$</p>
 <p>$(x_1,y_1),(x_2,y_2)$代表腐蚀前后点的坐标<br>6.Sekleton(骨骼)<br>去除二值图像中的前景区域，仅保留原始区域的拓扑(extent and connectivity)<br>例1:长方形4个角上放4个圆，其半径越来越大，圆心的轨迹就是Skeleton,圆的边和长方形的两个边相切，表明Skeleton上的点是由距离边缘最远的点组成的<br><img src="/blog/2019/04/02/imageProcessing/32.png" title="例1"></p>
 <p>Skeleton subset $S_i(F)$,i-SE尺寸</p>
 <p>$$ S_i(F)=(F \ominus r_ik)-[(F \ominus r_ik) \circ k] $$</p>
