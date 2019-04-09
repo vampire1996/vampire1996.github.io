@@ -151,7 +151,7 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/53.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/54.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/55.png">
-<meta property="og:updated_time" content="2019-04-09T14:33:50.849Z">
+<meta property="og:updated_time" content="2019-04-09T14:36:29.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -543,7 +543,7 @@
 <h4 id="灰度腐蚀-erosion"><a href="#灰度腐蚀-erosion" class="headerlink" title="灰度腐蚀(erosion)"></a>灰度腐蚀(erosion)</h4><p>$$ E_G=F \ominus_g k =min_{[a,b]\in k}{[F(m-a,n-b)-k(a,b)]} $$<br>总体上使图像变暗<br><img src="/blog/2019/04/02/imageProcessing/43.png"><br><img src="/blog/2019/04/02/imageProcessing/44.png"><br>注意有星号要选星号，代表该点不存在了</p>
 <h3 id="3-3受限制的膨胀算法-conditional-dilation"><a href="#3-3受限制的膨胀算法-conditional-dilation" class="headerlink" title="3.3受限制的膨胀算法(conditional dilation)"></a>3.3受限制的膨胀算法(conditional dilation)</h3><p>对要处理的空间进行重建(比如除噪后，破坏了的目标区需要恢复)<br>令M，V为两张二值图像,且$M \subseteq V$，M(marker种子点),V(mask模板)<br>受约束的膨胀定义为:</p>
 <p>$$ R_i(M,V)=(M\stackrel{i}{\oplus}IV) \quad until \quad R_i(M,V)=R_{i-1}(M,V)$$</p>
-<p>$I$代表图像间的交集运算<br>注意:M只允许在V的范围内增长<br><img src="/blog/2019/04/02/imageProcessing/45.png"><br>Morphological Reconstruction<br>1.binary reconstruction<br>过程(V是原图,k是SE)<br>&emsp;(1)$M=V \cric k$除噪<br>&emsp;(2)$T=M$<br>&emsp;(3)$M=M\oplus k_i $<br>&emsp;(4)$M=M\cup V $(仅取出属于V也属于M的像素点)<br>&emsp;(5)如果$M \ne T$回到(2)<br>&emsp;(6)结束<br><img src="/blog/2019/04/02/imageProcessing/46.png" title="举例"><br>注意<br>&emsp;(1)SE要足够小,避免跨到其它区<br>&emsp;(2)尽量避免噪声和目标区有连接<br>2.grey reconstruction<br>Step1:在marker上进行灰度膨胀<br>Step2:检查膨胀结果的每个点是否超出mask f的范围<br>Step3:重复1,2直到稳定<br>应用<br>1.opening by reconstruction(OBR)<br>(1)用open操作对图像进行平滑<br>(2)通过重建恢复目标区域<br><img src="/blog/2019/04/02/imageProcessing/47.png"><br>2.closing by reconstruction(CBR)<br>先closing再reconstruction<br><img src="/blog/2019/04/02/imageProcessing/48.png"></p>
+<p>$I$代表图像间的交集运算<br>注意:M只允许在V的范围内增长<br><img src="/blog/2019/04/02/imageProcessing/45.png"><br>Morphological Reconstruction<br>1.binary reconstruction<br>过程(V是原图,k是SE)<br>&emsp;(1)$M=V \circ k$除噪<br>&emsp;(2)$T=M$<br>&emsp;(3)$M=M\oplus k_i $<br>&emsp;(4)$M=M\cup V $(仅取出属于V也属于M的像素点)<br>&emsp;(5)如果$M \ne T$回到(2)<br>&emsp;(6)结束<br><img src="/blog/2019/04/02/imageProcessing/46.png" title="举例"><br>注意<br>&emsp;(1)SE要足够小,避免跨到其它区<br>&emsp;(2)尽量避免噪声和目标区有连接<br>2.grey reconstruction<br>Step1:在marker上进行灰度膨胀<br>Step2:检查膨胀结果的每个点是否超出mask f的范围<br>Step3:重复1,2直到稳定<br>应用<br>1.opening by reconstruction(OBR)<br>(1)用open操作对图像进行平滑<br>(2)通过重建恢复目标区域<br><img src="/blog/2019/04/02/imageProcessing/47.png"><br>2.closing by reconstruction(CBR)<br>先closing再reconstruction<br><img src="/blog/2019/04/02/imageProcessing/48.png"></p>
 <h3 id="3-4分水岭算法-watershed"><a href="#3-4分水岭算法-watershed" class="headerlink" title="3.4分水岭算法(watershed)"></a>3.4分水岭算法(watershed)</h3><p>1.测地距离(geodesic distance)<br>两点之间不能通过直线到达(Euclidean distance),只能通过折线到达<br><img src="/blog/2019/04/02/imageProcessing/49.png"><br>定义:$F_a$为一连接区域，x,y两点间的测地距离$d_{F_a}(x,y)$为x,y两点间最短可执行路径P的长度,路径一定要在$F_a$内</p>
 <p>$$d_{F_a}(x,y)=\wedge{l(P)}$$</p>
 <p>$\wedge$代表infimum最小值,l(P)代表路径P的长度<br>2.Geometric Influence Zone(IZ)<br>假设区域A包括子集B_1,B_2,…,B_k$则$i_{Z_A}(B_i)$被定义为:</p>
