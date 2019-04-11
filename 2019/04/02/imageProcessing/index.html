@@ -158,7 +158,15 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/60.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/61.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/62.png">
-<meta property="og:updated_time" content="2019-04-10T14:29:14.615Z">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/63.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/64.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/65.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/66.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/67.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/68.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/69.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/02/imageProcessing/69.png">
+<meta property="og:updated_time" content="2019-04-11T02:45:47.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -571,7 +579,14 @@
 <p>2.HIS TO RGB<br><img src="/blog/2019/04/02/imageProcessing/61.png"></p>
 <p>彩色图像的增强<br>问题:out of balance(失衡)<br>方法:通常选R,G,B中两个通道进行线性灰度转换来匹配剩余的那个通道<br>过程:<br>(1)找到相对均匀的亮的区域和暗的区域<br>(2)在三通道中分别计算这些区域的灰度均值<br>(3)利用线性对比度调节(linear contrast stretch)对其中两个通道进行调节使其与第三个匹配<br>对比度和颜色增强:<br>(1)饱和度增强(saturation)<br>&emsp;i.为使图像颜色更加饱和(bold),将饱和度乘以一个大于一的数<br>&emsp;ii.减低饱和度,将饱和度乘以一个小于一的数<br>(2)色度调整(hue alteration)<br>微调:加一个很小值到色度,使其色调变暖或冷<br>若加一个很大数会改变图像的表达方式<br>彩色图像恢复(restoration):<br>(1)利用线性点操作确保在RGB形式下灰度和颜色平衡<br>(2)转换到HIS形式(更适用于视觉调整)<br>(3)使用中值滤波(median filter)对色度和饱和度处理,以除掉噪声<br>(4)使用线性滤波(如卷积)是边缘锐化,增强细节,重建密度<br>(5)利用线性点操作对参数进行灰度上的调整<br>(6)转换成RGB形式<br>2.维彩(Pseudocolor)<br>将黑白图像(monochrome)通过每个灰度值在彩色空间的映射转化为彩色图像<br>实现方式:lookup table<br><img src="/blog/2019/04/02/imageProcessing/62.png" title="举例"><br>彩色补偿(color compensation)<br>color spread(颜色分布):彩图传感器对光谱的敏感性宽且有叠加,所以很难在三个通道中的一个通道吧物体完整独一出来<br>方法:线性转换<br>矩阵C代表图像在三个通道中的颜色分布($c_{ij}$点j在i通道的亮度百分比)<br>x:1x3的矩阵代表某个像素点的真实亮度(三个channel)</p>
 <p>$$ Y=Cx+b$$</p>
-<p>$$ x=C^{-1}[y-b] $$<br>b代表灰度偏移值，y代表所期待的状态<br>如果已知y，可求出想<br>和y的相关性</p>
+<p>$$ x=C^{-1}[y-b] $$<br>b代表灰度偏移值，y代表所期待的状态<br>如果已知y，可求出x和y的相关性<br>令E为曝光时间,</p>
+<p>$$ Y=ECx+b$$</p>
+<p>$$ x=E^{-1}C^{-1}[y-b] $$</p>
+<p>$E^{-1}C^{-1}$；调整颜色补偿矩阵,调整曝光时间可调节对图像的补偿<br>彩色图像分割:<br>(1)在RGB/HIS空间内，通常不同物体在3D灰度直方图的不同簇内<br>(2)阈值被观察角度和照明严重影响<br>(3)白噪声在RGB三个通道内表达方式一样，很难将其从三个通道中分开<br>(4)在某个通道内某个区域可能非常明显,很容易被分割出来<br>彩色图像测量/表达:尺寸,形式,平均色度,平均饱和度,平均密度<br>4.2三维图像(3D image)<br>由来:<br>三维:空间上的三维<br>二维图像是三维图像投影得到的<br>Optical Sectioning(光学断层成像):<br>serial sectioning：把人体切片来产生一系列切片以理解人的三维结构<br>缺点(1)切片间的相关性难以把握(2)难免损坏切片<br>X光(X-ray):人体的不同结构对x光的吸收不同<br>Tomography(立体成像术)<br>多次曝光,每次曝光旋转传感器和光线发射源，就可以采集到人体不同角度的投影信息<br><img src="/blog/2019/04/02/imageProcessing/63.png"><br>CT:computerized axial tomography(CAT)–计算机立体成像<br>人体从上到下地断层扫描的三维结构<br><img src="/blog/2019/04/02/imageProcessing/64.png"><br>三维图像的处理<br>1.Stereometry(立体成像术)<br>Steroscopic image pair(立体成像的一对图像):描述左右眼两个不同视角所获得的图像<br><img src="/blog/2019/04/02/imageProcessing/65.png" title="Model of geometry of image function"><br>(1)将两摄像机按人眼位置摆放,对自然场景进行采集</p>
+<p>$$R=\frac{d\sqrt{f^2+x_l^2+y_l^2}}{x_r-x_l}$$</p>
+<img src="/blog/2019/04/02/imageProcessing/66.png">
+<p>(2)Stereo Matching(将两图像匹配)<br>将两图像的坐标关系一一对应<br>方法:在图像上放置虚拟窗口(subpixel accuracy/sub window)<br><img src="/blog/2019/04/02/imageProcessing/67.png"><br>两个Sub-windows间找到两图像的对应关系<br>处理过程<br>(1)匹配两个sub-window,设置两个窗口的位置<br>(2)计算两个窗口间的一致性(cross-correlation，平方差求和)<br>(3)在一个图像固定窗口,另一个图像移动窗口,过程中求取一致性,当达到最大且满足期待时,则这两个窗口匹配，认为这两幅图匹配<br>展示(Steroscopic Image Display)比如3D电影<br>shaded Surface Display:阴影表面展示对存在数字描述的3D物体进行图像生成<br>要求<br>(1)表面的空间描述<br>(2)表面的光照反射现象<br>(3)光源的几何形状和成像过程<br><img src="/blog/2019/04/02/imageProcessing/68.png"><br><img src="/blog/2019/04/02/imageProcessing/69.png" title="成像过程"><br><img src="/blog/2019/04/02/imageProcessing/69.png" title="计算灰度值"></p>
+<p>b,n代表反射参数和物体材质相关<br>A:进行反射的比例系数<br>r:光到表面的距离<br>0&lt;B&lt;1</p>
 <h1 id="OPENCV使用"><a href="#OPENCV使用" class="headerlink" title="OPENCV使用"></a>OPENCV使用</h1><h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>VS2017配置opencv教程（超详细！！！） <a href="https://blog.csdn.net/qq_41175905/article/details/80560429" target="_blank" rel="noopener">参考</a><br>需要注意的一点是在配置完成之后要用visual studio重新建立一个项目(空项目或者控制台项目均可),才能正常使用opencv </p>
 
       
