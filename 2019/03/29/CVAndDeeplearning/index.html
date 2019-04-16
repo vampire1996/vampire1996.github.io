@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="Li Bochen">
 <meta property="og:description" content="记录学习过程中遇到的点点滴滴">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-16T03:09:53.467Z">
+<meta property="og:updated_time" content="2019-04-16T03:11:22.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机视觉与深度学习">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -395,6 +395,7 @@
 <p>$$ Precision=\frac{TP}{TP+FP}$$</p>
 <p>召回率（Recall）：召回率是针对样本而言，被正确判定的正实例（TP）在总的正实例中（TP+FN）的比率</p>
 <p>$$ Recall=\frac{TP}{TP+FN}$$</p>
+<p>举例:<br>在一个数据库中有1000个文档，其中有100个是与NBA相关的，系统检索出75个文档，其中，只有50个是与NBA相关，此时：<br>精确率 = 50 / 75 = 67%<br>召回率 = 50 / 100 = 50%</p>
 <p>精度和召回率虽然没有必然的关系，然而在大规模数据集合中，这两个指标却是相互制约的。一般情况下，召回率高时，精度低；精度高时，召回率低。<br>计算mAP的方法:画出Precision-Recall曲线<br>(1)在VOC2010以前，只需要选取当Recall &gt;= 0, 0.1, 0.2, …, 1共11个点时的Precision最大值，然后AP就是这11个Precision的平均值。<br>(2)在VOC2010及以后，需要针对每一个不同的Recall值（包括0和1），选取其大于等于这些Recall值时的Precision最大值，然后计算PR曲线下面积作为AP值。</p>
 <p><a href="https://blog.csdn.net/shuiyixin/article/details/86349643" target="_blank" rel="noopener">什么是mAP？</a><br><a href="https://blog.csdn.net/weixin_42111770/article/details/81015809" target="_blank" rel="noopener">机器学习中常见的评估指标：Precision、recall、F-measure、Accuracy、ROC曲线和AUC</a><br><a href="https://www.zhihu.com/question/53405779" target="_blank" rel="noopener">知乎:目标检测中的mAP是什么含义？</a></p>
 
