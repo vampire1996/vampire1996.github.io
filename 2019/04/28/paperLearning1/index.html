@@ -100,7 +100,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/1.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/2.png">
-<meta property="og:updated_time" content="2019-04-28T03:38:13.200Z">
+<meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/3.png">
+<meta property="og:updated_time" content="2019-04-30T14:30:21.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一种用于基于图像的序列识别的端到端可训练神经网络及其在场景文字识别上的应用">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -389,8 +390,9 @@
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>基于图像的序列识别已经是计算机视觉领域长期存在的研究课题。在本篇论文中，我们调查了场景文字识别的问题，它包括在基于图像的序列识别中的最为重要和具有挑战性的任务。一种新颖的神经网络结构被提出，包括特征提取，序列建模和转化为统一结构。相比于之前的泳衣场景文字识别的系统，提出的结构具有四个不同的属性:<br>(1)相比于大多数现存的元素分开训练和调整的算法，它是端到端可训练的<br>(2)它自然地处理任意长度的序列，并且没有文字分割和水平方向上规模的标准化<br>(3)它并不受限于任何预先设定的词库并且实现了在无词库和基于词库的场景文字识别任务上都有显著的性能。<br>(4)它产生了一种有效但是更小的模型，对于真实世界的应用脚本更为有效<br>实验在基准上进行，包括IIIT-5K，Street Veiw Text和ICDAR数据集，显示了提出算法相对于之前方法的优越性。除此之外。提出的算法在基于图像的乐谱识别任务上也表现良好，这也更明显地确认了算法的广泛性。</p>
 <h2 id="介绍-introduction"><a href="#介绍-introduction" class="headerlink" title="介绍(introduction)"></a>介绍(introduction)</h2><p>基于DCNN(deep conventional neural network)的方法有<br>(1)先将文字一个一个地检测出来，接下来再用DCNN(已经用单个文字图像进行了训练)对这些单个的文字进行识别,但是把文字单个切割出来对模型的准确性要求很高。<br>(2)将文本检测看成图像分类问题，也就是给每个单词一个标签，但这样模型会变得异常的大，也不太可能应用到中文识别或者乐谱识别上(数据集太大)<br>总结:基于DCNN的系统不能直接用于基于图像的序列识别。<br>基于RNN的方法:<br>需要将输入目标图片转换为图像特征的序列，但是这个预处理过程和之后pipeline中的元素相互独立，所以无法以端到端的方式训练和优化。<br>本文提出一种新颖的网络模型RCNN(Conventional Recurrent Neural Network)，它是DCNN和RNN的结合。<br>CRNN的优点包括:<br>(1)可以直接从序列标签(比如单词)中学习，不需要详细的注解(比如文字)<br>(2)可以直接从图像数据中学习信息表达，和DCNN有着相同的性质。<br>(3)可以产生序列标签，和RNN一样<br>(4)对序列目标的长度没有限制，仅仅要求训练和测试阶段高度(比如图像的高度)的标准化<br>(5)它显示了相对于之前方法更高的性能<br>(6)包括更少的参数向对于标准的DCNN，消耗更少的内存</p>
 <h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><img src="/blog/2019/04/28/paperLearning1/1.png">
-<p>CRNN包括三部分<br>(1)卷积层(对输入图像的特征进行提取)<br>用于提取输入图像的Convolutional feature maps，即将大小为(32,100,3)的图像转换为(1,25,512)大小的卷积特征矩阵，feature maps的每一列都是一个一个特征向量<br>采用标准RNN的卷积层和maxpooling层，去掉全连接层<br>在输入图像之前，所有图像都需要转换为相同的高度<br>感受野(receptive field):每一个特征图中的特征序列都对应着原图中的一个矩形区域，可以看成是那个区域的一个解释器<br><img src="/blog/2019/04/28/paperLearning1/2.png"><br>(2)给序列打标签</p>
-<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><p>long-standing  长期存在的<br>novel 新颖的<br>extraction 抽出，萃取<br>transcription 转录<br>unified 统一的<br>distinctive 独特的，不同的<br>tune 调整(v.)<br>confined 受限的<br>lexicon 词库<br>scenario 脚本<br>benchmark 基准<br>superiority 优势<br>prior 先前的<br>evidently 明显地<br>verify 校验，确认<br>generality 概括，广泛性<br>subsequent 随后的<br>annotations 注释<br>invariant 不变的</p>
+<p>CRNN包括三部分<br>(1)卷积层(对输入图像的特征进行提取)<br>用于提取输入图像的Convolutional feature maps，即将大小为(32,100,3)的图像转换为(1,25,512)大小的卷积特征矩阵，feature maps的每一列都是一个一个特征向量<br>采用标准RNN的卷积层和maxpooling层，去掉全连接层<br>在输入图像之前，所有图像都需要转换为相同的高度<br>感受野(receptive field):每一个特征图中的特征序列都对应着原图中的一个矩形区域，可以看成是那个区域的一个解释器<br><img src="/blog/2019/04/28/paperLearning1/2.png"><br>(2)给序列打标签<br>使用循环层有三个好处<br>i.RNN有很强的捕捉序列文本信息的能力<br>ii.RNN可以反向传播它的误差差分到输入(比如卷积层)，这样我们就在一个网络中可以共同训练循环层和卷积层<br>iii.RNN可以飞任意长度的序列进行遍历操作<br>传统的RNN具有梯度消失的问题，限制了它能存储的文本范围，并且向训练过程增加负担。<br>长短期记忆网络(LSTM)解决了这种问题,由一个存储单元和三个乘法门组成，即输入门、输出门和遗忘门。概念上讲，记忆单元存储过去的文本，输入输出门使这个单元存储文本很长一段时间，同时遗忘门可将这个单元的存储遗忘。LSTM的特殊设计使得它能够捕获长距离的依赖关系，这种依赖关系经常出现在基于图像的序列中。dependencies, which often occur in image-based sequences.<br><img src="/blog/2019/04/28/paperLearning1/3.png" title="双向LSTM"></p>
+<p>LSTM的特殊设计使得它能够捕获长距离的依赖关系，这种依赖关系经常出现在基于图像的序列中。 </p>
+<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><p>long-standing  长期存在的<br>novel 新颖的<br>extraction 抽出，萃取<br>transcription 转录<br>unified 统一的<br>distinctive 独特的，不同的<br>tune 调整(v.)<br>confined 受限的<br>lexicon 词库<br>scenario 脚本<br>benchmark 基准<br>superiority 优势<br>prior 先前的<br>evidently 明显地<br>verify 校验，确认<br>generality 概括，广泛性<br>subsequent 随后的<br>annotations 注释<br>invariant 不变的<br>convey 传达，传递<br>holistic  全面的，整体的<br>cell 单元<br>multiplicative 乘法的</p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>端到端学习:端到端学习是一种解决问题的思路，与之对应的是多步骤解决问题，也就是讲一个问题拆分成多个步骤解决，而端到端是有输入端的数据直接得到输出端的结果。也就是说端到端将分布解决的中间步骤连接整合在一起，成为一个黑盒子，我们只能看到输入的数据和输出的结果，就是从数据的端，到结果的端。</p>
 
       
