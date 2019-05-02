@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/2.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/3.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/4.png">
-<meta property="og:updated_time" content="2019-05-02T11:05:45.550Z">
+<meta property="og:updated_time" content="2019-05-02T11:07:09.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一种用于基于图像的序列识别的端到端可训练神经网络及其在场景文字识别上的应用">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -395,7 +395,7 @@
 <p>$$<br>\begin{gather}<br>p(l|y)=\sum_{\pi:B(\pi)=1} p(\pi|y)<br>\end{gather}<br>$$<br>这里$\pi$的概率被定义为 $p(\pi|y)=\prod_{t=1}^{T}y_{\pi_t}^t$,$y_{\pi_t}^t$是在时步t拥有标签$\pi_t$的概率。由于指数求和项的数值很大，直接计算公式1是计算不可行的。然而，公式1可以由前向传播算法高效地计算。<br>ii.<strong>无词库转换</strong><br>在这种模式下，序列$l^{\ast}$根据公式1的预测具有最高的概率。序列$l^{\ast}$近似的由公式$l^{\ast}\approx B(argmax_{\pi}p(\pi|y))$,也就是说找到每一时步t最大可能性的标签$\pi_t$,并且将结果序列映射到$l^{\ast}$<br>iii.基于词库的转换<br>在基于词库的模型中，每一个测试样本和一个词库$D$相关联。基本上来说，标签序列通过选择被公式1所定义的最高概率的在词库中的序列($l^{\ast}=argmax_{l\in D}p(l|y)$).然而，对于大的词库，对于所有词库中的序列，在词库上进行详尽的搜索来计算公式1并且找到最大概率的那个序列会很费时。为解决这个问题，我们观察通过无词库转换得到的标签序列，然后总是寻找在公制编辑距离下最近的真实结果。这预示着我们可以限制我们的搜索到最近邻候选$N_{\delta}(l’)$.这里$\delta$是最大编辑距离，而$l’$是在无词库模型中的$y$转换而来的序列。</p>
 <p>$$<br>\begin{gather}<br>l^{\ast}=\mathop {argmax }\limits_{l\in N_{\delta}(l’)} p(l|y)<br>\end{gather}<br>$$</p>
 <p>候选$N_{\delta}(l’)$可以通过BK-tree数据结构高效地找到，BK-tree数据结构是一种特别适合离散度量空间的度量树。搜索的时间复杂度是$O(log|D|)$,$|D|$是词库大小。因此这种方案非常便利的扩展到了非常大的词库。在我们的方案中，一个BK-tree对于词库是离线构建的。接下来我们利用树进行快速在线搜索，通过找到小于等于编辑距离$\delta$的序列，然后将其加到查询序列。</p>
-<p>(4)<strong>网络训练</strong><br>标注训练集为$\chi=\{I_i,l_i}_i$,这里$I_i$是训练图像，$l_i$是真实标签序列。目标是最小化负的真实标签的条件概率的最小似然。</p>
+<p>(4)<strong>网络训练</strong><br>标注训练集为$\chi=\{I_i,l_i}\$,这里$I_i$是训练图像，$l_i$是真实标签序列。目标是最小化负的真实标签的条件概率的最小似然。</p>
 <p>$$<br>\begin{gather}<br>O=-\sum_{I_i,l_i \in \chi} logp(l_i|y_i)<br>\end{gather}<br>$$</p>
 <p>$y_i$是将$I_i$输入到循环层和卷积层后产生的序列。通过一张图像和它的真实标签，目标函数直接计算了损失值。因此网络可以基于图像序列对进行端到端训练，去掉了人工在所有训练图像的单独元素上打标签的程序。<br>网络用随机梯度下降SGD训练。梯度通过反向传播算法计算。特别的，在转录层，误差查分是随着前向传播算法反向传播的。在循环层，随着时间反向传播(BPTT)被应用于计算误差差分。<br>对于优化部分，我们使用ADADELTA来自动计算每个维度的学习率。相比于传统的动量方法，ADADELTA不需要手动设定学习率。更重要的，我们发现使用ADADELTA比动量方法收敛的更快。</p>
 <h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><p>long-standing  长期存在的<br>novel 新颖的<br>extraction 抽出，萃取<br>transcription 转录<br>unified 统一的<br>distinctive 独特的，不同的<br>tune 调整(v.)<br>confined 受限的<br>lexicon 词库<br>scenario 脚本<br>benchmark 基准<br>superiority 优势<br>prior 先前的<br>evidently 明显地<br>verify 校验，确认<br>generality 概括，广泛性<br>subsequent 随后的<br>annotations 注释<br>invariant 不变的<br>convey 传达，传递<br>holistic  全面的，整体的<br>cell 单元<br>multiplicative 乘法的<br>complementary 互补的<br>abstraction 抽象化<br>concatenate  使连接起来<br>inverting (使)倒转<br>consequently 因此<br>denote 标志，预示<br>infeasible 不可行的<br>tractable 易处理的<br>exhaustive 详尽的<br>metric 米制的;公制的<br>scheme 方案<br>readily 便利地<br>conventional 传统的<br>manual 手动的，手工的</p>
