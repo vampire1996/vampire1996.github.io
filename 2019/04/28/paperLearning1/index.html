@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/2.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/3.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/04/28/paperLearning1/4.png">
-<meta property="og:updated_time" content="2019-05-02T11:09:04.999Z">
+<meta property="og:updated_time" content="2019-05-03T01:59:13.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一种用于基于图像的序列识别的端到端可训练神经网络及其在场景文字识别上的应用">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -398,7 +398,7 @@
 <p>(4)<strong>网络训练</strong><br>标注训练集为$\chi=\left\{I_i,l_i\right\}_i$,这里$I_i$是训练图像，$l_i$是真实标签序列。目标是最小化负的真实标签的条件概率的最小似然。</p>
 <p>$$<br>\begin{gather}<br>O=-\sum_{I_i,l_i \in \chi} logp(l_i|y_i)<br>\end{gather}<br>$$</p>
 <p>$y_i$是将$I_i$输入到循环层和卷积层后产生的序列。通过一张图像和它的真实标签，目标函数直接计算了损失值。因此网络可以基于图像序列对进行端到端训练，去掉了人工在所有训练图像的单独元素上打标签的程序。<br>网络用随机梯度下降SGD训练。梯度通过反向传播算法计算。特别的，在转录层，误差查分是随着前向传播算法反向传播的。在循环层，随着时间反向传播(BPTT)被应用于计算误差差分。<br>对于优化部分，我们使用ADADELTA来自动计算每个维度的学习率。相比于传统的动量方法，ADADELTA不需要手动设定学习率。更重要的，我们发现使用ADADELTA比动量方法收敛的更快。</p>
-<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><p>long-standing  长期存在的<br>novel 新颖的<br>extraction 抽出，萃取<br>transcription 转录<br>unified 统一的<br>distinctive 独特的，不同的<br>tune 调整(v.)<br>confined 受限的<br>lexicon 词库<br>scenario 脚本<br>benchmark 基准<br>superiority 优势<br>prior 先前的<br>evidently 明显地<br>verify 校验，确认<br>generality 概括，广泛性<br>subsequent 随后的<br>annotations 注释<br>invariant 不变的<br>convey 传达，传递<br>holistic  全面的，整体的<br>cell 单元<br>multiplicative 乘法的<br>complementary 互补的<br>abstraction 抽象化<br>concatenate  使连接起来<br>inverting (使)倒转<br>consequently 因此<br>denote 标志，预示<br>infeasible 不可行的<br>tractable 易处理的<br>exhaustive 详尽的<br>metric 米制的;公制的<br>scheme 方案<br>readily 便利地<br>conventional 传统的<br>manual 手动的，手工的</p>
+<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><p>long-standing  长期存在的<br>novel 新颖的<br>extraction 抽出，萃取<br>transcription 转录<br>unified 统一的<br>distinctive 独特的，不同的<br>tune 调整(v.)<br>confined 受限的<br>lexicon 词库<br>scenario 脚本<br>benchmark 基准<br>superiority 优势<br>prior 先前的<br>evidently 明显地<br>verify 校验，确认<br>generality 概括，广泛性<br>subsequent 随后的<br>annotations 注释<br>invariant 不变的<br>convey 传达，传递<br>holistic  全面的，整体的<br>cell 单元<br>multiplicative 乘法的<br>complementary 互补的<br>abstraction 抽象化<br>concatenate  使连接起来<br>inverting (使)倒转<br>consequently 因此<br>denote 标志，预示<br>infeasible 不可行的<br>tractable 易处理的<br>exhaustive 详尽的<br>metric 米制的;公制的<br>scheme 方案<br>readily 便利地<br>conventional 传统的<br>manual 手动的，手工的<br>benchmark 基准</p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>(1)端到端学习:端到端学习是一种解决问题的思路，与之对应的是多步骤解决问题，也就是讲一个问题拆分成多个步骤解决，而端到端是有输入端的数据直接得到输出端的结果。也就是说端到端将分布解决的中间步骤连接整合在一起，成为一个黑盒子，我们只能看到输入的数据和输出的结果，就是从数据的端，到结果的端。<br>(2)梯度弥散(vanishing gradient problem):梯度弥散的问题很大程度上是来源于激活函数的“饱和”。因为在后向传播的过程中仍然需要计算激活函数的导数，所以一旦卷积核的输出落入函数的饱和区，它的梯度将变得非常小。<br>梯度弥散。使用反向传播算法传播梯度的时候，随着传播深度的增加，梯度的幅度会急剧减小，会导致浅层神经元的权重更新非常缓慢，不能有效学习。这样一来，深层模型也就变成了前几层相对固定，只能改变最后几层的浅层模型。<br><img src="/blog/2019/04/28/paperLearning1/4.png"><br>这样可以看到，如果我们使用标准化初始w，那么各个层次的相乘都是0-1之间的小数，而激活函数f的导数也是0-1之间的数，其连乘后，结果会变的很小，导致梯度消失。若我们初始化的w是很大的数，w大到乘以激活函数的导数都大于1，那么连乘后，可能会导致求导的结果很大，形成梯度爆炸。<br>注意这里f3对f2求偏导时，f2是输入，计算完该表达式即可将f2数值带入计算出结果</p>
 
       
@@ -439,6 +439,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/05/03/gcp/" rel="prev" title="在谷歌云服务器上搭建深度学习平台">
+                在谷歌云服务器上搭建深度学习平台 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -517,7 +521,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -528,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/blog/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -539,7 +543,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blog/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
