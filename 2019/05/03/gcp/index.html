@@ -100,8 +100,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/blog/2019/05/03/gcp/1.png">
 <meta property="og:image" content="http://yoursite.com/blog/2019/05/03/gcp/2.png">
-<meta property="og:image" content="http://yoursite.com/blog/2019/05/03/gcp/2.png">
-<meta property="og:updated_time" content="2019-05-04T14:19:10.667Z">
+<meta property="og:image" content="http://yoursite.com/blog/2019/05/03/gcp/3.png">
+<meta property="og:updated_time" content="2019-05-04T14:23:50.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在谷歌云服务器上搭建深度学习平台">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -390,7 +390,7 @@
 <h2 id="使用putty远程连接"><a href="#使用putty远程连接" class="headerlink" title="使用putty远程连接"></a>使用putty远程连接</h2><p><a href="https://www.cnblogs.com/leolau/p/7482135.html" target="_blank" rel="noopener">参考</a></p>
 <p>sha1:a5fd633799ec:eea60754426bebfc25558d81bbe03091199784e8</p>
 <h2 id="在谷歌云服务器上搭建深度学习平台"><a href="#在谷歌云服务器上搭建深度学习平台" class="headerlink" title="在谷歌云服务器上搭建深度学习平台"></a>在谷歌云服务器上搭建深度学习平台</h2><p>下面这篇写的非常详细<br><a href="https://www.jianshu.com/p/893d622d1b5a?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">使用Xshell连接云虚拟机</a></p>
-<h2 id="使用自己的数据集"><a href="#使用自己的数据集" class="headerlink" title="使用自己的数据集"></a>使用自己的数据集</h2><p>在控制台选择存储-&gt;浏览器，选择创建存储分区，创建后上传数据集文件<br><img src="/blog/2019/05/03/gcp/2.png"><br>上传文件完成后，点击文件名浏览器就会自动下载。这里以chrome浏览器为例，点击右上角选择下载内容，将下载数据集的链接右键+复制链接地址<br><img src="/blog/2019/05/03/gcp/2.png"><br>接下来再云虚拟终端中输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 数据集链接</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用自己的数据集"><a href="#使用自己的数据集" class="headerlink" title="使用自己的数据集"></a>使用自己的数据集</h2><p>在控制台选择存储-&gt;浏览器，选择创建存储分区，创建后上传数据集文件<br><img src="/blog/2019/05/03/gcp/2.png"><br>上传文件完成后，点击文件名浏览器就会自动下载。这里以chrome浏览器为例，点击右上角选择下载内容，将下载数据集的链接右键+复制链接地址<br><img src="/blog/2019/05/03/gcp/3.png"><br>接下来再云虚拟终端中输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 数据集链接</span><br></pre></td></tr></table></figure></p>
 <p>即可将数据集保存到VM实例中</p>
 <h2 id="在juypter-notebook中解压zip文件"><a href="#在juypter-notebook中解压zip文件" class="headerlink" title="在juypter notebook中解压zip文件"></a>在juypter notebook中解压zip文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line">f = zipfile.ZipFile(<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/east_icpr.zip"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> f.namelist():</span><br><span class="line">    f.extract(file,<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/"</span>)</span><br></pre></td></tr></table></figure>
       
