@@ -79,7 +79,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="-machine learning,">
 
 
 
@@ -90,17 +90,22 @@
 
 
 
-<meta name="description" content="old,sophisticated,never naive">
+<meta name="description" content="指数族;构建广义线性模型;softmax回归">
+<meta name="keywords" content="-machine learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cs2293">
+<meta property="og:title" content="CS229学习笔记3:广义线性模型">
 <meta property="og:url" content="http://yoursite.com/2019/05/14/cs2293/index.html">
 <meta property="og:site_name" content="Li Bochen">
-<meta property="og:description" content="old,sophisticated,never naive">
+<meta property="og:description" content="指数族;构建广义线性模型;softmax回归">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-14T11:27:46.470Z">
+<meta property="og:image" content="http://yoursite.com/blog/2019/05/14/cs2293/1.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2019/05/14/cs2293/2.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2019/05/14/cs2293/3.jpg">
+<meta property="og:updated_time" content="2019-05-14T11:39:40.314Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cs2293">
-<meta name="twitter:description" content="old,sophisticated,never naive">
+<meta name="twitter:title" content="CS229学习笔记3:广义线性模型">
+<meta name="twitter:description" content="指数族;构建广义线性模型;softmax回归">
+<meta name="twitter:image" content="http://yoursite.com/blog/2019/05/14/cs2293/1.jpg">
 
 
 
@@ -136,7 +141,7 @@
 
 
 
-  <title>cs2293 | Li Bochen</title>
+  <title>CS229学习笔记3:广义线性模型 | Li Bochen</title>
   
 
 
@@ -300,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">cs2293</h1>
+          <h1 class="post-title" itemprop="name headline">CS229学习笔记3:广义线性模型</h1>
         
 
         <div class="post-meta">
@@ -323,6 +328,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -341,6 +368,10 @@
           
 
           
+              <div class="post-description">
+                  指数族;构建广义线性模型;softmax回归
+              </div>
+          
 
         </div>
       </header>
@@ -355,7 +386,9 @@
       
 
       
-        
+        <img src="/blog/2019/05/14/cs2293/1.jpg">
+<img src="/blog/2019/05/14/cs2293/2.jpg">
+<img src="/blog/2019/05/14/cs2293/3.jpg">
       
     </div>
     
@@ -370,6 +403,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/blog/tags/machine-learning/" rel="tag"># -machine learning</a>
+          
+        </div>
+      
 
       
       
@@ -379,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/05/14/cs2292/" rel="next" title="cs2292">
-                <i class="fa fa-chevron-left"></i> cs2292
+              <a href="/blog/2019/05/14/cs2292/" rel="next" title="CS229学习笔记2:分类与逻辑回归">
+                <i class="fa fa-chevron-left"></i> CS229学习笔记2:分类与逻辑回归
               </a>
             
           </div>
@@ -676,24 +715,7 @@
   
 
 
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -746,6 +768,43 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 
