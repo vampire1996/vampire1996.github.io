@@ -101,7 +101,7 @@
 <meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/06/paperlearning2/1.png">
 <meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/06/paperlearning2/2.png">
 <meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/06/paperlearning2/3.png">
-<meta property="og:updated_time" content="2019-07-09T00:46:11.906Z">
+<meta property="og:updated_time" content="2019-07-10T13:55:05.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EAST:一种用于高效准确的场景文本检测器">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -401,9 +401,9 @@
 <p>$$<br>L=L_{\mathrm{s}}+\lambda_{\mathrm{g}} L_{\mathrm{g}}<br>$$</p>
 <p>其中$L_s$和$L_g$代表着分数图和几何形状的损失，$\lambda_{\mathrm{g}}$代表两种损失间的权重。在我们的实验中，我们将$\lambda_{\mathrm{g}}$置为1</p>
 <h3 id="3-4-1分数图的损失"><a href="#3-4-1分数图的损失" class="headerlink" title="3.4.1分数图的损失"></a>3.4.1分数图的损失</h3><p>在大多数体现最高水平的检测流水线中，通过平衡采样和难分样本挖掘(hard negative mining)来处理目标物体的不均衡分布。这样做潜在地提高了网络的性能。然而，使用这样的技巧不可避免地引入不可微的阶段和更多参数来调试和更复杂的流水线，这违背了我们的设计准则。<br>为了促使一个更为简洁的训练程序，我们使用类平衡交叉熵，公式为:</p>
-<p>$$<br>\begin{aligned}<br>L_{\mathrm{s}} &amp;=\text { balanced-xent }\left(\hat{\mathbf{Y}}, \mathbf{Y}^{<em>}\right)<br>\ &amp;=-\beta \mathbf{Y}^{</em>} \log \hat{\mathbf{Y}}-(1-\beta)\left(1-\mathbf{Y}^{*}\right) \log (1-\hat{\mathbf{Y}})<br>\end{aligned}<br>$$</p>
-<p>\begin{aligned} L_{\mathrm{s}} &amp;=\text { balanced-xent }\left(\hat{\mathbf{Y}}, \mathbf{Y}^{<em>}\right)<br>\ &amp;=-\beta \mathbf{Y}^{</em>} \log \hat{\mathbf{Y}}-(1-\beta)\left(1-\mathbf{Y}^{*}\right) \log (1-\hat{\mathbf{Y}}) \end{aligned}</p>
-<p>\begin{aligned} L_{\mathrm{s}} &amp;=\text { balanced-xent }\left(\hat{\mathbf{Y}}, \mathbf{Y}^{<em>}\right) \ &amp;=-\beta \mathbf{Y}^{</em>} \log \hat{\mathbf{Y}}-(1-\beta)\left(1-\mathbf{Y}^{*}\right) \log (1-\hat{\mathbf{Y}}) \end{aligned}</p>
+<p>$<br>L_{\mathrm{s}} =\text { balanced-xent }\left(\hat{\mathbf{Y}}, \mathbf{Y}^{*}\right)<br>$</p>
+<p>$<br>=-\beta \mathbf{Y}^{*} \log \hat{\mathbf{Y}}<br>$</p>
+<p>$<br>-(1-\beta)(1-\mathbf{Y}^{*}) \log (1-\hat{\mathbf{Y}})<br>$</p>
 <p>其中$\hat{\mathbf{Y}}=F_{\mathrm{s}}$是得分图的预测,$\mathbf{Y}^{*}$是真实值。参数$\beta$是正例和负例的平衡因子，由下式给定</p>
 <p>$$<br>\beta |=1-\frac{\sum_{y^{<em>} \in \mathbf{Y} </em> y^{<em>}}}{\left|\mathbf{Y}^{</em>}\right|}<br>$$</p>
 <p>平衡交叉熵首先Yao等人用于文本检测，作为得分图预测的目标函数。</p>
