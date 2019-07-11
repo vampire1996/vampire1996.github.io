@@ -6,7 +6,7 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -98,16 +98,16 @@
 <meta property="og:site_name" content="Li Bochen">
 <meta property="og:description" content="批量梯度下降;随机梯度下降;正规方程;最小二乘法的概率解释;局部加权线性回归">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/1.jpg">
-<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/2.jpg">
-<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/3.jpg">
-<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/4.jpg">
-<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/5.jpg">
+<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/1.jpg">
+<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/2.jpg">
+<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/3.jpg">
+<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/4.jpg">
+<meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/5.jpg">
 <meta property="og:updated_time" content="2019-05-14T11:34:25.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS229学习笔记1:线性回归">
 <meta name="twitter:description" content="批量梯度下降;随机梯度下降;正规方程;最小二乘法的概率解释;局部加权线性回归">
-<meta name="twitter:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/1.jpg">
+<meta name="twitter:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/1.jpg">
 
 
 
@@ -165,7 +165,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -175,7 +175,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -285,20 +285,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://vampire1996.github.io/vampire1996.github.io/2019/05/12/cs2291/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bochen Li">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/vampire1996.github.io/image/head.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Li Bochen">
     </span>
 
@@ -341,7 +341,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/vampire1996.github.io/categories/machine-learning/" itemprop="url" rel="index">
                     <span itemprop="name">machine learning</span>
                   </a>
@@ -388,13 +388,13 @@
       
 
       
-        <p><strong>Definition of machine learning</strong>Tom Mitchell(1998):A computer program is used to learn from experience E with respect to some task T and some performance on P,as measured by P,improves with experience E.<br><strong>监督学习</strong>(1)回归问题(regression)被预测的变量是连续的(2)分类问题(classification)被预测的变量是离散的<br><strong>非监督学习</strong>:给一组数据，每个数据并没有标签，而是自己寻找其中的结构。</p>
-<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>m:训练数据的大小<br>x:输入变量(输入特征)<br>y:输出变量(目标变量)<br>$(x^{(i)},y^{(i)})$:训练集中的第i组训练数据<br>$x^{(i)}_1$:第i个输入变量的第一个特征(如房屋面积)</p>
-<img src="/vampire1996.github.io/2019/05/12/cs2291/1.jpg">
-<img src="/vampire1996.github.io/2019/05/12/cs2291/2.jpg">
-<img src="/vampire1996.github.io/2019/05/12/cs2291/3.jpg">
-<img src="/vampire1996.github.io/2019/05/12/cs2291/4.jpg">
-<img src="/vampire1996.github.io/2019/05/12/cs2291/5.jpg">
+        <p><strong>Definition of machine learning</strong>Tom Mitchell(1998):A computer program is used to learn from experience E with respect to some task T and some performance on P,as measured by P,improves with experience E. <strong>监督学习</strong>(1)回归问题(regression)被预测的变量是连续的(2)分类问题(classification)被预测的变量是离散的 <strong>非监督学习</strong>:给一组数据，每个数据并没有标签，而是自己寻找其中的结构。 ## 线性回归 m:训练数据的大小 x:输入变量(输入特征) y:输出变量(目标变量) <span class="math inline">\((x^{(i)},y^{(i)})\)</span>:训练集中的第i组训练数据 <span class="math inline">\(x^{(i)}_1\)</span>:第i个输入变量的第一个特征(如房屋面积)</p>
+<img src="/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/1.jpg">
+<img src="/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/2.jpg">
+<img src="/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/3.jpg">
+<img src="/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/4.jpg">
+<img src="/vampire1996.github.io/2019/05/12/cs2291/2019/05/12/cs2291/5.jpg">
+
       
     </div>
     
@@ -488,19 +488,10 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/vampire1996.github.io/image/head.png" alt="Bochen Li">
             
@@ -560,22 +551,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归"><span class="nav-number">1.</span> <span class="nav-text">线性回归</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
