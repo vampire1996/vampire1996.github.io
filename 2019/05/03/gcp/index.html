@@ -390,25 +390,74 @@
       
 
       
-        <h2 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h2><p><a href="https://zhuanlan.zhihu.com/p/33099231" target="_blank" rel="noopener">参考</a><br>注意这里申请配额时，需要申请的是GPUs(All Regions),单独申请某一型号的GPU不好使。我在网上查到申请后会发邮件让你充35刀，但是我申请后直接给我发接邮件说申请配额成功(微笑)<br><img src="/vampire1996.github.io/2019/05/03/gcp/1.png" alt=" " title=".">  </p>
-<h2 id="使用putty远程连接"><a href="#使用putty远程连接" class="headerlink" title="使用putty远程连接"></a>使用putty远程连接</h2><p><a href="https://www.cnblogs.com/leolau/p/7482135.html" target="_blank" rel="noopener">参考</a>  </p>
-<p>sha1:9c6a22bb10a2:bf05beffb070312fa52a90c5a0acb6eb27f965d8  </p>
-<h2 id="在谷歌云服务器上搭建深度学习平台"><a href="#在谷歌云服务器上搭建深度学习平台" class="headerlink" title="在谷歌云服务器上搭建深度学习平台"></a>在谷歌云服务器上搭建深度学习平台</h2><p>下面这篇写的非常详细<br><a href="https://www.jianshu.com/p/893d622d1b5a?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">使用Xshell连接云虚拟机</a>  </p>
-<h2 id="使用自己的数据集"><a href="#使用自己的数据集" class="headerlink" title="使用自己的数据集"></a>使用自己的数据集</h2><p>在控制台选择存储-&gt;浏览器，选择创建存储分区，创建后上传数据集文件<br><img src="/vampire1996.github.io/2019/05/03/gcp/2.png" alt=" " title="."><br>上传文件完成后，点击文件名浏览器就会自动下载。这里以chrome浏览器为例，点击右上角选择下载内容，将下载数据集的链接右键+复制链接地址<br><img src="/vampire1996.github.io/2019/05/03/gcp/3.png" alt=" " title="."><br>接下来再云虚拟终端中输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 数据集链接</span><br></pre></td></tr></table></figure></p>
-<p>即可将数据集保存到VM实例中  </p>
-<h2 id="在juypter-notebook中解压zip文件"><a href="#在juypter-notebook中解压zip文件" class="headerlink" title="在juypter notebook中解压zip文件"></a>在juypter notebook中解压zip文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line">f = zipfile.ZipFile(<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/east_icpr.zip"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> f.namelist():</span><br><span class="line">    f.extract(file,<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="在gcp虚拟机上跑阿里天池程序"><a href="#在gcp虚拟机上跑阿里天池程序" class="headerlink" title="在gcp虚拟机上跑阿里天池程序"></a>在gcp虚拟机上跑阿里天池程序</h2><p>本文教你如何在gcp虚拟机上跑阿里天池新人赛<a href="https://tianchi.aliyun.com/competition/entrance/231685/introduction?spm=5176.12281973.1005.8.3dd54c2aXIk8Kz" target="_blank" rel="noopener">网络图像的文本检测</a>的程序。<br>首先大前提是已经成功安装<strong>anaconda</strong>，<strong>tensorflow</strong>,同时在命令行中输入<strong>jupyter notebook</strong>以启动notebook<br>(1)<strong>下载程序</strong><br>在jupyter notebook中新建cell并输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!git clone https://github.com/HaozhengLi/EAST_ICPR.git</span><br></pre></td></tr></table></figure></p>
-<p>(2)<strong>数据下载和处理</strong><br>下载<a href="https://github.com/HaozhengLi/EAST_ICPR" target="_blank" rel="noopener">github地址</a>中的已训练好的模型(任选下图中一个)，同时在阿里云赛事官网下载数据集。<br><img src="/vampire1996.github.io/2019/05/03/gcp/4.png" alt=" " title="."><br>接下来再matlab中运行project中的rename.m，记得修改测试集地址为自己本地的地址。<br>处理完之后将\ICPR2018_test文件夹下的图片打包成zip文件，同时将模型文件也打包成zip文件。<br>(3)<strong>上传数据和模型</strong><br>在控制台选择存储-&gt;浏览器，选择创建存储分区，创建后上传测试集和模型打包后的zip文件<br><img src="/vampire1996.github.io/2019/05/03/gcp/2.png" alt=" " title="."><br>上传文件完成后，点击文件名浏览器就会自动下载。这里以chrome浏览器为例，点击右上角选择下载内容，将下载文件的链接右键+复制链接地址<br><img src="/vampire1996.github.io/2019/05/03/gcp/3.png" alt=" " title="."><br>接下来再云虚拟终端中输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 文件链接</span><br></pre></td></tr></table></figure></p>
-<p>即可将数据集保存到VM实例中，可以在notebook中查看其位置并将其移到需要的位置。<br>(3)<strong>在juypter notebook中解压zip文件</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line">f = zipfile.ZipFile(<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/east_icpr.zip"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> f.namelist():</span><br><span class="line">    f.extract(file,<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/"</span>)</span><br><span class="line">f = zipfile.ZipFile(<span class="string">"/home/xiaosakun/code/EAST_ICPR/data/ICPR_data/ICPR2018_test.zip"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> f.namelist():</span><br><span class="line">    f.extract(file,<span class="string">"/home/xiaosakun/code/EAST_ICPR/data/ICPR_data/"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>(4)<strong>运行程序</strong><br>下载依赖，由于tensorflow版本兼容问题这里可能出错，所以可以打开requirements.txt，用pip命令一条一条下载，每个库的版本可以根据pip insatll后出现的提示确定。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.chdir(<span class="string">'/home/xiaosakun/code/EAST_ICPR'</span>)</span><br><span class="line">!pip install -r requirements.txt</span><br></pre></td></tr></table></figure></p>
-<p>如果只是想生成txt文件而不需要将图像中的文本都框出来同时保存成新的图像文件，则只需将eval.py中以下程序屏蔽。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> FLAGS.no_write_images:</span><br><span class="line">         img_path = os.path.join(FLAGS.output_dir, os.path.basename(im_fn))</span><br><span class="line">         cv2.imwrite(img_path, im[:, :, ::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure></p>
-<p>运行验证程序并生成相应的txt文件<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.chdir(<span class="string">'/home/xiaosakun/code/EAST_ICPR'</span>)</span><br><span class="line">!python eval.py --test_data_path=data/ICPR_data/ICPR2018_test/ --gpu_list=<span class="number">0</span> --checkpoint_path=resnet_model/east_icpr2018_resnet_v1_50_rbox_1035k/ --output_dir=resnet_result/</span><br></pre></td></tr></table></figure></p>
-<p><strong>针对报错的处理方法</strong><br>i.出现报错can not compile lanms<br>修改lanms/Makefile中的$(shell python-config –cflags)为以下形式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-I/home/xiaosakun/anaconda3/include/python3.6m -I/home/xiaosakun/anaconda3/include/python3.6m  -Wno-unused-result -Wsign-compare -march=nocona -ftree-vectorize -fPIC -fstack-protector-strong -O3 -pipe  -fdebug-prefix-map==/usr/local/src/conda/- -fdebug-prefix-map==/usr/local/src/conda-prefix -fuse-linker-plugin -ffat-lto-objects -flto-partition=none -flto -flto -fuse-linker-plugin -ffat-lto-objects -flto-partition=none -g -DNDEBUG -fwrapv -O3 -Wall</span><br></pre></td></tr></table></figure></p>
-<p>这里前两个地址是虚拟机中ananconda目录下python的地址，根据以上形式修改即可。<br>ii.出现报错undefined symbol: _Py_ZeroStruct<br>将eval.py进行以下修改<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##在第97行，出错原因和gcc版本有关</span></span><br><span class="line">boxes = nms_locality.nms_locality(boxes.astype(np.float64), nms_thres)<span class="comment">#使用python实现，速度相对较慢，但是不会报错</span></span><br><span class="line"><span class="comment">#boxes = lanms.merge_quadrangle_n9(boxes.astype('float32'), nms_thres)#使用c++实现，速度更快</span></span><br></pre></td></tr></table></figure></p>
-<p>(5)<strong>将结果压缩为zip文件</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line">azip = zipfile.ZipFile(<span class="string">'bb.zip'</span>,<span class="string">'w'</span>)<span class="comment">#新建zip文件</span></span><br><span class="line"><span class="keyword">for</span> current_path, subfolders, filesname <span class="keyword">in</span> os.walk(<span class="string">r'/home/xiaosakun/code/EAST_ICPR/resnet_result'</span>):</span><br><span class="line">    <span class="comment">#print(current_path, subfolders, filesname)</span></span><br><span class="line">    <span class="comment">#  filesname是一个列表，我们需要里面的每个文件名和当前路径组合</span></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> filesname:</span><br><span class="line">        <span class="comment"># 将当前路径与当前路径下的文件名组合，就是当前文件的绝对路径</span></span><br><span class="line">        azip.write(os.path.join(current_path, file))</span><br><span class="line"><span class="comment"># 关闭资源  </span></span><br><span class="line">azip.close()</span><br></pre></td></tr></table></figure></p>
-<p>(5)<strong>将结果保存到google storage bucket中</strong><br>由于直接在VM中下载文件速度很慢，需要将文件保存到google storage bucket，以提高下载速度<br><a href="https://cloud.google.com/storage/docs/quickstart-gsutil#create" target="_blank" rel="noopener">官方文档</a><br><strong>准备工作</strong><br><img src="/vampire1996.github.io/2019/05/03/gcp/5.png" alt=" " title="."><br>这里需要注意的是在VM已经提前预装好python和gsutil，因此不再需要安装，但是安装Cloud SDK时，使用文档中的命令会报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./google-cloud-sdk/bin/gcloud init</span><br></pre></td></tr></table></figure></p>
-<p>直接使用以下命令按照提示输入关联的project即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud init</span><br></pre></td></tr></table></figure></p>
-<p>接下来只需输入以下命令即可将zip文件复制到google storage中的dataseteast bucket中,这里dataseteast是提前创建的存储分区。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsutil cp /home/xiaosakun/code/EAST_ICPR/bb.zip gs://dataseteast/</span><br></pre></td></tr></table></figure></p>
+        <h2 id="创建实例">创建实例</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/33099231" target="_blank" rel="noopener">参考</a><br>
+注意这里申请配额时，需要申请的是GPUs(All Regions),单独申请某一型号的GPU不好使。我在网上查到申请后会发邮件让你充35刀，但是我申请后直接给我发接邮件说申请配额成功(微笑)<br>
+<img src="/vampire1996.github.io/2019/05/03/gcp/1.png" title="."></p>
+<h2 id="使用putty远程连接">使用putty远程连接</h2>
+<p><a href="https://www.cnblogs.com/leolau/p/7482135.html" target="_blank" rel="noopener">参考</a></p>
+<p>sha1:9c6a22bb10a2:bf05beffb070312fa52a90c5a0acb6eb27f965d8</p>
+<h2 id="在谷歌云服务器上搭建深度学习平台">在谷歌云服务器上搭建深度学习平台</h2>
+<p>下面这篇写的非常详细<br>
+<a href="https://www.jianshu.com/p/893d622d1b5a?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">使用Xshell连接云虚拟机</a></p>
+<h2 id="使用自己的数据集">使用自己的数据集</h2>
+<p>在控制台选择存储-&gt;浏览器，选择创建存储分区，创建后上传数据集文件<br>
+<img src="/vampire1996.github.io/2019/05/03/gcp/2.png" title="."><br>
+上传文件完成后，点击文件名浏览器就会自动下载。这里以chrome浏览器为例，点击右上角选择下载内容，将下载数据集的链接右键+复制链接地址<br>
+<img src="/vampire1996.github.io/2019/05/03/gcp/3.png" title="."><br>
+接下来再云虚拟终端中输入命令<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 数据集链接</span><br></pre></td></tr></table></figure></p>
+<p>即可将数据集保存到VM实例中</p>
+<h2 id="在juypter-notebook中解压zip文件">在juypter notebook中解压zip文件</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line">f = zipfile.ZipFile(<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/east_icpr.zip"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> f.namelist():</span><br><span class="line">    f.extract(file,<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="在gcp虚拟机上跑阿里天池程序">在gcp虚拟机上跑阿里天池程序</h2>
+<p>本文教你如何在gcp虚拟机上跑阿里天池新人赛<a href="https://tianchi.aliyun.com/competition/entrance/231685/introduction?spm=5176.12281973.1005.8.3dd54c2aXIk8Kz" target="_blank" rel="noopener">网络图像的文本检测</a>的程序。<br>
+首先大前提是已经成功安装<strong>anaconda</strong>，<strong>tensorflow</strong>,同时在命令行中输入<strong>jupyter notebook</strong>以启动notebook<br>
+(1)<strong>下载程序</strong><br>
+在jupyter notebook中新建cell并输入<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!git clone https://github.com/HaozhengLi/EAST_ICPR.git</span><br></pre></td></tr></table></figure></p>
+<p>(2)<strong>数据下载和处理</strong><br>
+下载<a href="https://github.com/HaozhengLi/EAST_ICPR" target="_blank" rel="noopener">github地址</a>中的已训练好的模型(任选下图中一个)，同时在阿里云赛事官网下载数据集。<br>
+<img src="/vampire1996.github.io/2019/05/03/gcp/4.png" title="."><br>
+接下来再matlab中运行project中的rename.m，记得修改测试集地址为自己本地的地址。<br>
+处理完之后将2018_test文件夹下的图片打包成zip文件，同时将模型文件也打包成zip文件。<br>
+(3)<strong>上传数据和模型</strong><br>
+在控制台选择存储-&gt;浏览器，选择创建存储分区，创建后上传测试集和模型打包后的zip文件<br>
+<img src="/vampire1996.github.io/2019/05/03/gcp/2.png" title="."><br>
+上传文件完成后，点击文件名浏览器就会自动下载。这里以chrome浏览器为例，点击右上角选择下载内容，将下载文件的链接右键+复制链接地址<br>
+<img src="/vampire1996.github.io/2019/05/03/gcp/3.png" title="."><br>
+接下来再云虚拟终端中输入命令<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 文件链接</span><br></pre></td></tr></table></figure></p>
+<p>即可将数据集保存到VM实例中，可以在notebook中查看其位置并将其移到需要的位置。<br>
+(3)<strong>在juypter notebook中解压zip文件</strong><br>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line">f = zipfile.ZipFile(<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/east_icpr.zip"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> f.namelist():</span><br><span class="line">    f.extract(file,<span class="string">"/home/xiaosakun/code/EAST_ICPR/resnet_model/"</span>)</span><br><span class="line">f = zipfile.ZipFile(<span class="string">"/home/xiaosakun/code/EAST_ICPR/data/ICPR_data/ICPR2018_test.zip"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> f.namelist():</span><br><span class="line">    f.extract(file,<span class="string">"/home/xiaosakun/code/EAST_ICPR/data/ICPR_data/"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>(4)<strong>运行程序</strong><br>
+下载依赖，由于tensorflow版本兼容问题这里可能出错，所以可以打开requirements.txt，用pip命令一条一条下载，每个库的版本可以根据pip insatll后出现的提示确定。<br>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.chdir(<span class="string">'/home/xiaosakun/code/EAST_ICPR'</span>)</span><br><span class="line">!pip install -r requirements.txt</span><br></pre></td></tr></table></figure></p>
+<p>如果只是想生成txt文件而不需要将图像中的文本都框出来同时保存成新的图像文件，则只需将eval.py中以下程序屏蔽。<br>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> FLAGS.no_write_images:</span><br><span class="line">         img_path = os.path.join(FLAGS.output_dir, os.path.basename(im_fn))</span><br><span class="line">         cv2.imwrite(img_path, im[:, :, ::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure></p>
+<p>运行验证程序并生成相应的txt文件<br>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.chdir(<span class="string">'/home/xiaosakun/code/EAST_ICPR'</span>)</span><br><span class="line">!python eval.py --test_data_path=data/ICPR_data/ICPR2018_test/ --gpu_list=<span class="number">0</span> --checkpoint_path=resnet_model/east_icpr2018_resnet_v1_50_rbox_1035k/ --output_dir=resnet_result/</span><br></pre></td></tr></table></figure></p>
+<p><strong>针对报错的处理方法</strong><br>
+i.出现报错can not compile lanms<br>
+修改lanms/Makefile中的$(shell python-config --cflags)为以下形式<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-I/home/xiaosakun/anaconda3/include/python3.6m -I/home/xiaosakun/anaconda3/include/python3.6m  -Wno-unused-result -Wsign-compare -march=nocona -ftree-vectorize -fPIC -fstack-protector-strong -O3 -pipe  -fdebug-prefix-map==/usr/local/src/conda/- -fdebug-prefix-map==/usr/local/src/conda-prefix -fuse-linker-plugin -ffat-lto-objects -flto-partition=none -flto -flto -fuse-linker-plugin -ffat-lto-objects -flto-partition=none -g -DNDEBUG -fwrapv -O3 -Wall</span><br></pre></td></tr></table></figure></p>
+<p>这里前两个地址是虚拟机中ananconda目录下python的地址，根据以上形式修改即可。<br>
+ii.出现报错undefined symbol: _Py_ZeroStruct<br>
+将eval.py进行以下修改<br>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##在第97行，出错原因和gcc版本有关</span></span><br><span class="line">boxes = nms_locality.nms_locality(boxes.astype(np.float64), nms_thres)<span class="comment">#使用python实现，速度相对较慢，但是不会报错</span></span><br><span class="line"><span class="comment">#boxes = lanms.merge_quadrangle_n9(boxes.astype('float32'), nms_thres)#使用c++实现，速度更快</span></span><br></pre></td></tr></table></figure></p>
+<p>(5)<strong>将结果压缩为zip文件</strong><br>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line">azip = zipfile.ZipFile(<span class="string">'bb.zip'</span>,<span class="string">'w'</span>)<span class="comment">#新建zip文件</span></span><br><span class="line"><span class="keyword">for</span> current_path, subfolders, filesname <span class="keyword">in</span> os.walk(<span class="string">r'/home/xiaosakun/code/EAST_ICPR/resnet_result'</span>):</span><br><span class="line">    <span class="comment">#print(current_path, subfolders, filesname)</span></span><br><span class="line">    <span class="comment">#  filesname是一个列表，我们需要里面的每个文件名和当前路径组合</span></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> filesname:</span><br><span class="line">        <span class="comment"># 将当前路径与当前路径下的文件名组合，就是当前文件的绝对路径</span></span><br><span class="line">        azip.write(os.path.join(current_path, file))</span><br><span class="line"><span class="comment"># 关闭资源  </span></span><br><span class="line">azip.close()</span><br></pre></td></tr></table></figure></p>
+<p>(5)<strong>将结果保存到google storage bucket中</strong><br>
+由于直接在VM中下载文件速度很慢，需要将文件保存到google storage bucket，以提高下载速度<br>
+<a href="https://cloud.google.com/storage/docs/quickstart-gsutil#create" target="_blank" rel="noopener">官方文档</a> <strong>准备工作</strong><br>
+<img src="/vampire1996.github.io/2019/05/03/gcp/5.png" title="."><br>
+这里需要注意的是在VM已经提前预装好python和gsutil，因此不再需要安装，但是安装Cloud SDK时，使用文档中的命令会报错<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./google-cloud-sdk/bin/gcloud init</span><br></pre></td></tr></table></figure></p>
+<p>直接使用以下命令按照提示输入关联的project即可<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud init</span><br></pre></td></tr></table></figure></p>
+<p>接下来只需输入以下命令即可将zip文件复制到google storage中的dataseteast bucket中,这里dataseteast是提前创建的存储分区。<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsutil cp /home/xiaosakun/code/EAST_ICPR/bb.zip gs://dataseteast/</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -530,7 +579,7 @@
               
                 <a href="/vampire1996.github.io/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -541,7 +590,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/vampire1996.github.io/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -552,7 +601,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/vampire1996.github.io/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
