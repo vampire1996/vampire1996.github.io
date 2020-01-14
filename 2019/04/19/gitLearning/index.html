@@ -382,16 +382,19 @@
       
 
       
-        <p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰的git教程</a>  </p>
-<h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><p>首先，选择一个合适的地方，创建一个空目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir learngit</span><br><span class="line">cd learngit</span><br></pre></td></tr></table></figure></p>
-<p>把这个目录变成Git可以管理的仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></p>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><p>已经在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同<br>在本地的learngit仓库下运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:michaelliao/learngit.git</span><br></pre></td></tr></table></figure></p>
-<p>注意要把上面的michaelliao替换成你自己的GitHub账户名<br>若github上这个仓库不为空,本地和远程的文件应该合并后才能上传本地的新文件<br>1、先拉下来，会自动合并的（不用操心）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure></p>
-<p>2、再上传<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p>
-<p>若远程库是空的，则推送master分支时，加上了-u参数,否则直接用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure></p>
-<h2 id="在github上创建新的仓库克隆到本地修改然后提交到github"><a href="#在github上创建新的仓库克隆到本地修改然后提交到github" class="headerlink" title="在github上创建新的仓库克隆到本地修改然后提交到github"></a>在github上创建新的仓库克隆到本地修改然后提交到github</h2><p><a href="https://blog.csdn.net/lxk8023/article/details/80429738" target="_blank" rel="noopener">参考</a><br>1.在本地某英文目录下输入，将仓库克隆到本地<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 要克隆的仓库地址,推荐使用SSH，因为速度更快而且不需要每次输入命令</span><br></pre></td></tr></table></figure></p>
-<p>2.进入本地刚刚克隆的仓库目录下，打开git bash,添加远程地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:yourName/yourRepository.git</span><br></pre></td></tr></table></figure></p>
-<p>3.对仓库内容进行修改<br>4.执行命令<br>(1)$ git inint  初始化<br>(2)$ git status  获取文件夹的现在的状态<br>(3)$ git add .  (上传所有的文件 注意有个.记得写上)<br>(4)$ git commit -m “提交信息(这里可能要输入账号信息)<br>(5)$ git push origin master  上传到服务器</p>
+        <p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰的git教程</a><br>
+## 创建版本库 首先，选择一个合适的地方，创建一个空目录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir learngit</span><br><span class="line">cd learngit</span><br></pre></td></tr></table></figure></p>
+<p>把这个目录变成Git可以管理的仓库 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></p>
+<h2 id="远程仓库">远程仓库</h2>
+<p>已经在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同 在本地的learngit仓库下运行命令 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:michaelliao/learngit.git</span><br></pre></td></tr></table></figure></p>
+<p>注意要把上面的michaelliao替换成你自己的GitHub账户名 若github上这个仓库不为空,本地和远程的文件应该合并后才能上传本地的新文件 1、先拉下来，会自动合并的（不用操心） <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure></p>
+<p>2、再上传 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p>
+<p>若远程库是空的，则推送master分支时，加上了-u参数,否则直接用命令 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure></p>
+<h2 id="在github上创建新的仓库克隆到本地修改然后提交到github">在github上创建新的仓库克隆到本地修改然后提交到github</h2>
+<p><a href="https://blog.csdn.net/lxk8023/article/details/80429738" target="_blank" rel="noopener">参考</a><br>
+1.在本地某英文目录下输入，将仓库克隆到本地 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 要克隆的仓库地址,推荐使用SSH，因为速度更快而且不需要每次输入命令</span><br></pre></td></tr></table></figure></p>
+<p>2.进入本地刚刚克隆的仓库目录下，打开git bash,添加远程地址 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:yourName/yourRepository.git</span><br></pre></td></tr></table></figure></p>
+<p>3.对仓库内容进行修改 4.执行命令 (1)$ git inint 初始化 (2)$ git status 获取文件夹的现在的状态 (3)$ git add . (上传所有的文件 注意有个.记得写上) (4)$ git commit -m “提交信息(这里可能要输入账号信息) (5)$ git push origin master 上传到服务器</p>
 
       
     </div>
@@ -513,7 +516,7 @@
               
                 <a href="/vampire1996.github.io/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -524,7 +527,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/vampire1996.github.io/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -535,7 +538,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/vampire1996.github.io/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -568,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建版本库"><span class="nav-number">1.</span> <span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库"><span class="nav-number">2.</span> <span class="nav-text">远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在github上创建新的仓库克隆到本地修改然后提交到github"><span class="nav-number">3.</span> <span class="nav-text">在github上创建新的仓库克隆到本地修改然后提交到github</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库"><span class="nav-number">1.</span> <span class="nav-text">远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在github上创建新的仓库克隆到本地修改然后提交到github"><span class="nav-number">2.</span> <span class="nav-text">在github上创建新的仓库克隆到本地修改然后提交到github</span></a></li></ol></div>
             
 
           </div>
@@ -589,7 +592,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
