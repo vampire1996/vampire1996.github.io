@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/03/gcp/2.png">
 <meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/03/gcp/3.png">
 <meta property="og:image" content="https://vampire1996.github.io/vampire1996.github.io/2019/05/03/gcp/5.png">
-<meta property="og:updated_time" content="2019-07-12T02:40:50.017Z">
+<meta property="og:updated_time" content="2020-02-16T03:29:16.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在谷歌云服务器上搭建深度学习平台">
 <meta name="twitter:description" content="记录学习过程中遇到的点点滴滴">
@@ -390,7 +390,11 @@
       
 
       
-        <h2 id="创建实例">创建实例</h2>
+        <p>jupyter-notebook --no-browser --port=5000</p>
+<p>http://35.234.29.215:5000</p>
+<h2 id="最简洁的方法首先参考此方法">最简洁的方法(首先参考此方法)</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/37785615" target="_blank" rel="noopener">参考</a> <a href="https://medium.com/@kstseng/在-google-cloud-platform-上使用-gpu-和安裝深度學習相關套件-1b118e291015" target="_blank" rel="noopener">参考</a> 需要注意的是需要安装CUDA和cudnn，同时tensorflow版本应该是gpu版本的</p>
+<h2 id="创建实例">创建实例</h2>
 <p><a href="https://zhuanlan.zhihu.com/p/33099231" target="_blank" rel="noopener">参考</a><br>
 注意这里申请配额时，需要申请的是GPUs(All Regions),单独申请某一型号的GPU不好使。我在网上查到申请后会发邮件让你充35刀，但是我申请后直接给我发接邮件说申请配额成功(微笑)<br>
 <img src="/vampire1996.github.io/2019/05/03/gcp/1.png" title="."></p>
@@ -399,7 +403,8 @@
 <p>sha1:9c6a22bb10a2:bf05beffb070312fa52a90c5a0acb6eb27f965d8</p>
 <h2 id="在谷歌云服务器上搭建深度学习平台">在谷歌云服务器上搭建深度学习平台</h2>
 <p>下面这篇写的非常详细<br>
-<a href="https://www.jianshu.com/p/893d622d1b5a?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">使用Xshell连接云虚拟机</a></p>
+<a href="https://www.jianshu.com/p/893d622d1b5a?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">使用Xshell连接云虚拟机</a><br>
+<a href="https://blog.csdn.net/Uwr44UOuQcNsUQb60zk2/article/details/78610044" target="_blank" rel="noopener">只需15分钟，使用谷歌云平台运行Jupyter Notebook</a></p>
 <h2 id="使用自己的数据集">使用自己的数据集</h2>
 <p>在控制台选择存储-&gt;浏览器，选择创建存储分区，创建后上传数据集文件<br>
 <img src="/vampire1996.github.io/2019/05/03/gcp/2.png" title="."><br>
@@ -579,7 +584,7 @@ ii.出现报错undefined symbol: _Py_ZeroStruct<br>
               
                 <a href="/vampire1996.github.io/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -634,7 +639,7 @@ ii.出现报错undefined symbol: _Py_ZeroStruct<br>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建实例"><span class="nav-number">1.</span> <span class="nav-text">创建实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用putty远程连接"><span class="nav-number">2.</span> <span class="nav-text">使用putty远程连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在谷歌云服务器上搭建深度学习平台"><span class="nav-number">3.</span> <span class="nav-text">在谷歌云服务器上搭建深度学习平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用自己的数据集"><span class="nav-number">4.</span> <span class="nav-text">使用自己的数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在juypter-notebook中解压zip文件"><span class="nav-number">5.</span> <span class="nav-text">在juypter notebook中解压zip文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在gcp虚拟机上跑阿里天池程序"><span class="nav-number">6.</span> <span class="nav-text">在gcp虚拟机上跑阿里天池程序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最简洁的方法首先参考此方法"><span class="nav-number">1.</span> <span class="nav-text">最简洁的方法(首先参考此方法)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建实例"><span class="nav-number">2.</span> <span class="nav-text">创建实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用putty远程连接"><span class="nav-number">3.</span> <span class="nav-text">使用putty远程连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在谷歌云服务器上搭建深度学习平台"><span class="nav-number">4.</span> <span class="nav-text">在谷歌云服务器上搭建深度学习平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用自己的数据集"><span class="nav-number">5.</span> <span class="nav-text">使用自己的数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在juypter-notebook中解压zip文件"><span class="nav-number">6.</span> <span class="nav-text">在juypter notebook中解压zip文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在gcp虚拟机上跑阿里天池程序"><span class="nav-number">7.</span> <span class="nav-text">在gcp虚拟机上跑阿里天池程序</span></a></li></ol></div>
             
 
           </div>
