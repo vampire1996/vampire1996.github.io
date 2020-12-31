@@ -384,23 +384,12 @@
       
 
       
-        <h2 id="建立工程和使用">建立工程和使用</h2>
-<p><a href="https://www.cnblogs.com/sekai/articles/5952735.html" target="_blank" rel="noopener">参考</a><br>
-<img src="/vampire1996.github.io/2019/03/26/webservice/pic1.png" title="建立工程"> 访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。</p>
-<h2 id="入门学习">入门学习</h2>
-<p><a href="https://cloud.tencent.com/developer/article/1080966" target="_blank" rel="noopener">参考</a></p>
-<h2 id="将本地项目部署到云服务器上">将本地项目部署到云服务器上</h2>
-<p><a href="https://blog.csdn.net/tangSan3/article/details/79479928" target="_blank" rel="noopener">将本地web项目部署到腾讯云服务器上</a> tomcat安装记得要和jdk版本匹配(在tomcat官网上有匹配信息)在腾讯云服务器上用9.0版本不好使，下了7.0版本好使<br>
-<a href="https://cloud.tencent.com/document/product/213/5435" target="_blank" rel="noopener">腾讯云服务器</a><br>
-踩坑实录:想在本地访问云服务器首先要开启tomcat服务器(cmd中输入startup),访问<br>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080</span><br></pre></td></tr></table></figure></p>
+        <h2 id="建立工程和使用"><a href="#建立工程和使用" class="headerlink" title="建立工程和使用"></a>建立工程和使用</h2><p><a href="https://www.cnblogs.com/sekai/articles/5952735.html" target="_blank" rel="noopener">参考</a><br><img src="/vampire1996.github.io/2019/03/26/webservice/pic1.png" alt=" " title="建立工程"><br>访问上图URI+services(localhost:8080/WebServiceTest_war_exploded/services)即可实现对服务页面的访问。  </p>
+<h2 id="入门学习"><a href="#入门学习" class="headerlink" title="入门学习"></a>入门学习</h2><p><a href="https://cloud.tencent.com/developer/article/1080966" target="_blank" rel="noopener">参考</a></p>
+<h2 id="将本地项目部署到云服务器上"><a href="#将本地项目部署到云服务器上" class="headerlink" title="将本地项目部署到云服务器上"></a>将本地项目部署到云服务器上</h2><p><a href="https://blog.csdn.net/tangSan3/article/details/79479928" target="_blank" rel="noopener">将本地web项目部署到腾讯云服务器上</a>  tomcat安装记得要和jdk版本匹配(在tomcat官网上有匹配信息)在腾讯云服务器上用9.0版本不好使，下了7.0版本好使<br><a href="https://cloud.tencent.com/document/product/213/5435" target="_blank" rel="noopener">腾讯云服务器</a><br>踩坑实录:想在本地访问云服务器首先要开启tomcat服务器(cmd中输入startup),访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080</span><br></pre></td></tr></table></figure></p>
 <p>其中8080是在tomcat/conf/server.xml中修改的。当外网访问时，如果设置为80端口可以不加端口号，但是由于我用这个腾讯云服务器本地80端口已经被nginx服务器占用了，所以没办法使用，而外网想访问云服务器可以使用公网IP+端口号(如8080)的形式访问tomcat服务器。然而我用这个腾讯云服务器公网IP下的8080端口也被占用了，所以改成了8090，这样就可以在外网使用tomcat服务器下的webserverce啦。</p>
-<h2 id="安卓访问webservice">安卓访问webservice</h2>
-<p><a href="https://www.cnblogs.com/superpang/p/4911422.html" target="_blank" rel="noopener">参考</a><br>
-这里要注意的是soap版本号SoapSerializationEnvelope.VER12要低于web service的soap版本号<br>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SoapSerializationEnvelope envelope = <span class="keyword">new</span> SoapSerializationEnvelope(SoapSerializationEnvelope.VER12);</span><br></pre></td></tr></table></figure></p>
-<p>其次这里类型转换会报错，直接把envelope.bodyIn转换为字符形式即可<br>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SoapObject object = (SoapObject) envelope.bodyIn;</span><br></pre></td></tr></table></figure></p>
+<h2 id="安卓访问webservice"><a href="#安卓访问webservice" class="headerlink" title="安卓访问webservice"></a>安卓访问webservice</h2><p><a href="https://www.cnblogs.com/superpang/p/4911422.html" target="_blank" rel="noopener">参考</a><br>这里要注意的是soap版本号SoapSerializationEnvelope.VER12要低于web service的soap版本号<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SoapSerializationEnvelope envelope = <span class="keyword">new</span> SoapSerializationEnvelope(SoapSerializationEnvelope.VER12);</span><br></pre></td></tr></table></figure></p>
+<p>其次这里类型转换会报错，直接把envelope.bodyIn转换为字符形式即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SoapObject object = (SoapObject) envelope.bodyIn;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -522,7 +511,7 @@
               
                 <a href="/vampire1996.github.io/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -533,7 +522,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/vampire1996.github.io/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -544,7 +533,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/vampire1996.github.io/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

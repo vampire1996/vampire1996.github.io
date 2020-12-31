@@ -382,18 +382,15 @@
       
 
       
-        <h2 id="搭建梯子">搭建梯子</h2>
-<p><a href="https://yq.aliyun.com/articles/657193" target="_blank" rel="noopener">手把手教你如何自己搭梯子</a> <a href="https://www.iwannerfuck.xyz/" target="_blank" rel="noopener">Vultr vps搭建属于自己的ss代理</a> <a href="https://my.vultr.com/" target="_blank" rel="noopener">vultr官网</a>用来管理服务器，需要注意Server Stop并不会停止计费而是只能停止机器，只有Server Destroy(完全销毁这个服务器)才会停止计费 下载putty后，需要输入IP地址，然后点击open，即可进入命令行 首先输入账户名root，接下来从vultr服务器上复制password(在终端中右键即可复制) 接下来输入 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br></pre></td></tr></table></figure></p>
-<p>下一句 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x shadowsocks.sh</span><br></pre></td></tr></table></figure></p>
-<p>下一句 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure></p>
-<p>中间会提示你输入你的SS SERVER的账号，和端口。不输入就是默认。跑完命令后会出来你的SS客户端的信息。特别注意，由于iphone端的目前只支持到cfb，所以我们选择aes-256-cfb，即7，这一步按回车继续然后需要几分钟的安装过程，请耐心等待！ 请立即copy下来加以保存。记录保存好你的上述信息：Server IP、Server Port、Password、Encryption Method。这时你的专属ss已经搭好了，开始使用吧。 接下来使用shadowsocks客户端输入之前保存的Server IP、Server Port、Password信息即可 ## 使用Shadowsocks windows:填好服务器IP,端口号和密码以后点确定,然后在电脑右下角找到纸飞机图标(也就是Shadowsocks)右键选择"启用系统代理"，然后访问个youtube之类的测试一下即可 Android:下载好apk以后打开app，在当前配置文件旁边找到那个笔形状的按键，点进去以后填好服务器IP,端口号和密码连接即可.</p>
-<h2 id="在手机上使用google-play">在手机上使用Google play</h2>
-<p>我的手机是小米8，仅说明在我的手机上的下载和使用方法 在手机自带的应用商店搜索google,拉到最下面用豌豆荚搜索,下载谷歌安装器,然后就可以在里面下载谷歌全家桶了。(前提是已经用之前的方法使用了Shadowsocks)</p>
-<h2 id="putty报错">putty报错</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[error] libsodium install failed</span><br></pre></td></tr></table></figure>
+        <h2 id="搭建梯子"><a href="#搭建梯子" class="headerlink" title="搭建梯子"></a>搭建梯子</h2><p><a href="https://yq.aliyun.com/articles/657193" target="_blank" rel="noopener">手把手教你如何自己搭梯子</a><br><a href="https://www.iwannerfuck.xyz/" target="_blank" rel="noopener">Vultr vps搭建属于自己的ss代理</a><br><a href="https://my.vultr.com/" target="_blank" rel="noopener">vultr官网</a>用来管理服务器，需要注意Server Stop并不会停止计费而是只能停止机器，只有Server Destroy(完全销毁这个服务器)才会停止计费<br>下载putty后，需要输入IP地址，然后点击open，即可进入命令行<br>首先输入账户名root，接下来从vultr服务器上复制password(在终端中右键即可复制)<br>接下来输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br></pre></td></tr></table></figure></p>
+<p>下一句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x shadowsocks.sh</span><br></pre></td></tr></table></figure></p>
+<p>下一句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure></p>
+<p>中间会提示你输入你的SS SERVER的账号，和端口。不输入就是默认。跑完命令后会出来你的SS客户端的信息。特别注意，由于iphone端的目前只支持到cfb，所以我们选择aes-256-cfb，即7，这一步按回车继续然后需要几分钟的安装过程，请耐心等待！<br>请立即copy下来加以保存。记录保存好你的上述信息：Server IP、Server Port、Password、Encryption Method。这时你的专属ss已经搭好了，开始使用吧。<br>接下来使用shadowsocks客户端输入之前保存的Server IP、Server Port、Password信息即可</p>
+<h2 id="使用Shadowsocks"><a href="#使用Shadowsocks" class="headerlink" title="使用Shadowsocks"></a>使用Shadowsocks</h2><p>windows:填好服务器IP,端口号和密码以后点确定,然后在电脑右下角找到纸飞机图标(也就是Shadowsocks)右键选择”启用系统代理”，然后访问个youtube之类的测试一下即可<br>Android:下载好apk以后打开app，在当前配置文件旁边找到那个笔形状的按键，点进去以后填好服务器IP,端口号和密码连接即可.</p>
+<h2 id="在手机上使用Google-play"><a href="#在手机上使用Google-play" class="headerlink" title="在手机上使用Google play"></a>在手机上使用Google play</h2><p>我的手机是小米8，仅说明在我的手机上的下载和使用方法<br>在手机自带的应用商店搜索google,拉到最下面用豌豆荚搜索,下载谷歌安装器,然后就可以在里面下载谷歌全家桶了。(前提是已经用之前的方法使用了Shadowsocks)</p>
+<h2 id="putty报错"><a href="#putty报错" class="headerlink" title="putty报错"></a>putty报错</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[error] libsodium install failed</span><br></pre></td></tr></table></figure>
 <p>解决方法:cent os 换成较低版本或者换成ubuntu系统root</p>
-<h2 id="使用v2ray">使用V2Ray</h2>
-<p>首先需要安装脚本<a href="https://www.hijk.pw/ubuntu-one-click-install-v2ray/" target="_blank" rel="noopener">手把手教你如何自己搭梯子</a></p>
+<h2 id="使用V2Ray"><a href="#使用V2Ray" class="headerlink" title="使用V2Ray"></a>使用V2Ray</h2><p>首先需要安装脚本<a href="https://www.hijk.pw/ubuntu-one-click-install-v2ray/" target="_blank" rel="noopener">手把手教你如何自己搭梯子</a></p>
 <p>在putty中输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ubuntu版本</span><br><span class="line">bash &lt;(curl -sL https://raw.githubusercontent.com/hijkpw/scripts/master/ubuntu_install_v2ray.sh)</span><br><span class="line"></span><br><span class="line">CentOS 7/8系统的v2ray的一键安装脚本</span><br><span class="line">bash &lt;(curl -sL https://raw.githubusercontent.com/hijkpw/scripts/master/centos_install_v2ray.sh)</span><br></pre></td></tr></table></figure>
 <p>接下来在客户端V2rayN中输入在putty中获得的用户信息</p>
@@ -518,7 +515,7 @@
               
                 <a href="/vampire1996.github.io/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +526,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/vampire1996.github.io/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -540,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/vampire1996.github.io/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -573,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建梯子"><span class="nav-number">1.</span> <span class="nav-text">搭建梯子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在手机上使用google-play"><span class="nav-number">2.</span> <span class="nav-text">在手机上使用Google play</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#putty报错"><span class="nav-number">3.</span> <span class="nav-text">putty报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用v2ray"><span class="nav-number">4.</span> <span class="nav-text">使用V2Ray</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建梯子"><span class="nav-number">1.</span> <span class="nav-text">搭建梯子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Shadowsocks"><span class="nav-number">2.</span> <span class="nav-text">使用Shadowsocks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在手机上使用Google-play"><span class="nav-number">3.</span> <span class="nav-text">在手机上使用Google play</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#putty报错"><span class="nav-number">4.</span> <span class="nav-text">putty报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用V2Ray"><span class="nav-number">5.</span> <span class="nav-text">使用V2Ray</span></a></li></ol></div>
             
 
           </div>

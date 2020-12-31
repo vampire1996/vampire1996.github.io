@@ -382,12 +382,10 @@
       
 
       
-        <h2 id="常用语法">常用语法</h2>
-<p>(1)tf.slice <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = tf.constant([[[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>]], [[<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]], [[<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">6</span>, <span class="number">6</span>]]])</span><br><span class="line">tf.slice(t, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>])</span><br></pre></td></tr></table></figure></p>
-<p>t是一个shape为[3,3,3]的三维数组,[1, 0, 0]为begin矩阵, (1)第一个1代表从t第0维度的第一个元素开始(索引从0开始),也就是[[3, 3, 3], [4, 4, 4]] (2)第二个0代表从t第1维度的第零个元素开始,也就是[3, 3, 3] (2)第三个0代表从t第2维度的第零个元素开始,也就是3 [-1, -1, -1]为size矩阵, (1)第一个1代表从t第0维度取一个元素,也就是[[3, 3, 3], [4, 4, 4]] (2)第二个-1代表从t第1维度的取出全部元素,也就是[3, 3, 3], [4, 4, 4] (2)第三个-1代表从t第2维度的取出全部元素,也就是3, 3, 3,4, 4, 4 最终结果为[[3, 3, 3], [4, 4, 4]] <a href="https://www.jianshu.com/p/71e6ef6c121b" target="_blank" rel="noopener">tf.slice()到底怎么切的，看不懂你掐死我</a> (2)tf.concat(用来拼接张量) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.concat([tensor1, tensor2, tensor3,...], axis)</span><br></pre></td></tr></table></figure></p>
-<p>举例 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1 = [[1, 2, 3], [4, 5, 6]]  </span><br><span class="line">t2 = [[7, 8, 9], [10, 11, 12]]  </span><br><span class="line">tf.concat([t1, t2], 0)  # [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]  </span><br><span class="line">tf.concat([t1, t2], 1)  # [[1, 2, 3, 7, 8, 9], [4, 5, 6, 10, 11, 12]]</span><br></pre></td></tr></table></figure></p>
-<p>axis=0代表在第0个维度拼接<br>
-axis=1代表在第1个维度拼接 对于[[],[]]和[[],[]]，低维拼接等于拿掉最外面括号，高维拼接是拿掉里面的括号(保证其他维度不变)。注意：tf.concat()拼接的张量只会改变一个维度，其他维度是保存不变的 负数在数组索引里面表示倒数(countdown)。比如，对于列表ls = [1,2,3]而言，ls[-1] = 3，表示读取倒数第一个索引对应值。 axis=-1表示倒数第一个维度，对于三维矩阵拼接来说，axis=-1等价于axis=2。同理，axis=-2代表倒数第二个维度，对于三维矩阵拼接来说，axis=-2等价于axis=1。</p>
+        <h2 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h2><p>(1)tf.slice<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = tf.constant([[[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>]], [[<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]], [[<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">6</span>, <span class="number">6</span>]]])</span><br><span class="line">tf.slice(t, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>])</span><br></pre></td></tr></table></figure></p>
+<p>t是一个shape为[3,3,3]的三维数组,[1, 0, 0]为begin矩阵,<br>(1)第一个1代表从t第0维度的第一个元素开始(索引从0开始),也就是[[3, 3, 3], [4, 4, 4]]<br>(2)第二个0代表从t第1维度的第零个元素开始,也就是[3, 3, 3]<br>(2)第三个0代表从t第2维度的第零个元素开始,也就是3<br>[-1, -1, -1]为size矩阵,<br>(1)第一个1代表从t第0维度取一个元素,也就是[[3, 3, 3], [4, 4, 4]]<br>(2)第二个-1代表从t第1维度的取出全部元素,也就是[3, 3, 3], [4, 4, 4]<br>(2)第三个-1代表从t第2维度的取出全部元素,也就是3, 3, 3,4, 4, 4<br>最终结果为[[3, 3, 3], [4, 4, 4]]<br><a href="https://www.jianshu.com/p/71e6ef6c121b" target="_blank" rel="noopener">tf.slice()到底怎么切的，看不懂你掐死我</a><br>(2)tf.concat(用来拼接张量)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.concat([tensor1, tensor2, tensor3,...], axis)</span><br></pre></td></tr></table></figure></p>
+<p>举例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1 = [[1, 2, 3], [4, 5, 6]]  </span><br><span class="line">t2 = [[7, 8, 9], [10, 11, 12]]  </span><br><span class="line">tf.concat([t1, t2], 0)  # [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]  </span><br><span class="line">tf.concat([t1, t2], 1)  # [[1, 2, 3, 7, 8, 9], [4, 5, 6, 10, 11, 12]]</span><br></pre></td></tr></table></figure></p>
+<p>axis=0代表在第0个维度拼接<br>axis=1代表在第1个维度拼接<br>对于[[],[]]和[[],[]]，低维拼接等于拿掉最外面括号，高维拼接是拿掉里面的括号(保证其他维度不变)。注意：tf.concat()拼接的张量只会改变一个维度，其他维度是保存不变的<br>负数在数组索引里面表示倒数(countdown)。比如，对于列表ls = [1,2,3]而言，ls[-1] = 3，表示读取倒数第一个索引对应值。<br>axis=-1表示倒数第一个维度，对于三维矩阵拼接来说，axis=-1等价于axis=2。同理，axis=-2代表倒数第二个维度，对于三维矩阵拼接来说，axis=-2等价于axis=1。</p>
 
       
     </div>
@@ -509,7 +507,7 @@ axis=1代表在第1个维度拼接 对于[[],[]]和[[],[]]，低维拼接等于�
               
                 <a href="/vampire1996.github.io/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -520,7 +518,7 @@ axis=1代表在第1个维度拼接 对于[[],[]]和[[],[]]，低维拼接等于�
               
               <div class="site-state-item site-state-categories">
                 <a href="/vampire1996.github.io/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -531,7 +529,7 @@ axis=1代表在第1个维度拼接 对于[[],[]]和[[],[]]，低维拼接等于�
               
               <div class="site-state-item site-state-tags">
                 <a href="/vampire1996.github.io/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

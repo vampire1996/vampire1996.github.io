@@ -387,175 +387,35 @@
 
       
         <p><a href="https://arxiv.org/abs/1507.05717" target="_blank" rel="noopener">原文链接</a></p>
-<h2 id="摘要">摘要</h2>
-<p>之前的场景文本检测方法已经在不同基准下，实现了可观的性能。然而当遇到更有挑战的场景时，它们通常会有缺陷，甚至是配备深度神经网络的时候，因为总体性能取决于多个阶段和流水线中各个元素的相互作用。在本论文中，我们提出了一种简单但有效的流水线，在检测自然文本时，它能实现快速和准确的效果。流水线直接预测了任意朝向和整个图像中四边形的单词和文本线，消除了不必要的中间步骤(比如候选聚合和分词)，仅使用一个简单的神经网络。我们流水线的简单使得可以集中于设计损失函数和神经网络结构。在标准数据集上的实验包括ICDAR2015,COCO-Text和MSRA-TD500，就准确性和效率而言，提出的算法显著的实现了接近于艺术状态的性能。在ICDAR 2015数据集上，提出的是算法实现了0.7820的F分数720p分辨率下和13。2fps前提下。</p>
-<h2 id="介绍introduction">1.介绍(introduction)</h2>
-<p>文本检测，作为后续过程的先决条件，在整个文本信息提取和理解的过程中扮演着重要的作用。之前的场景文本检测方法已经在不同基准下，实现了可观的性能。文本检测的核心是设计特征使得文本能从背景中区分出来。传统方法是人工设计特征来捕捉场景文本的属性，同时基于深度学习的方法中，有效的特征直接从训练数据中学习到。<br>
-然而，现存的方法，不论是基于卷积神经网络还是深度神经网络，通常包括几个阶段和成分，可能是次优和消耗时间的。因此准确性和高效性还远不能让人满意。<br>
-在本文中，流水线直接使用了全卷积网络模型(FCN),它能直接生成文本或者文字检测水平的预测，排除多余和缓慢的中间步骤。产生的文本预测可以是矩形也可以是四边形，被送到非极大值抑制来产生最终的结果。根据在标准基准上的质量和数量检测，相比于现存的方法，提出的算法实现了显著地更强的性能，同时运行的更快。<br>
-特别地，提出的算法在ICDAR2015上实现了0.7820的F分数(在多尺度上为.8072)在MARATD500上为0.7608，在COCO-Text上为0,3945。优于先前体现最高水平的算法的性能，同时平均下来使用了更少的时间(13.2fps在720P的分辨率下，使用Titan-X GPU用于我们性能最好的模型，16.8fps用于我们最快的模型)<br>
-此工作的贡献是三倍的:<br>
-(1)我们提出了一种包括两个阶段的场景文本检测方法:一个全连接神经网络和极大值抑制(NMS)合并解读那，全连接层直接产生了文本区域，去除了多余的和消耗时间的中间步骤。<br>
-(2)流水线适用于产生单词水平或者线水平的预测，预测的几何形状可以是旋转的方框或者是四边形，这取决于特定的应用。<br>
-(3)提出的算法显著地最高水平方法的准确性和速度。</p>
-<h2 id="相关工作">2.相关工作</h2>
-<p>场景文本检测和识别已经是计算机视觉领域长时间内很活跃的研究领域。大量鼓舞人心的想法和有效的方法已被探讨。<br>
-常规的方法依靠人工设计特征。而最近场景文本检测已经进入了基于深度神经网络逐渐成为主流的新时代。黄等人首先使用MSER找到候选然后运用深度卷积网络作为强大的分类器来修剪错误的正例。Jaderberg的方法用滑动窗口的方式扫描图像并且使用一种卷积神经网络模型产生了一种密度热量图，后来，Jaderberg应用CNN和ACF来捕获单词候选，并且使用回归提炼它们。田等人开发了一种垂直的锚并且建立了一个CNN-RNN联合模型来检测水平文本线。区别于这些方法，张等人提出了一种利用全连接网络(FCN)用于热量图代和使用元素投影来进行朝向预测。这些方法在标准基准上获得了极佳的性能。然而，由图二所示，它们大多由多个阶段和元素组成，例如通过后滤波，候选聚合，线形成和分词来进行错误正例去除。多数阶段和成分可能需要详尽的调整，导致次优的性能，并且增加整个流水线的处理时间。<br>
-在本文中，我们提出了一种直接可以定位最终文本检测结果的深度基于全连接网络的流水线。由图2(e)所描绘的，模型放弃了不必要的中间成分和步骤，并且允许端到端训练和优化。组合的系统配备了单一轻量的神经网络，在性能和速度上明显的超过了所有先前的方法。</p>
-<h2 id="方法methodology">3.方法(Methodology)</h2>
-<p>这种提出算法的核心成分是神经网络模型，他被训练于直接预测文本实例的存在和它们在整张图像中的几何形状。模型是一个全连接卷积网络适用于输出每个像素的单词或文本线的温而不能预测。这里去除了中间步骤提出候选，文本区域生成和分词。后处理步骤仅仅包括二值化和非极大值抑制来预测几何形状。检测器叫做EAST，因为它是一个有效且准确的场景文本检测流水线。</p>
-<h3 id="流水线">3.1流水线</h3>
-<p>我们流水线的一个高水平的概况在图2(e)中显示。算法跟随着密度盒的总体设计，其中图像被输入到全连接网络，输出多个通道的像素级的文本分数图和几何形状。<br>
-预测通道之一是在[0,1]区间范围内的像素值。其余通道表示了通过观察每个像素而围城单词的形状。分数表示了几何形状预测相同位置的信心程度。<br>
-我们用两个用于文本区域的几何形状，旋转盒(RBOX)和四边形(QUAD),并且对每个几何形状设计不同的损失函数。二值化接下来被应用于每个预测区域，在预先定义的阈值之上的几何形状被认为是有效的，并且被保存用于之后的非极大值抑制。非极大值抑制后输出的结果被认为是流水线的最终输出结果。</p>
-<h3 id="网络设计">3.2网络设计</h3>
-<p>当设计神经网络时几个因素必须被考虑到。既然单词区域的大小变化的非常剧烈，确定大单词的存在会要求神经网络后部的特征，同时预测准确的将小单词围起来的区域需要神经网络前部低水平的信息。。因此网络一定要使用不同阶段的特征来满足这些要求。HyperNet满足了这些在特征图上的条件，但是合并在大量特征图上的通道会显著地增加计算消耗对于后面的阶段来说。<br>
-为了改正这一点，我们采用U-shape的方法来逐渐合并特征图，同时保持向上采样的分支尽量小。我们最终得到了一个技能利用不同水平的并且能保持较小的计算消耗的网络。<br>
-我们某些的简述在图3中被描绘。模型可以被分解成三部分，特征提取茎(stem)，特征融合分支(branch)和输出层。<br>
-<img src="/vampire1996.github.io/2019/05/06/paperlearning2/1.png" title="Figure 3. Structure of our text detection FCN"></p>
-<p>stem可以是在ImageNet数据集上预训练的卷积网络，夹杂着卷积核赤化层。标记为<span class="math inline">\(f_i\)</span>的特征图的四个水平从stem中被提取出来，他们的尺寸分别是输入图像的1/21.1/16,1/8和1/4。在图3中，PVAN被描绘出来。在摸们的实验中，我们也采用了有名的VGG16模型，特征图在池化2和池化5后被提取出来。<br>
-在特征融合分支，我们渐渐融合它们。</p>
-<p><span class="math display">\[\begin{equation}
-g_{i}=\left\{\begin{array}{ll}{\operatorname{unpool}\left(h_{i}\right)} &amp; {\text { if } \quad i \leq 3} \\ {\operatorname{conv}_{3 \times 3}\left(h_{i}\right)} &amp; {\text { if } \quad i=4}\end{array}\right.
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-h_{i}=\left\{\begin{array}{ll}{f_{i}} &amp; {\text { if } i=1} \\ {\operatorname{conv}_{3 \times 3}\left(\operatorname{conv}_{1 \times 1}\left(\left[g_{i-1} ; f_{i}\right]\right)\right)} &amp; {\text { otherwise }}\end{array}\right.
-\end{equation}\]</span> 其中<span class="math inline">\(g_{i}\)</span>是融合基，<span class="math inline">\(h_i\)</span>是被融合的特征图，而操作器<span class="math inline">\([·;·]\)</span>代表着沿着通道轴的级联。在每个融合阶段，从上一阶段的特征图首先输入一个反池化层使其大小翻倍，接下来与当前特征图相连。接下来，一个<span class="math inline">\(conv_{1 \times 1}\)</span>瓶颈降低了通道的数量且降低了计算量，跟随着的操作是<span class="math inline">\(conv_{3 \times 3}\)</span>使得最终产生融合阶段的输出。跟随着随后的融合阶段，一个<span class="math inline">\(conv_{3 \times 3}\)</span>层生成了最终融合分支的特征图且将其输入输出层。<br>
-每次卷积输出通道的数目在图3中描绘，我们保持在分支(branch)中的卷积的通道的数目尽量小，仅在stem后增加了少量的计算开销，使得网络计算高效。最终输出层包括几个<span class="math inline">\(conv_{1 \times 1}\)</span>操作来产生32个通道到得分图<span class="math inline">\(F_s\)</span>的一个通道和多通道的几何图<span class="math inline">\(F_g\)</span>。几何输出可以是RBOX或者是QUAD，在表1中总结。<br>
-对于RBOX，几何形状被轴向包围盒(AABB)<span class="math inline">\(\mathbf{R}\)</span>的四个通道和一个通道旋转角<span class="math inline">\(\theta\)</span>代表。<span class="math inline">\(\mathbf{R}\)</span>的四个通道代表着从四边形的像素位置分别到顶端，右边，底部，左边边界的距离。<br>
-对于QUAD<span class="math inline">\(\mathbf{Q}\)</span>，我们用8个数字来代表从四边形像素坐标的四个顶点<span class="math inline">\(\left\{p_{i} | i \in\{1,2,3,4\}\right\}\)</span>的坐标偏移。由于每个距离偏移包括两个数字<span class="math inline">\(\left(\Delta x_{i}, \Delta y_{i}\right)\)</span>，形状输出包括8个通道。<br>
-<img src="/vampire1996.github.io/2019/05/06/paperlearning2/2.png" title="Table 1 OutPut Geometry Design."><br>
-## 3.3标签生成</p>
-<h3 id="四边形得分图生成">3.3.1四边形得分图生成</h3>
-<p>在不失去一般性的前提下，我们仅仅考虑形状是四边形的情况。四边形在得分图上的正区域被大概设计为原始的所见版本，在图4(a)中描绘。<br>
-对于一个四边形<span class="math inline">\(\mathbf{Q}=\left\{p_{i} | i \in\{1,2,3,4\}\right\}\)</span>，其中<span class="math inline">\(p_{i}=\left\{x_{i}, y_{i}\right\}\)</span>是四边形以顺时针方向的顶点。为了缩小<span class="math inline">\(\mathbf{Q}\)</span>，我们首先计算对于每个顶点<span class="math inline">\(p_i\)</span>的参考距离<span class="math inline">\(r_i\)</span>为:<br>
-\begin{aligned} r_{i}=( (p_{i}, p_{(i 4)+1}) ， (p_{i}, p_{((i+2) 4)+1}) ) \end{aligned} 其中<span class="math inline">\(\mathrm{D}\left(p_{i}, p_{j}\right)\)</span>是<span class="math inline">\(p_i\)</span>和<span class="math inline">\(p_j\)</span>之间的<span class="math inline">\(L_2\)</span>距离<br>
-我们首先缩小四边形的两个长边，接下来两个短边。对于每一对两个相对的边，我们定义更长的那对通过比较他们长度的平均值。对于每个边<span class="math inline">\(\left\langle p_{i}, p_{(i \bmod 4)+1}\right\rangle\)</span>,我们通过向内分别移动<span class="math inline">\(0.3r_i\)</span>和<span class="math inline">\(0.3r_{(i \bmod 4)+1}\)</span>使其缩小。</p>
-<h3 id="几何图生成">3.3.2几何图生成</h3>
-<p>几何图可以是RBOX或QUAD。RBOX的生成过程见图4(c-e)<br>
-对于那些文字区域以QUAD风格注释的数据集(如ICDRA2015)，我们首先生成一个旋转的四边形以覆盖最小的区域。接下来对于每个有正分数的像素点，我们计算其到文本框四个边界的距离，然后将其置为RBOX基本值得四个通道。对于QUAD的基本值，在8通道几何图中有正分数的每个像素的值是它的坐标到四边形四个顶点的偏移距离。<br>
-<img src="/vampire1996.github.io/2019/05/06/paperlearning2/3.png" title="Figure 4"></p>
-<h2 id="损失函数">3.4损失函数</h2>
-<p>损失可以被定义为</p>
-<p><span class="math display">\[
-L=L_{\mathrm{s}}+\lambda_{\mathrm{g}} L_{\mathrm{g}}
-\]</span></p>
-<p>其中<span class="math inline">\(L_s\)</span>和<span class="math inline">\(L_g\)</span>代表着分数图和几何形状的损失，<span class="math inline">\(\lambda_{\mathrm{g}}\)</span>代表两种损失间的权重。在我们的实验中，我们将<span class="math inline">\(\lambda_{\mathrm{g}}\)</span>置为1</p>
-<h3 id="分数图的损失">3.4.1分数图的损失</h3>
-<p>在大多数体现最高水平的检测流水线中，通过平衡采样和难分样本挖掘(hard negative mining)来处理目标物体的不均衡分布。这样做潜在地提高了网络的性能。然而，使用这样的技巧不可避免地引入不可微的阶段和更多参数来调试和更复杂的流水线，这违背了我们的设计准则。<br>
-为了促使一个更为简洁的训练程序，我们使用类平衡交叉熵，公式为:</p>
-<p><span class="math display">\[\begin{equation}
-L_{\mathrm{s}} =\text { balanced-xent }\left(\hat{\mathbf{Y}}, \mathbf{Y}^{*}\right) =-\beta \mathbf{Y}^{*} \log \hat{\mathbf{Y}} -(1-\beta)(1-\mathbf{Y}^{*}) \log (1-\hat{\mathbf{Y}})
-\end{equation}\]</span></p>
-<p>其中<span class="math inline">\(\hat{\mathbf{Y}}=F_{\mathrm{s}}\)</span>是得分图的预测,<span class="math inline">\(\mathbf{Y}^{*}\)</span>是真实值。参数<span class="math inline">\(\beta\)</span>是正例和负例的平衡因子，由下式给定</p>
-<p><span class="math display">\[\begin{equation}
-\beta=1-\frac{\sum_{y^{*} \in \mathbf{Y}^{*}} y^{*}}{\left|\mathbf{Y}^{*}\right|}
-\end{equation}\]</span></p>
-<p>平衡交叉熵首先Yao等人用于文本检测，作为得分图预测的目标函数。</p>
-<h3 id="几何形状的损失">3.4.2几何形状的损失</h3>
-<p>文本检测的一个挑战是单词区域的大小变化的非常剧烈。直接使用<span class="math inline">\(L1\)</span>或者<span class="math inline">\(L2\)</span>损失用于回归会引起损失偏差朝向更大更长的文本区域。我们需要产生准确的文本形状不论是大的还是小的文本区域，而回归损失应该是比例不变的。因此，我们使用IoU损失在RBOX的AABB部分，和一个规模正则化平滑L1损失用于QUAD回归。<br>
-<span class="math inline">\(RBOX\)</span>对于AABB部分，我们使用IoU损失因为它对不同规模的物体都是不变的。</p>
-<p><span class="math display">\[\begin{equation}
-L_{\mathrm{AABB}}=-\log \operatorname{IoU}\left(\hat{\mathbf{R}}, \mathbf{R}^{*}\right)=-\log \frac{\left|\hat{\mathbf{R}} \cap \mathbf{R}^{*}\right|}{\left|\hat{\mathbf{R}} \cup \mathbf{R}^{*}\right|}
-\end{equation}\]</span></p>
-<p>其中<span class="math inline">\(\hat{\mathbf{R}}\)</span>代表预测的AABB形状而<span class="math inline">\(\mathbf{R}^{*}\)</span>是它对应的真实值。很容易可知相交正方形<span class="math inline">\(\left|\hat{\mathbf{R}} \cap \mathbf{R}^{*}\right|\)</span>的宽度和高度为:</p>
-<p><span class="math display">\[\begin{equation}
-\begin{aligned} w_{\mathrm{i}} &amp;=\min \left(\hat{d}_{2}, d_{2}^{*}\right)+\min \left(\hat{d}_{4}, d_{4}^{*}\right) \\ h_{\mathrm{i}} &amp;=\min \left(\hat{d}_{1}, d_{1}^{*}\right)+\min \left(\hat{d}_{3}, d_{3}^{*}\right) \end{aligned}
-\end{equation}\]</span> 其中<span class="math inline">\(d_1,d_2,d_3\)</span>和<span class="math inline">\(d_4\)</span>代表着一个像素点到其对应四边形顶端，右侧，底部和左侧边界的距离。联合区域由下式给定:<br>
-<span class="math display">\[\begin{equation}
-\left|\hat{\mathbf{R}} \cup \mathbf{R}^{*}\right|=|\hat{\mathbf{R}}|+\left|\mathbf{R}^{*}\right|-\left|\hat{\mathbf{R}} \cap \mathbf{R}^{*}\right|
-\end{equation}\]</span> 因此交集和并集可以被轻松地计算。接下来，旋转角度被计算为:<br>
-<span class="math display">\[\begin{equation}
-L_{\theta}\left(\hat{\theta}, \theta^{*}\right)=1-\cos \left(\hat{\theta}-\theta^{*}\right)
-\end{equation}\]</span> 其中<span class="math inline">\(\hat{\theta}\)</span>是旋转角度的预测值，<span class="math inline">\(\theta^{*}\)</span>是旋转角度的真实值。最终，总体形状损失是AABB的加权损失和角度损失，由下式给出:<br>
-<span class="math display">\[\begin{equation}
-L_{\mathrm{g}}=L_{\mathrm{AABB}}+\lambda_{\theta} L_{\theta}
-\end{equation}\]</span> 其中<span class="math inline">\(\lamda_{theta}\)</span>在实验中被设为10<br>
-注意我们计算<span class="math inline">\(L_{AABB}\)</span>并没有考虑旋转角度。这可以看做是四边形IoU的近似当角度被完美地预测时。尽管这不是训练时的情况，它仍然可以采用正确的梯度来学习以预测<span class="math inline">\(\hat{\mathbf{R}}\)</span><br>
-<span class="math inline">\(QUAD\)</span>我们扩展平滑L1损失通过增加设计用于单词四边形的正则项，它通常在某一方向上更加长。令<span class="math inline">\(Q\)</span>的所有坐标值为一有序集<br>
-<span class="math display">\[\begin{equation}
-\mathrm{C}_{\mathrm{Q}}=\left\{x_{1}, y_{1}, x_{2}, y_{2}, \ldots, x_{4}, y_{4}\right\}
-\end{equation}\]</span> 接下来损失可以被写为:<br>
-<span class="math display">\[\begin{equation}
-L_{\mathrm{g}}=L_{\mathrm{QUAD}}\left(\hat{\mathbf{Q}}, \mathbf{Q}^{*}\right)
-=\min _{\tilde{\mathbf{Q}} \in P_{\mathbf{Q}^{*}}} \sum_{\tilde{c}_{i} \in \mathbb{C}_{\tilde{\mathbf{Q}}}} \frac{\operatorname{smoothed}_{L 1}\left(c_{i}-\tilde{c}_{i}\right)}{8 \times N_{\mathbf{Q}}}
-\end{equation}\]</span> 其中正则项<span class="math inline">\(\mathrm{N}_{\mathrm{Q}^{*}}\)</span>为四边形的短边，由下式给出：<br>
-<span class="math display">\[\begin{equation}
-N_{Q^{*}}=\min _{i=1} D\left(p_{i}, p_{(i \bmod 4)+1}\right)
-\end{equation}\]</span> 而<span class="math inline">\(P_Q\)</span>是有着不同顶点顺序<span class="math inline">\(Q_{*}\)</span>的所有相等四边形的集合。这种有序的排列是必须的因为公开训练集的四边形的注释是不一致的。</p>
-<h2 id="训练">3.5训练</h2>
-<p>网络使用ADAM优化器进行端到端的训练。为了加速学习，我们一致地从图像中采样512x512的切片以形成尺寸为24的小批量。ADAM的学习率从1e-3开始，每隔27300个迷你批量衰减1/10，停止于1e-5.网络会训练到性能不再提升。</p>
-<h2 id="位置感知极大值抑制locality-aware-nms">3.6位置感知极大值抑制(Locality-Aware NMS)</h2>
-<p>为了形成最终的结果，二值化后形成的几何形状应该被NMS融合。一种原始的NMS算法以O(n^2)复杂度运行，其中n是几何形状候选数，这是不可接受的当我们面对从密度预测得到的上万个几何形状。</p>
-<h2 id="词汇">词汇</h2>
-<p>fall short 缺乏;不足<br>
-interplay 相互作用<br>
-yield 产生，退让<br>
-quadrilateral 四边形<br>
-intermediate 中间的<br>
-aggregation 聚合<br>
-simplicity 简单<br>
-outperform 表现更好<br>
-resolution 决议，决心<br>
-prerequisite 先决条件<br>
-utilize 使用<br>
-exclude 排除<br>
-redundant 多余<br>
-rectangle 矩形<br>
-quadrangle 四边形<br>
-suppression 抑制<br>
-quantitative 定量的，量化的<br>
-unprecedented 史无前例的<br>
-prerequisite 条件<br>
-extraction 提取<br>
-manually 手动地<br>
-utilize 利用<br>
-outperform 表现优于<br>
-state-of-the-art 使用最先进技术的，体现最高水平的<br>
-review 评论<br>
-comprehensive 综合的，全面的<br>
-conventional 常规的<br>
-prune 修剪<br>
-regression 回归<br>
-refine 提炼<br>
-anchor 锚<br>
-vertical 垂直<br>
-projection 投影<br>
-formation 编队，形成<br>
-multitude 多数<br>
-exhaustive 详尽的<br>
-tuning 调整<br>
-devise 发明，设计<br>
-depicte 描绘<br>
-resultant 组合的<br>
-remedy 救济，改正<br>
-adopt 收养，采用<br>
-schematic 略图的;简表的;严谨的<br>
-interleave 插入，夹进<br>
-concatenation 一系列相关联的事物<br>
-concatenate with 与...连接<br>
-bottleneck 瓶颈，阻碍<br>
-fraction 少量<br>
-overhead 开销<br>
-vertice 顶点<br>
-generality 一般性;概述<br>
-inward 向内地，向中心地<br>
-annotate 给...做注解<br>
-minimal 最小的<br>
-inevitably 不可避免地<br>
-contradicts 反驳，与..相反<br>
-facilitate 促进<br>
-inconsistent 不一致的<br>
-uniformly 一致的，均匀的</p>
-<h2 id="概念">概念</h2>
-<p>(1)分类模型的评价指标Fscore</p>
-<p><span class="math display">\[ F-score=1+\beta^2\frac{Percision*Recall}{\beta^2*(Percision+Recall)} \]</span></p>
-<p>其中<span class="math inline">\(\beta\)</span>的取值有三种情况<br>
-如果取1,表示Precision与Recall一样重要<br>
-如果取小于1,表示Precision比Recall重要<br>
-如果取大于1,表示Recall比Precision重要<br>
-(2)难分样本挖掘(hard negative mining)<br>
-对于目标检测中我们会事先标记处ground truth，然后再算法中会生成一系列proposal，这些proposal有跟标记的ground truth重合的也有没重合的，那么重合度（IOU）超过一定阈值（通常0.5）的则认定为是正样本，以下的则是负样本。然后扔进网络中训练。However，这也许会出现一个问题那就是正样本的数量远远小于负样本，这样训练出来的分类器的效果总是有限的，会出现许多false positive，把其中得分较高的这些false positive当做所谓的Hard negative，既然mining出了这些Hard negative，就把这些扔进网络再训练一次，从而加强分类器判别假阳性的能力。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>之前的场景文本检测方法已经在不同基准下，实现了可观的性能。然而当遇到更有挑战的场景时，它们通常会有缺陷，甚至是配备深度神经网络的时候，因为总体性能取决于多个阶段和流水线中各个元素的相互作用。在本论文中，我们提出了一种简单但有效的流水线，在检测自然文本时，它能实现快速和准确的效果。流水线直接预测了任意朝向和整个图像中四边形的单词和文本线，消除了不必要的中间步骤(比如候选聚合和分词)，仅使用一个简单的神经网络。我们流水线的简单使得可以集中于设计损失函数和神经网络结构。在标准数据集上的实验包括ICDAR2015,COCO-Text和MSRA-TD500，就准确性和效率而言，提出的算法显著的实现了接近于艺术状态的性能。在ICDAR 2015数据集上，提出的是算法实现了0.7820的F分数720p分辨率下和13。2fps前提下。</p>
+<h2 id="1-介绍-introduction"><a href="#1-介绍-introduction" class="headerlink" title="1.介绍(introduction)"></a>1.介绍(introduction)</h2><p>文本检测，作为后续过程的先决条件，在整个文本信息提取和理解的过程中扮演着重要的作用。之前的场景文本检测方法已经在不同基准下，实现了可观的性能。文本检测的核心是设计特征使得文本能从背景中区分出来。传统方法是人工设计特征来捕捉场景文本的属性，同时基于深度学习的方法中，有效的特征直接从训练数据中学习到。<br>然而，现存的方法，不论是基于卷积神经网络还是深度神经网络，通常包括几个阶段和成分，可能是次优和消耗时间的。因此准确性和高效性还远不能让人满意。<br>在本文中，流水线直接使用了全卷积网络模型(FCN),它能直接生成文本或者文字检测水平的预测，排除多余和缓慢的中间步骤。产生的文本预测可以是矩形也可以是四边形，被送到非极大值抑制来产生最终的结果。根据在标准基准上的质量和数量检测，相比于现存的方法，提出的算法实现了显著地更强的性能，同时运行的更快。<br>特别地，提出的算法在ICDAR2015上实现了0.7820的F分数(在多尺度上为.8072)在MARATD500上为0.7608，在COCO-Text上为0,3945。优于先前体现最高水平的算法的性能，同时平均下来使用了更少的时间(13.2fps在720P的分辨率下，使用Titan-X GPU用于我们性能最好的模型，16.8fps用于我们最快的模型)<br>此工作的贡献是三倍的:<br>(1)我们提出了一种包括两个阶段的场景文本检测方法:一个全连接神经网络和极大值抑制(NMS)合并解读那，全连接层直接产生了文本区域，去除了多余的和消耗时间的中间步骤。<br>(2)流水线适用于产生单词水平或者线水平的预测，预测的几何形状可以是旋转的方框或者是四边形，这取决于特定的应用。<br>(3)提出的算法显著地最高水平方法的准确性和速度。  </p>
+<h2 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2.相关工作"></a>2.相关工作</h2><p>场景文本检测和识别已经是计算机视觉领域长时间内很活跃的研究领域。大量鼓舞人心的想法和有效的方法已被探讨。<br>常规的方法依靠人工设计特征。而最近场景文本检测已经进入了基于深度神经网络逐渐成为主流的新时代。黄等人首先使用MSER找到候选然后运用深度卷积网络作为强大的分类器来修剪错误的正例。Jaderberg的方法用滑动窗口的方式扫描图像并且使用一种卷积神经网络模型产生了一种密度热量图，后来，Jaderberg应用CNN和ACF来捕获单词候选，并且使用回归提炼它们。田等人开发了一种垂直的锚并且建立了一个CNN-RNN联合模型来检测水平文本线。区别于这些方法，张等人提出了一种利用全连接网络(FCN)用于热量图代和使用元素投影来进行朝向预测。这些方法在标准基准上获得了极佳的性能。然而，由图二所示，它们大多由多个阶段和元素组成，例如通过后滤波，候选聚合，线形成和分词来进行错误正例去除。多数阶段和成分可能需要详尽的调整，导致次优的性能，并且增加整个流水线的处理时间。<br>在本文中，我们提出了一种直接可以定位最终文本检测结果的深度基于全连接网络的流水线。由图2(e)所描绘的，模型放弃了不必要的中间成分和步骤，并且允许端到端训练和优化。组合的系统配备了单一轻量的神经网络，在性能和速度上明显的超过了所有先前的方法。  </p>
+<h2 id="3-方法-Methodology"><a href="#3-方法-Methodology" class="headerlink" title="3.方法(Methodology)"></a>3.方法(Methodology)</h2><p>这种提出算法的核心成分是神经网络模型，他被训练于直接预测文本实例的存在和它们在整张图像中的几何形状。模型是一个全连接卷积网络适用于输出每个像素的单词或文本线的温而不能预测。这里去除了中间步骤提出候选，文本区域生成和分词。后处理步骤仅仅包括二值化和非极大值抑制来预测几何形状。检测器叫做EAST，因为它是一个有效且准确的场景文本检测流水线。  </p>
+<h3 id="3-1流水线"><a href="#3-1流水线" class="headerlink" title="3.1流水线"></a>3.1流水线</h3><p>我们流水线的一个高水平的概况在图2(e)中显示。算法跟随着密度盒的总体设计，其中图像被输入到全连接网络，输出多个通道的像素级的文本分数图和几何形状。<br>预测通道之一是在[0,1]区间范围内的像素值。其余通道表示了通过观察每个像素而围城单词的形状。分数表示了几何形状预测相同位置的信心程度。<br>我们用两个用于文本区域的几何形状，旋转盒(RBOX)和四边形(QUAD),并且对每个几何形状设计不同的损失函数。二值化接下来被应用于每个预测区域，在预先定义的阈值之上的几何形状被认为是有效的，并且被保存用于之后的非极大值抑制。非极大值抑制后输出的结果被认为是流水线的最终输出结果。  </p>
+<h3 id="3-2网络设计"><a href="#3-2网络设计" class="headerlink" title="3.2网络设计"></a>3.2网络设计</h3><p>当设计神经网络时几个因素必须被考虑到。既然单词区域的大小变化的非常剧烈，确定大单词的存在会要求神经网络后部的特征，同时预测准确的将小单词围起来的区域需要神经网络前部低水平的信息。。因此网络一定要使用不同阶段的特征来满足这些要求。HyperNet满足了这些在特征图上的条件，但是合并在大量特征图上的通道会显著地增加计算消耗对于后面的阶段来说。<br>为了改正这一点，我们采用U-shape的方法来逐渐合并特征图，同时保持向上采样的分支尽量小。我们最终得到了一个技能利用不同水平的并且能保持较小的计算消耗的网络。<br>我们某些的简述在图3中被描绘。模型可以被分解成三部分，特征提取茎(stem)，特征融合分支(branch)和输出层。<br><img src="/vampire1996.github.io/2019/05/06/paperlearning2/1.png" alt=" " title="Figure 3. Structure of our text detection FCN"></p>
+<p>stem可以是在ImageNet数据集上预训练的卷积网络，夹杂着卷积核赤化层。标记为$f_i$的特征图的四个水平从stem中被提取出来，他们的尺寸分别是输入图像的1/21.1/16,1/8和1/4。在图3中，PVAN被描绘出来。在摸们的实验中，我们也采用了有名的VGG16模型，特征图在池化2和池化5后被提取出来。<br>在特征融合分支，我们渐渐融合它们。  </p>
+<p>\begin{equation}<br>g_{i}=\left{\begin{array}{ll}{\operatorname{unpool}\left(h_{i}\right)} &amp; {\text { if } \quad i \leq 3} \ {\operatorname{conv}<em>{3 \times 3}\left(h</em>{i}\right)} &amp; {\text { if } \quad i=4}\end{array}\right.<br>\end{equation}</p>
+<p>\begin{equation}<br>h_{i}=\left{\begin{array}{ll}{f_{i}} &amp; {\text { if } i=1} \ {\operatorname{conv}<em>{3 \times 3}\left(\operatorname{conv}</em>{1 \times 1}\left(\left[g_{i-1} ; f_{i}\right]\right)\right)} &amp; {\text { otherwise }}\end{array}\right.<br>\end{equation}<br>其中$g_{i}$是融合基，$h_i$是被融合的特征图，而操作器$[·;·]$代表着沿着通道轴的级联。在每个融合阶段，从上一阶段的特征图首先输入一个反池化层使其大小翻倍，接下来与当前特征图相连。接下来，一个$conv_{1 \times 1}$瓶颈降低了通道的数量且降低了计算量，跟随着的操作是$conv_{3 \times 3}$使得最终产生融合阶段的输出。跟随着随后的融合阶段，一个$conv_{3 \times 3}$层生成了最终融合分支的特征图且将其输入输出层。<br>每次卷积输出通道的数目在图3中描绘，我们保持在分支(branch)中的卷积的通道的数目尽量小，仅在stem后增加了少量的计算开销，使得网络计算高效。最终输出层包括几个$conv_{1 \times 1}$操作来产生32个通道到得分图$F_s$的一个通道和多通道的几何图$F_g$。几何输出可以是RBOX或者是QUAD，在表1中总结。<br>对于RBOX，几何形状被轴向包围盒(AABB)$\mathbf{R}$的四个通道和一个通道旋转角$\theta$代表。$\mathbf{R}$的四个通道代表着从四边形的像素位置分别到顶端，右边，底部，左边边界的距离。<br>对于QUAD$\mathbf{Q}$，我们用8个数字来代表从四边形像素坐标的四个顶点$\left{p_{i} | i \in{1,2,3,4}\right}$的坐标偏移。由于每个距离偏移包括两个数字$\left(\Delta x_{i}, \Delta y_{i}\right)$，形状输出包括8个通道。<br><img src="/vampire1996.github.io/2019/05/06/paperlearning2/2.png" alt=" " title="Table 1 OutPut Geometry Design.">  </p>
+<h2 id="3-3标签生成"><a href="#3-3标签生成" class="headerlink" title="3.3标签生成"></a>3.3标签生成</h2><h3 id="3-3-1四边形得分图生成"><a href="#3-3-1四边形得分图生成" class="headerlink" title="3.3.1四边形得分图生成"></a>3.3.1四边形得分图生成</h3><p>在不失去一般性的前提下，我们仅仅考虑形状是四边形的情况。四边形在得分图上的正区域被大概设计为原始的所见版本，在图4(a)中描绘。<br>对于一个四边形$\mathbf{Q}=\left{p_{i} | i \in{1,2,3,4}\right}$，其中$p_{i}=\left{x_{i}, y_{i}\right}$是四边形以顺时针方向的顶点。为了缩小$\mathbf{Q}$，我们首先计算对于每个顶点$p_i$的参考距离$r_i$为:<br>\begin{aligned} r_{i}=\min (  \mathrm{D}\left(p_{i}, p_{(i \bmod 4)+1}\right) ， \mathrm{D}\left(p_{i}, p_{((i+2) \bmod 4)+1}\right) ) \end{aligned}<br>其中$\mathrm{D}\left(p_{i}, p_{j}\right)$是$p_i$和$p_j$之间的$L_2$距离<br>我们首先缩小四边形的两个长边，接下来两个短边。对于每一对两个相对的边，我们定义更长的那对通过比较他们长度的平均值。对于每个边$\left\langle p_{i}, p_{(i \bmod 4)+1}\right\rangle$,我们通过向内分别移动$0.3r_i$和$0.3r_{(i \bmod 4)+1}$使其缩小。  </p>
+<h3 id="3-3-2几何图生成"><a href="#3-3-2几何图生成" class="headerlink" title="3.3.2几何图生成"></a>3.3.2几何图生成</h3><p>几何图可以是RBOX或QUAD。RBOX的生成过程见图4(c-e)<br>对于那些文字区域以QUAD风格注释的数据集(如ICDRA2015)，我们首先生成一个旋转的四边形以覆盖最小的区域。接下来对于每个有正分数的像素点，我们计算其到文本框四个边界的距离，然后将其置为RBOX基本值得四个通道。对于QUAD的基本值，在8通道几何图中有正分数的每个像素的值是它的坐标到四边形四个顶点的偏移距离。<br><img src="/vampire1996.github.io/2019/05/06/paperlearning2/3.png" alt=" " title="Figure 4"></p>
+<h2 id="3-4损失函数"><a href="#3-4损失函数" class="headerlink" title="3.4损失函数"></a>3.4损失函数</h2><p>损失可以被定义为</p>
+<p>$$<br>L=L_{\mathrm{s}}+\lambda_{\mathrm{g}} L_{\mathrm{g}}<br>$$</p>
+<p>其中$L_s$和$L_g$代表着分数图和几何形状的损失，$\lambda_{\mathrm{g}}$代表两种损失间的权重。在我们的实验中，我们将$\lambda_{\mathrm{g}}$置为1  </p>
+<h3 id="3-4-1分数图的损失"><a href="#3-4-1分数图的损失" class="headerlink" title="3.4.1分数图的损失"></a>3.4.1分数图的损失</h3><p>在大多数体现最高水平的检测流水线中，通过平衡采样和难分样本挖掘(hard negative mining)来处理目标物体的不均衡分布。这样做潜在地提高了网络的性能。然而，使用这样的技巧不可避免地引入不可微的阶段和更多参数来调试和更复杂的流水线，这违背了我们的设计准则。<br>为了促使一个更为简洁的训练程序，我们使用类平衡交叉熵，公式为:  </p>
+<p>\begin{equation}<br>L_{\mathrm{s}} =\text { balanced-xent }\left(\hat{\mathbf{Y}}, \mathbf{Y}^{<em>}\right) =-\beta \mathbf{Y}^{</em>} \log \hat{\mathbf{Y}} -(1-\beta)(1-\mathbf{Y}^{*}) \log (1-\hat{\mathbf{Y}})<br>\end{equation}</p>
+<p>其中$\hat{\mathbf{Y}}=F_{\mathrm{s}}$是得分图的预测,$\mathbf{Y}^{*}$是真实值。参数$\beta$是正例和负例的平衡因子，由下式给定  </p>
+<p>\begin{equation}<br>\beta=1-\frac{\sum_{y^{<em>} \in \mathbf{Y}^{</em>}} y^{<em>}}{\left|\mathbf{Y}^{</em>}\right|}<br>\end{equation}</p>
+<p>平衡交叉熵首先Yao等人用于文本检测，作为得分图预测的目标函数。  </p>
+<h3 id="3-4-2几何形状的损失"><a href="#3-4-2几何形状的损失" class="headerlink" title="3.4.2几何形状的损失"></a>3.4.2几何形状的损失</h3><p>文本检测的一个挑战是单词区域的大小变化的非常剧烈。直接使用$L1$或者$L2$损失用于回归会引起损失偏差朝向更大更长的文本区域。我们需要产生准确的文本形状不论是大的还是小的文本区域，而回归损失应该是比例不变的。因此，我们使用IoU损失在RBOX的AABB部分，和一个规模正则化平滑L1损失用于QUAD回归。<br>$RBOX$对于AABB部分，我们使用IoU损失因为它对不同规模的物体都是不变的。  </p>
+<p>\begin{equation}<br>L_{\mathrm{AABB}}=-\log \operatorname{IoU}\left(\hat{\mathbf{R}}, \mathbf{R}^{<em>}\right)=-\log \frac{\left|\hat{\mathbf{R}} \cap \mathbf{R}^{</em>}\right|}{\left|\hat{\mathbf{R}} \cup \mathbf{R}^{*}\right|}<br>\end{equation}</p>
+<p>其中$\hat{\mathbf{R}}$代表预测的AABB形状而$\mathbf{R}^{<em>}$是它对应的真实值。很容易可知相交正方形$\left|\hat{\mathbf{R}} \cap \mathbf{R}^{</em>}\right|$的宽度和高度为:  </p>
+<p>\begin{equation}<br>\begin{aligned} w_{\mathrm{i}} &amp;=\min \left(\hat{d}<em>{2}, d</em>{2}^{<em>}\right)+\min \left(\hat{d}<em>{4}, d</em>{4}^{</em>}\right) \ h_{\mathrm{i}} &amp;=\min \left(\hat{d}<em>{1}, d</em>{1}^{<em>}\right)+\min \left(\hat{d}<em>{3}, d</em>{3}^{</em>}\right) \end{aligned}<br>\end{equation}<br>其中$d_1,d_2,d_3$和$d_4$代表着一个像素点到其对应四边形顶端，右侧，底部和左侧边界的距离。联合区域由下式给定:<br>\begin{equation}<br>\left|\hat{\mathbf{R}} \cup \mathbf{R}^{<em>}\right|=|\hat{\mathbf{R}}|+\left|\mathbf{R}^{</em>}\right|-\left|\hat{\mathbf{R}} \cap \mathbf{R}^{<em>}\right|<br>\end{equation}<br>因此交集和并集可以被轻松地计算。接下来，旋转角度被计算为:<br>\begin{equation}<br>L_{\theta}\left(\hat{\theta}, \theta^{</em>}\right)=1-\cos \left(\hat{\theta}-\theta^{<em>}\right)<br>\end{equation}<br>其中$\hat{\theta}$是旋转角度的预测值，$\theta^{</em>}$是旋转角度的真实值。最终，总体形状损失是AABB的加权损失和角度损失，由下式给出:<br>\begin{equation}<br>L_{\mathrm{g}}=L_{\mathrm{AABB}}+\lambda_{\theta} L_{\theta}<br>\end{equation}<br>其中$\lamda_{theta}$在实验中被设为10<br>注意我们计算$L_{AABB}$并没有考虑旋转角度。这可以看做是四边形IoU的近似当角度被完美地预测时。尽管这不是训练时的情况，它仍然可以采用正确的梯度来学习以预测$\hat{\mathbf{R}}$<br>$QUAD$我们扩展平滑L1损失通过增加设计用于单词四边形的正则项，它通常在某一方向上更加长。令$Q$的所有坐标值为一有序集<br>\begin{equation}<br>\mathrm{C}<em>{\mathrm{Q}}=\left{x</em>{1}, y_{1}, x_{2}, y_{2}, \ldots, x_{4}, y_{4}\right}<br>\end{equation}<br>接下来损失可以被写为:<br>\begin{equation}<br>L_{\mathrm{g}}=L_{\mathrm{QUAD}}\left(\hat{\mathbf{Q}}, \mathbf{Q}^{<em>}\right)<br>=\min <em>{\tilde{\mathbf{Q}} \in P</em>{\mathbf{Q}^{</em>}}} \sum_{\tilde{c}<em>{i} \in \mathbb{C}</em>{\tilde{\mathbf{Q}}}} \frac{\operatorname{smoothed}<em>{L 1}\left(c</em>{i}-\tilde{c}<em>{i}\right)}{8 \times N</em>{\mathbf{Q}}}<br>\end{equation}<br>其中正则项$\mathrm{N}<em>{\mathrm{Q}^{*}}$为四边形的短边，由下式给出：<br>\begin{equation}<br>N</em>{Q^{<em>}}=\min <em>{i=1} D\left(p</em>{i}, p_{(i \bmod 4)+1}\right)<br>\end{equation}<br>而$P_Q$是有着不同顶点顺序$Q_{</em>}$的所有相等四边形的集合。这种有序的排列是必须的因为公开训练集的四边形的注释是不一致的。  </p>
+<h2 id="3-5训练"><a href="#3-5训练" class="headerlink" title="3.5训练"></a>3.5训练</h2><p>网络使用ADAM优化器进行端到端的训练。为了加速学习，我们一致地从图像中采样512x512的切片以形成尺寸为24的小批量。ADAM的学习率从1e-3开始，每隔27300个迷你批量衰减1/10，停止于1e-5.网络会训练到性能不再提升。  </p>
+<h2 id="3-6位置感知极大值抑制-Locality-Aware-NMS"><a href="#3-6位置感知极大值抑制-Locality-Aware-NMS" class="headerlink" title="3.6位置感知极大值抑制(Locality-Aware NMS)"></a>3.6位置感知极大值抑制(Locality-Aware NMS)</h2><p>为了形成最终的结果，二值化后形成的几何形状应该被NMS融合。一种原始的NMS算法以O(n^2)复杂度运行，其中n是几何形状候选数，这是不可接受的当我们面对从密度预测得到的上万个几何形状。  </p>
+<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><p>fall short 缺乏;不足<br>interplay 相互作用<br>yield  产生，退让<br>quadrilateral 四边形<br>intermediate 中间的<br>aggregation 聚合<br>simplicity 简单<br>outperform 表现更好<br>resolution 决议，决心<br>prerequisite 先决条件<br>utilize 使用<br>exclude 排除<br>redundant 多余<br>rectangle 矩形<br>quadrangle 四边形<br>suppression 抑制<br>quantitative 定量的，量化的<br>unprecedented 史无前例的<br>prerequisite 条件<br>extraction 提取<br>manually 手动地<br>utilize 利用<br>outperform 表现优于<br>state-of-the-art 使用最先进技术的，体现最高水平的<br>review 评论<br>comprehensive 综合的，全面的<br>conventional 常规的<br>prune 修剪<br>regression 回归<br>refine 提炼<br>anchor 锚<br>vertical 垂直<br>projection 投影<br>formation 编队，形成<br>multitude 多数<br>exhaustive 详尽的<br>tuning 调整<br>devise 发明，设计<br>depicte 描绘<br>resultant 组合的<br>remedy 救济，改正<br>adopt 收养，采用<br>schematic 略图的;简表的;严谨的<br>interleave 插入，夹进<br>concatenation 一系列相关联的事物<br>concatenate with 与…连接<br>bottleneck 瓶颈，阻碍<br>fraction 少量<br>overhead 开销<br>vertice 顶点<br>generality 一般性;概述<br>inward 向内地，向中心地<br>annotate 给…做注解<br>minimal 最小的<br>inevitably 不可避免地<br>contradicts 反驳，与..相反<br>facilitate 促进<br>inconsistent 不一致的<br>uniformly 一致的，均匀的  </p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>(1)分类模型的评价指标Fscore   </p>
+<p>$$ F-score=1+\beta^2\frac{Percision<em>Recall}{\beta^2</em>(Percision+Recall)} $$</p>
+<p>其中$\beta$的取值有三种情况<br>如果取1,表示Precision与Recall一样重要<br>如果取小于1,表示Precision比Recall重要<br>如果取大于1,表示Recall比Precision重要<br>(2)难分样本挖掘(hard negative mining)<br>对于目标检测中我们会事先标记处ground truth，然后再算法中会生成一系列proposal，这些proposal有跟标记的ground truth重合的也有没重合的，那么重合度（IOU）超过一定阈值（通常0.5）的则认定为是正样本，以下的则是负样本。然后扔进网络中训练。However，这也许会出现一个问题那就是正样本的数量远远小于负样本，这样训练出来的分类器的效果总是有限的，会出现许多false positive，把其中得分较高的这些false positive当做所谓的Hard negative，既然mining出了这些Hard negative，就把这些扔进网络再训练一次，从而加强分类器判别假阳性的能力。 </p>
 
       
     </div>
@@ -596,8 +456,8 @@ uniformly 一致的，均匀的</p>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/vampire1996.github.io/2019/05/12/cs2291/" rel="prev" title="CS229学习笔记1:线性回归">
-                CS229学习笔记1:线性回归 <i class="fa fa-chevron-right"></i>
+              <a href="/vampire1996.github.io/2019/08/28/vscode/" rel="prev" title="visual studio code使用记录">
+                visual studio code使用记录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -677,7 +537,7 @@ uniformly 一致的，均匀的</p>
               
                 <a href="/vampire1996.github.io/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -688,7 +548,7 @@ uniformly 一致的，均匀的</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/vampire1996.github.io/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -699,7 +559,7 @@ uniformly 一致的，均匀的</p>
               
               <div class="site-state-item site-state-tags">
                 <a href="/vampire1996.github.io/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -732,7 +592,7 @@ uniformly 一致的，均匀的</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍introduction"><span class="nav-number">2.</span> <span class="nav-text">1.介绍(introduction)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关工作"><span class="nav-number">3.</span> <span class="nav-text">2.相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法methodology"><span class="nav-number">4.</span> <span class="nav-text">3.方法(Methodology)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线"><span class="nav-number">4.1.</span> <span class="nav-text">3.1流水线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络设计"><span class="nav-number">4.2.</span> <span class="nav-text">3.2网络设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四边形得分图生成"><span class="nav-number">4.3.</span> <span class="nav-text">3.3.1四边形得分图生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几何图生成"><span class="nav-number">4.4.</span> <span class="nav-text">3.3.2几何图生成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#损失函数"><span class="nav-number">5.</span> <span class="nav-text">3.4损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分数图的损失"><span class="nav-number">5.1.</span> <span class="nav-text">3.4.1分数图的损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几何形状的损失"><span class="nav-number">5.2.</span> <span class="nav-text">3.4.2几何形状的损失</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练"><span class="nav-number">6.</span> <span class="nav-text">3.5训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位置感知极大值抑制locality-aware-nms"><span class="nav-number">7.</span> <span class="nav-text">3.6位置感知极大值抑制(Locality-Aware NMS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词汇"><span class="nav-number">8.</span> <span class="nav-text">词汇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">9.</span> <span class="nav-text">概念</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-介绍-introduction"><span class="nav-number">2.</span> <span class="nav-text">1.介绍(introduction)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作"><span class="nav-number">3.</span> <span class="nav-text">2.相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-方法-Methodology"><span class="nav-number">4.</span> <span class="nav-text">3.方法(Methodology)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1流水线"><span class="nav-number">4.1.</span> <span class="nav-text">3.1流水线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2网络设计"><span class="nav-number">4.2.</span> <span class="nav-text">3.2网络设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3标签生成"><span class="nav-number">5.</span> <span class="nav-text">3.3标签生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1四边形得分图生成"><span class="nav-number">5.1.</span> <span class="nav-text">3.3.1四边形得分图生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2几何图生成"><span class="nav-number">5.2.</span> <span class="nav-text">3.3.2几何图生成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4损失函数"><span class="nav-number">6.</span> <span class="nav-text">3.4损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1分数图的损失"><span class="nav-number">6.1.</span> <span class="nav-text">3.4.1分数图的损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2几何形状的损失"><span class="nav-number">6.2.</span> <span class="nav-text">3.4.2几何形状的损失</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5训练"><span class="nav-number">7.</span> <span class="nav-text">3.5训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6位置感知极大值抑制-Locality-Aware-NMS"><span class="nav-number">8.</span> <span class="nav-text">3.6位置感知极大值抑制(Locality-Aware NMS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词汇"><span class="nav-number">9.</span> <span class="nav-text">词汇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">10.</span> <span class="nav-text">概念</span></a></li></ol></div>
             
 
           </div>
